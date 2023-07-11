@@ -6,7 +6,7 @@ export class AddItemPage extends React.Component {
     return (
       <div>
         <h1>Add item</h1>
-        <p onClick={(e) => this.props.changePage(pages.WelcomePage)}>
+        <p style={{position: "fixed", top: "10px", left:"10px"}} onClick={(e) => this.props.changePage(pages.WelcomePage)}>
           Back
         </p>
       </div>

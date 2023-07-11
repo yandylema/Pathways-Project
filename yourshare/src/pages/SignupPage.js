@@ -1,5 +1,5 @@
 import React from "react";
-import { pages } from "./App";
+import { pages } from "../App";
 
 export class SignupPage extends React.Component {
   render() {

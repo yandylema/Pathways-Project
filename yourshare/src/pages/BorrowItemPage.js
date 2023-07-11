@@ -6,8 +6,8 @@ export class BorrowItemPage extends React.Component {
     return (
       <div>
         <h1>Borrow Item</h1>
-        <p onClick={(e) => this.props.changePage(pages.WelcomePage)}>
-          Join
+        <p style={{position: "fixed", top: "10px", left:"10px"}} onClick={(e) => this.props.changePage(pages.WelcomePage)}>
+          Back
         </p>
       </div>
     );

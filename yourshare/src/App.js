@@ -33,7 +33,7 @@ export class App extends React.Component {
       case pages.WelcomePage:
         whichComponentToShow = <WelcomePage changePage={this.changeScreen} />;
         break;
-      case BorrowItemPage:
+      case pages.BorrowItemPage:
         whichComponentToShow = <BorrowItemPage changePage={this.changeScreen} />;
         break;
       case pages.SignupPage:
