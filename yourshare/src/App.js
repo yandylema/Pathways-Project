@@ -3,11 +3,15 @@ import "./App.css";
 import { WelcomePage } from "./pages/WelcomePage";
 import { AddItemPage } from "./pages/AddItemPage";
 import { CommunityPage } from "./pages/CommunityPage";
+import { SignupPage } from "./pages/SignupPage";
+import { BorrowItemPage } from "./pages/BorrowItemPage";
 
 export const pages = {
   WelcomePage: "WelcomePage",
   CommunityPage: "CommunityPage",
   AddItemPage: "AddItemPage",
+  BorrowItemPage: "BorrowItemPage",
+  SignupPage: "SignupPage"
 };
 
 export class App extends React.Component {
@@ -27,8 +31,14 @@ export class App extends React.Component {
         whichComponentToShow = <AddItemPage changePage={this.changeScreen} />;
         break;
       case pages.WelcomePage:
-      default:
         whichComponentToShow = <WelcomePage changePage={this.changeScreen} />;
+        break;
+      case pages.BorrowItemPage:
+        whichComponentToShow = <BorrowItemPage changePage={this.changeScreen} />;
+        break;
+      case pages.SignupPage:
+      default:
+        whichComponentToShow = <SignupPage changePage={this.changeScreen} />;
         break;
     }
 
