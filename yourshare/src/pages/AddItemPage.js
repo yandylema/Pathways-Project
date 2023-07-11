@@ -6,11 +6,7 @@ import { CancelButton } from "../components/CancelButton";
 import Textbox from "../components/Textbox";
 
 const h1 = {
-  paddingLeft:"150px"
-}
-const textbox = {
-  width:"500px",
-  height: "450px"
+  textAlign: "center"
 }
 
 export class AddItemPage extends React.Component {
@@ -23,7 +19,7 @@ export class AddItemPage extends React.Component {
         <p>Type:</p>
         <InputText placeholderInput = {"Type:"}></InputText>
         <p>Description</p>
-        <Textbox style={textbox}></Textbox>
+        <Textbox></Textbox>
         <p style={{position: "fixed", top: "10px", left:"10px"}} onClick={(e) => this.props.changePage(pages.WelcomePage)}>
           Back
         </p>
