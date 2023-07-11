@@ -2,6 +2,9 @@ import React from "react";
 import { pages } from "../App";
 import blender from "../images/YS_blender.png";
 import Textbox from "../components/Textbox";
+import { CancelButton } from "../components/CancelButton";
+import InputText from "../components/InputText";
+import { Button } from "../components/Button";
 
 export class BorrowItemPage extends React.Component {
   render() {
@@ -9,15 +12,25 @@ export class BorrowItemPage extends React.Component {
       <div>
         <h1>Borrow Item</h1>
 
-        <input type="text"></input>
-        <input type="text"></input>
-        <input type="text"></input>
-        <img src={blender} className="right-image" />
+        <div style={{ display: "flex" }}>
+          <div>
+            <InputText placeholderInput={"Item name: Blender"}></InputText>
+            <InputText placeholderInput={"Type: Kitchen"}></InputText>
+            <InputText placeholderInput={"Lender: Stacey"}></InputText>
+            <Textbox></Textbox>
+          </div>
+          <div>
+            <img src={blender} className="right-image" />
+            <div>
+              <CancelButton>Cancel</CancelButton>
+              <Button>Request to Borrow</Button>
+            </div>
+          </div>
+        </div>
 
-        <Textbox></Textbox>
         <p
           style={{ position: "fixed", top: "10px", left: "10px" }}
-          onClick={this.handleCancel}
+          onClick={this.props.changePage}
         >
           Back
         </p>
