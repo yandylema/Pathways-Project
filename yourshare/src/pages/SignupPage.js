@@ -1,7 +1,7 @@
 import React from "react";
-import { pages } from "../App";
 import InputText from "../components/InputText";
 import logo from "../images/YS_icon.png";
+import { Button } from "../components/Button";
 
 const signUpPage = {
   margin: "auto",
@@ -28,12 +28,13 @@ export class SignupPage extends React.Component {
           <InputText placeholderInput="Phone number:" />
           <InputText placeholderInput="Zip code: " />
 
-          <button onClick={(e) => this.props.changePage(pages.WelcomePage)}>
+
+          <Button to={"/welcome"}>
             Join
-          </button>
-          <p onClick={(e) => this.props.changePage(pages.WelcomePage)}>
+          </Button>
+          <Button to={"/welcome"}>
             Sign-in
-          </p>
+          </Button>
         </div>
       </div>
     );
