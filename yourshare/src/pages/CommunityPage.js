@@ -22,7 +22,7 @@ export class CommunityPage extends React.Component {
         </div>
         <p>
           <Button>Add Friend</Button>
-        </p>
+        <br></br>
         <Checkbox>Text me when someone wants to borrow an item</Checkbox>
         <Checkbox>Allow best friends to auto borrow without approval</Checkbox>
         <Checkbox>Block friends of friends from seeing my items</Checkbox>
