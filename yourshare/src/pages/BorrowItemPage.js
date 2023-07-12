@@ -1,16 +1,16 @@
 import React from "react";
-import { pages } from "../App";
 import blender from "../images/YS_blender.png";
 import Textbox from "../components/Textbox";
 import { CancelButton } from "../components/CancelButton";
 import InputText from "../components/InputText";
 import { Button } from "../components/Button";
+import { BackButton } from "../components/BackButton";
 
 export class BorrowItemPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Borrow Item</h1>
+        <BackButton>Borrow Item</BackButton>
 
         <div style={{ display: "flex" }}>
           <div>
@@ -28,12 +28,8 @@ export class BorrowItemPage extends React.Component {
           </div>
         </div>
 
-        <p
-          style={{ position: "fixed", top: "10px", left: "10px" }}
-          onClick={this.props.changePage}
-        >
-          Back
-        </p>
+        
+        
       </div>
     );
   }
