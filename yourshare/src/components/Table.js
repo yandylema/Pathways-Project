@@ -2,7 +2,8 @@ import React from "react";
 
 const td = {
   border: "1px solid black",
-  borderCollapse: "collapse"
+  borderCollapse: "collapse",
+  padding: "10px"
 };
 
 const table = {
