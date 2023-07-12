@@ -6,7 +6,7 @@ import back from "../images/back.png"
 const button = {
     display: "flex",
     marginTop: "50px",
-    marginBttom: "30px",
+    marginBottom: "30px",
 };
 
 const icon = {
