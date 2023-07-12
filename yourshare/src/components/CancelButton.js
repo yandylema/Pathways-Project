@@ -1,5 +1,5 @@
 import React from "react";
-import { pages } from "../App";
+import { Link } from "react-router-dom";
 
 const cancelButton = {
   backgroundColor: "white",
@@ -11,12 +11,14 @@ const cancelButton = {
 export class CancelButton extends React.Component {
   render() {
     return (
+      <Link to={"/welcome"}>
       <button
         style={cancelButton}
-        onClick={(e) => this.props.changePage(pages.WelcomePage)}
       >
         {this.props.children}
       </button>
+      </Link>
     );
+    
   }
 }

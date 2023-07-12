@@ -1,6 +1,5 @@
 
 import React from "react";
-import { pages } from "../App";
 import { Table } from "../components/Table";
 import { Button } from "../components/Button";
 
@@ -29,13 +28,13 @@ export class WelcomePage extends React.Component {
         <Table data={startingData}></Table>
         <div>
         <Table data={yourItems}></Table>
-        <Button onClick={(e) => this.props.changePage(pages.AddItemPage)}>
-          Add item
-        </Button>
+        <Button to={"/additem"}>
+            Add Item
+          </Button>
         <br></br>
-        <Button onClick={(e) => this.props.changePage(pages.CommunityPage)}>
-          Community
-        </Button>
+        <Button to={"/community"}>
+            Community
+          </Button>
         </div>
         </div>
       </div>
