@@ -16,11 +16,11 @@ export class CommunityPage extends React.Component {
   render() {
     return (
       <div>
-
         <BackButton>Manage Community</BackButton>
         <div>
           <Table data={startingData}></Table>
         </div>
+        <p>
           <Button>Add Friend</Button>
         </p>
         <Checkbox>Text me when someone wants to borrow an item</Checkbox>
