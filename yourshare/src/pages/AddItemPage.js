@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import InputText from "../components/InputText";
 import { Button } from "../components/Button";
 import { CancelButton } from "../components/CancelButton";
 import Textbox from "../components/Textbox";
 import { BackButton } from "../components/BackButton";
 
-export class AddItemPage extends React.Component {
-  render() {
+export function AddItemPage (props) {
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
+    const [description, setDescription] = useState("");
     return (
-      <div>
-        <BackButton>Add Item</BackButton>
-        <p>Item name:</p>
-        <InputText placeholderInput = {"Item name:"}></InputText>
-        <p>Type:</p>
-        <InputText placeholderInput = {"Type:"}></InputText>
-        <p>Description</p>
-        <Textbox></Textbox>
+      <>
+      <BackButton>Add Item</BackButton>
+      <div style={{display: "flex"}}>
         
+        <div style={{marginRight: "100px", paddingTop: "20px"}}>
+        {/* <p>Item name:</p> */}
+        <InputText onchange={setName} placeholderInput = {"Item name:"}></InputText>
+        {/* <p>Type:</p> */}
+        <InputText onchange={setType} placeholderInput = {"Type:"}></InputText>
+        </div>
+        <div>
+        <p>Description</p>
+        <Textbox onchange={setDescription}></Textbox>
+        </div>
+        </div>
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
         <CancelButton>Cancel</CancelButton>
-        <Button>Add item</Button>
-      </div>
+        <Button to="/welcome" state={{name:name, type:type, description:description}}>Add item</Button>
+        </div>
+        
+      
+      </>
     );
-  }
 }
