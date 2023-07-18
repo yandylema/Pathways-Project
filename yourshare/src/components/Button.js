@@ -5,6 +5,8 @@ const button = {
   backgroundColor: "#006eff",
   color: "white",
   padding: "10px",
+  paddingRight:"25px",
+  paddingLeft:"25px",
   border: "0",
   margin: "10px",
   marginTop: "15px",
