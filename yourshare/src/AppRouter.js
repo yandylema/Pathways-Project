@@ -9,7 +9,7 @@ import { BorrowItemPage } from "./pages/BorrowItemPage";
 
 const AppRouter = () => (
   <Router>
-    <div style={{ margin: "auto", maxWidth: "620px" }}>
+    <div style={{ margin: "auto", maxWidth: "850px" }}>
       <Routes>
         <Route path="/" end element={<SignupPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
