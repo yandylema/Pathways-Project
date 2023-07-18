@@ -5,8 +5,13 @@ const button = {
   backgroundColor: "#61666f",
   color: "white",
   padding: "10px",
+  paddingRight:"25px",
+  paddingLeft:"25px",
   border: "0",
-  margin: "10px"
+  marginTop: "15px",
+  marginBottom:"20px"
+  
+  
 };
 
 export class Button extends React.Component {

@@ -3,11 +3,13 @@ import React from "react";
 const td = {
   border: "1px solid black",
   borderCollapse: "collapse",
-  padding: "10px"
+  padding: "15px",
+  
 };
 
 const table = {
-  borderCollapse: "collapse"
+  borderCollapse: "collapse",
+  marginRight: "30px",
 };
 
 export class Table extends React.Component {
