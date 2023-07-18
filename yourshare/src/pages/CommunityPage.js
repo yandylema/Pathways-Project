@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { pages } from "../App";
 
 export class CommunityPage extends React.Component {
@@ -12,6 +13,76 @@ export class CommunityPage extends React.Component {
         <p style={{position: "fixed", top: "10px", left:"10px"}} onClick={(e) => this.props.changePage(pages.WelcomePage)}>
           Back
         </p>
+=======
+import { Button } from "../components/Button";
+import { Checkbox } from "../components/Checkbox";
+import { Table } from "../components/Table";
+import { BackButton } from "../components/BackButton";
+import { useState } from "react";
+import { Persona } from "../components/Persona";
+import { PersonCard } from "../components/PersonCard";
+import { Nav } from "../components/Nav";
+const personCards = {
+  display: "flex",
+  margin: "25px",
+};
+const startingData = [
+  [
+    "Stacey",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
+  [
+    "Lily",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
+  [
+    "Haley",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
+];
+
+export function CommunityPage() {
+  return (
+    <div>
+      <Nav></Nav>
+      <BackButton>Manage Community</BackButton>{" "}
+      <div>
+        <div className="personCards" style={personCards}>
+          {startingData.map((person) => (
+            <PersonCard
+              key={person.id}
+              name={person[0]}
+              image={person[1]}
+              itemsBorrowed={person[2]}
+              itemsLent={person[3]}
+            ></PersonCard>
+          ))}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "50px",
+          }}
+        >
+          <div>
+            <Checkbox>Text me when someone wants to borrow an item</Checkbox>
+            <Checkbox>
+              Allow best friends to auto borrow without approval
+            </Checkbox>
+            <Checkbox>Block friends of friends from seeing my items</Checkbox>
+          </div>
+          <div style={{ marginRight: "20px", marginTop: "25px" }}>
+            <Button>Add Friend</Button>
+          </div>
+        </div>
+>>>>>>> Stashed changes
       </div>
     );
   }
