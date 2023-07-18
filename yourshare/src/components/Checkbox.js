@@ -4,6 +4,7 @@ const checkbox = {
   width: "25px",
   height: "25px",
   cursor: "pointer",
+  marginRight: "10px",
 };
 
 const container = {
