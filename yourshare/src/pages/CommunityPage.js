@@ -1,19 +1,4 @@
 import React from "react";
-<<<<<<< Updated upstream
-import { pages } from "../App";
-
-export class CommunityPage extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Community</h1>
-        <p onClick={(e) => this.props.changePage(pages.BorrowItemPage)}>
-          Example Item
-        </p>
-        <p style={{position: "fixed", top: "10px", left:"10px"}} onClick={(e) => this.props.changePage(pages.WelcomePage)}>
-          Back
-        </p>
-=======
 import { Button } from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
@@ -53,6 +38,7 @@ export function CommunityPage() {
       <Nav></Nav>
       <BackButton>Manage Community</BackButton>{" "}
       <div>
+        <h1>Community</h1>
         <div className="personCards" style={personCards}>
           {startingData.map((person) => (
             <PersonCard
@@ -82,8 +68,7 @@ export function CommunityPage() {
             <Button>Add Friend</Button>
           </div>
         </div>
->>>>>>> Stashed changes
       </div>
-    );
-  }
+    </div>
+  );
 }
