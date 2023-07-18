@@ -1,0 +1,6 @@
+input::file-selector-button{
+    background-color: grey;
+}
+.panel{
+    display:flex;
+}
