@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputText from "../components/InputText";
 import { Button } from "../components/Button";
 import { CancelButton } from "../components/CancelButton";
@@ -7,27 +7,31 @@ import { BackButton } from "../components/BackButton";
 import UploadBox from "../components/UploadBox"
 
 
-export class AddItemPage extends React.Component {
-  render() {
+export function AddItemPage (props) {
+    const [name, setName] = useState("");
+    const [type, setType] = useState("");
+    const [description, setDescription] = useState("");
     return (
       <div>
         <div className="panel">
         <div>
         <BackButton>Add Item</BackButton>
         <p>Item name:</p>
-        <InputText placeholderInput = {"Item"}></InputText>
+        <InputText onchange={setName} placeholderInput = {"Item"}></InputText>
         <p>Type name:</p>
-        <InputText placeholderInput = {"Type"}></InputText>
+        <InputText onchange={setType} placeholderInput = {"Type"}></InputText>
         <p>Description</p>
-        <Textbox></Textbox>
+        <Textbox onchange={setDescription}></Textbox>
         </div>
          <div>
         <UploadBox></UploadBox> 
         </div>
       </div>
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
         <CancelButton>Cancel</CancelButton>
-        <Button>Add item</Button>
-      </div>
+        <Button to="/welcome" state={{name:name, type:type, description:description}}>Add item</Button>
+        </div>
+        </div>
+      
     );
-  }
 }
