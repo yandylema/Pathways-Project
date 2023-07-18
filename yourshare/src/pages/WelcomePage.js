@@ -29,8 +29,13 @@ const container = {
 };
 
 export function WelcomePage(props) {
+  const [items, setItems] = useState(startingData);
+  const [myitems, setMyItems] = useState(yourItems);
+
+
   const location = useLocation();
-  const name = location.state;
+  console.log(location);
+  const {name, type, description} = location.state;
 
   return (
     <div>

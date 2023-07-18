@@ -17,9 +17,9 @@ export function AddItemPage (props) {
         <div>
         <BackButton>Add Item</BackButton>
         <p>Item name:</p>
-        <InputText onchange={setName} placeholderInput = {"Item"}></InputText>
+        <InputText onChange={setName} placeholderInput = {"Item"}></InputText>
         <p>Type name:</p>
-        <InputText onchange={setType} placeholderInput = {"Type"}></InputText>
+        <InputText onChange={setType} placeholderInput = {"Type"}></InputText>
         <p>Description</p>
         <Textbox onchange={setDescription}></Textbox>
         </div>
