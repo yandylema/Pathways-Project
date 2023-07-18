@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const button = {
-  backgroundColor: "#006eff",
+  backgroundColor: "rgb(90, 141, 3)",
   color: "white",
   padding: "10px",
-  paddingRight:"25px",
-  paddingLeft:"25px",
+  paddingRight: "25px",
+  paddingLeft: "25px",
   border: "0",
   margin: "10px",
   marginTop: "15px",
-  borderRadius: "10px"
+  borderRadius: "10px",
 };
 
 export class Button extends React.Component {
