@@ -3,22 +3,51 @@ import { Button } from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
 import { BackButton } from "../components/BackButton";
-
+import { useState } from "react";
+import { Persona } from "../components/Persona";
+import { PersonCard } from "../components/PersonCard";
+import { Nav } from "../components/Nav";
+const personCards = {
+  display: "flex",
+  margin: "25px",
+};
 const startingData = [
-  ["Friends", "Items currently borrowed", "Items currently lent", "Bestfriend"],
-  ["Stacey", "None", "None", <Checkbox></Checkbox>],
-  ["Marcos", "None", "None", <Checkbox></Checkbox>],
-  ["Cam", "None", "None", <Checkbox></Checkbox>],
-  ["Jim", "None", "None", <Checkbox></Checkbox>],
+  [
+    "Stacey",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
+  [
+    "Lily",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
+  [
+    "Haley",
+    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
+    ["item1", "item2"],
+    ["item1", "item2"],
+  ],
 ];
 
 export function CommunityPage() {
   return (
     <div>
+      <Nav></Nav>
       <BackButton>Manage Community</BackButton>{" "}
       <div>
-        <div>
-          <Table data={startingData}></Table>
+        <div className="personCards" style={personCards}>
+          {startingData.map((person) => (
+            <PersonCard
+              key={person.id}
+              name={person[0]}
+              image={person[1]}
+              itemsBorrowed={person[2]}
+              itemsLent={person[3]}
+            ></PersonCard>
+          ))}
         </div>
         <div
           style={{
