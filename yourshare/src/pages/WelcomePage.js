@@ -1,58 +1,61 @@
 import React from "react";
 import { Table } from "../components/Table";
 import { Button } from "../components/Button";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { ItemsToBorrowList } from "../components/ItemsToBorrow";
+import { Link } from "react-router-dom";
+import { Nav } from "../components/Nav";
 
 const startingData = [
-  ["Items for borrowing", "Lender"],
-  ["Rake", "Marcos"],
-  ["Car", "Marcos"],
-  ["Bike", "Cam"],
-  ["Drill", "Stacey"],
-  ["Ladder", "Marcos"],
-  ["Kayak", "Cam"],
-  ["The Office DVD Box Set", "Stacey"],
-  ["Cart", "Jim"],
+  ["Rake", "Marcos", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Car", "Marcos", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Bike", "Cam", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Drill", "Stacey", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Ladder", "Marcos", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Kayak", "Cam", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["The Office DVD Box Set", "Stacey", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Cart", "Jim", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
 ];
 
 const yourItems = [
-  ["Your items", "Lent to"],
-  ["Add your first item", "A friend"],
+  ["Broom", "Marcos", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Van", "Marcos", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"],
+  ["Chair", "Cam", "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0"]
 ];
 
 const container = {
   display: "flex",
 };
 
-export function AddItems() {
-  const [array, setArray] = useState([]);
-  const addItems = () => {
-    const nextVal = array.length + 1;
-    array.push(nextVal);
-    setArray(array);
-  };
+export function WelcomePage(props) {
+  const location = useLocation();
+  const name = location.state;
+
   return (
     <div>
-      <p>{array.join(",")}</p>
-      <button onClick={addItems}>Add item</button>
+      <Nav></Nav>
+      <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+      <h1>Your items</h1>
+      <Button to={"/additem"}>+ Add Item</Button>
+      </div>
+      <ItemsToBorrowList data={yourItems} borrowOrReturn={"return"}></ItemsToBorrowList>
+      <h1>Items for borrowing</h1>
+        <ItemsToBorrowList data={startingData} showSearchBar={true}></ItemsToBorrowList>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            marginLeft: "15px",
+            width: "50%"
+          }}
+        >
+          
+          
+          <br></br>
+          
+      </div>
     </div>
   );
-}
-
-export class WelcomePage extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Welcome</h1>
-        <div style={container}>
-          <Table data={startingData}></Table>
-          <div>
-            <Table data={yourItems}></Table>
-            <Button to={"/additem"}>Add Item</Button>
-            <br></br>
-            <Button to={"/community"}>Manage Community</Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 }
