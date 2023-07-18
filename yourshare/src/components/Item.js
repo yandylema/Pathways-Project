@@ -7,10 +7,11 @@ export function Item(props) {
       style={{
         display: "inline-block",
         margin: "10px",
-        backgroundColor: "#d3d3d3",
+        backgroundColor: "rgb(129 199 9 / 13%)",
         borderRadius: "20px",
         padding: "18px",
         paddingTop: "12px",
+        // boxShadow: "0 0 10 px 0px gray",
       }}
     >
       <div
@@ -35,7 +36,7 @@ export function Item(props) {
         <button
           style={{
             display: "block",
-            backgroundColor: "#324a5f",
+            backgroundColor: "#73b504",
             border: 0,
             color: "white",
             padding: "10px",
