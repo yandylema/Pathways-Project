@@ -1,85 +1,23 @@
 import React from "react";
 import { Table } from "../components/Table";
 import { Button } from "../components/Button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ItemsToBorrowList } from "../components/ItemsToBorrow";
 import { Link } from "react-router-dom";
 import { Nav } from "../components/Nav";
+import { items } from "../atoms"
+import {useRecoilState, useRecoilValue} from "recoil";
 
-const startingData = [
-  [
-    "Rake",
-    "Marcos",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Car",
-    "Marcos",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Bike",
-    "Cam",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Drill",
-    "Stacey",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Ladder",
-    "Marcos",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Kayak",
-    "Cam",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "The Office DVD Box Set",
-    "Stacey",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Cart",
-    "Jim",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-];
 
-const yourItems = [
-  [
-    "Broom",
-    "Marcos",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Van",
-    "Marcos",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-  [
-    "Chair",
-    "Cam",
-    "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
-  ],
-];
 
 const container = {
   display: "flex",
 };
 
 export function WelcomePage(props) {
-  const [items, setItems] = useState(startingData);
-  const [myitems, setMyItems] = useState(yourItems);
-
-
-  const location = useLocation();
-  console.log(location);
-  const {name, type, description} = location.state;
+  const navigate = useNavigate();
+  const itemsForBorrowing = useRecoilValue(items);
 
   return (
     <div>
@@ -92,15 +30,14 @@ export function WelcomePage(props) {
         }}
       >
         <h1>Your items</h1>
-        <Button to={"/additem"}>+ Add Item</Button>
+        <button onClick={()=> navigate("/additem")}>+ Add Item</button>
       </div>
       <ItemsToBorrowList
-        data={yourItems}
-        borrowOrReturn={"return"}
+        data={itemsForBorrowing.filter(item => item[1] === "user" || item[3] === "user")}
       ></ItemsToBorrowList>
       <h1>Items for borrowing</h1>
       <ItemsToBorrowList
-        data={startingData}
+        data={itemsForBorrowing.filter(item => item[3] == null && item[1] !== "user")}
         showSearchBar={true}
       ></ItemsToBorrowList>
       <div
