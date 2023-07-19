@@ -3,6 +3,7 @@ import InputText from "../components/InputText";
 import logo from "../images/YS_icon.png";
 import { Button } from "../components/Button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const signUpPage = {
   margin: "auto",
@@ -16,11 +17,12 @@ const img = {
   marginTop: "100px",
 };
 export function SignupPage() {
+  const navigate = useNavigate();
   const [name, setName] = useState("asdsa");
   return (
     <div style={signUpPage}>
       <div className="logoSignUpPage">
-        <img style={img} src={logo}></img>
+        <img style={img} src={logo} alt=""></img>
       </div>
       <div className="signUpPageInfo">
         <h1>Join our community</h1>
@@ -29,10 +31,10 @@ export function SignupPage() {
         <InputText placeholderInput="Phone number:" />
         <InputText placeholderInput="Zip code: " />
 
-        <Button to={"/welcome"} state={name}>
+        <button onClick={()=> navigate("/welcome")}>
           Join
-        </Button>
-        <Button to={"/welcome"}>Sign-in</Button>
+        </button>
+        <button onClick={()=> navigate("/welcome")}>Sign-in</button>
       </div>
     </div>
   );

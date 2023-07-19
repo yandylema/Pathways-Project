@@ -10,7 +10,7 @@ const uploadbox = {
 };
 
 
-const UploadBox = () => {
-  return (<input type="file" style={uploadbox} />);
+const UploadBox = (props) => {
+  return (<input type="file" style={uploadbox} onChange={props.setImage}/>);
 };
 export default UploadBox;
