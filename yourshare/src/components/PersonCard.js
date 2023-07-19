@@ -27,8 +27,7 @@ export function PersonCard(props) {
           ></img>
           <h5> {props.name}</h5>
         </div>
-        <div className="borrowedItem"> {props.itemsBorrowed}</div>
-        <div className="rentedLent"> {props.itemsLent}</div>
+        <div className="borrowedItem"> {props.items.map(item => <p>{item[0]}</p>)}</div>
 
         <div className="heart"> </div>
       </div>

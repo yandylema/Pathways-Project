@@ -6,8 +6,11 @@ import { WelcomePage } from "./pages/WelcomePage";
 import { AddItemPage } from "./pages/AddItemPage";
 import { CommunityPage } from "./pages/CommunityPage";
 import { BorrowItemPage } from "./pages/BorrowItemPage";
+import { RecoilRoot } from "recoil";
+import { AddFriendPage } from "./pages/AddFriendPage";
 
 const AppRouter = () => (
+  <RecoilRoot>
   <Router>
     <div style={{ margin: "auto", maxWidth: "850px" }}>
       <Routes>
@@ -16,10 +19,12 @@ const AppRouter = () => (
         <Route path="/additem" element={<AddItemPage />} />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/borrowitem" element={<BorrowItemPage />} />
+        <Route path="/addfriend" element={<AddFriendPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   </Router>
+  </RecoilRoot>
 );
 
 export default AppRouter;
