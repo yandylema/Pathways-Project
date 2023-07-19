@@ -44,15 +44,12 @@ export function WelcomePage(props) {
         </button>
       </div>
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(
-          (item) => item[1] === "user" || item[3] === "user"
-        )}
+        data={itemsForBorrowing.filter(item => item[1] === "You" || item[3] === "You")}
       ></ItemsToBorrowList>
       <h1>Items for borrowing</h1>
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(
-          (item) => item[3] == null && item[1] !== "user"
-        )}
+        data={itemsForBorrowing.filter(item => item[3] == null && item[1] !== "You")}
+
         showSearchBar={true}
       ></ItemsToBorrowList>
       <div
