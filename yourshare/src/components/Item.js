@@ -2,21 +2,25 @@ import { useRecoilState } from "recoil";
 import { Persona } from "./Persona";
 import { items } from "../atoms"
 import { community } from "../atoms";
+import { useNavigate } from "react-router-dom";
 
 
 export function Item(props) {
   const [itemsList, setItemsList] = useRecoilState(items);
   const [friends, setFriends]= useRecoilState(community);
+  const navigate = useNavigate();
 
   let buttonText;
-  if (props.item[1] === "user") {
+  if (props.item[1] === "You") {
     buttonText = "Lend";
-  } else if (props.item[3] === "user") {
+  } else if (props.item[3] === "You") {
     buttonText = "Return";
   } else {
     buttonText = "Borrow";
   }
   
+  console.log(props.item[1])
+
   return (
     <div
       style={{
@@ -41,7 +45,8 @@ export function Item(props) {
         <h5 style={{ marginBottom: "5px" }}>{props.item[0]}</h5>
         <img
       style={{ width: "50px", height: "50px", borderRadius: "100%" }}
-      src={friends.find(friend => props.item[1] === friend[0])[2] }
+      src={friends.find(friend => props.item[1] == friend[0])[2] }
+      alt="test"
     ></img>
       </div>
       <img style={{ width: "150px" }} src={props.item[2]} alt=""></img>
@@ -65,22 +70,7 @@ export function Item(props) {
             marginTop: "10px",
           }}
           onClick={()=> {
-            let newArr = structuredClone(itemsList);
-            console.log(newArr)
-            if (buttonText === "Borrow") {
-              for (var i = 0; i < newArr.length; i++) {
-                if (newArr[i][4] === props.item[4]) {
-                  newArr[i][3] = "user";
-                }
-              }
-            } else if (buttonText === "Lend" || buttonText === "Return") {
-              for (var j = 0; j < newArr.length; j++) {
-                if (newArr[j][4] === props.item[4]) {
-                  newArr[j][3] = null;
-                }
-              }
-            } 
-            setItemsList(newArr);
+            navigate("/borrowitem", {state: {item: props.item, buttonText: buttonText}})
           }}
         >
           {buttonText}
