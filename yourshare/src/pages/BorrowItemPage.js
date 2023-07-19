@@ -5,8 +5,7 @@ import InputText from "../components/InputText";
 import { Button } from "../components/Button";
 import { BackButton } from "../components/BackButton";
 
-export class BorrowItemPage extends React.Component {
-  render() {
+export function BorrowItemPage() {
     return (
       <div>
         <BackButton>Borrow Item</BackButton>
@@ -29,11 +28,10 @@ export class BorrowItemPage extends React.Component {
             />
             <div>
               <CancelButton>Cancel</CancelButton>
-              <Button>Request to Borrow</Button>
+              <button>Request to Borrow</button>
             </div>
           </div>
         </div>
       </div>
     );
-  }
 }
