@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
 import { BackButton } from "../components/BackButton";
@@ -32,7 +31,7 @@ export function CommunityPage() {
               name={person[0]}
               image={person[2]}
               isBestfriend={person[1]}
-              items={itemsForBorrowing.filter(item => item[1] === person[0])}
+              items={itemsForBorrowing.filter((item) => item[1] === person[0])}
             ></PersonCard>
           ))}
         </div>
@@ -52,7 +51,20 @@ export function CommunityPage() {
           </div>
           <div style={{ marginRight: "20px", marginTop: "25px" }}>
             <Link to={"/addfriend"}>
-            <button>Add Friend</button>
+              <button
+                style={{
+                  display: "block",
+                  backgroundColor: "#73b504",
+                  border: 0,
+                  color: "white",
+                  padding: "10px",
+                  borderRadius: "10px",
+                  width: "100px",
+                  marginTop: "10px",
+                }}
+              >
+                Add Friend
+              </button>
             </Link>
           </div>
         </div>

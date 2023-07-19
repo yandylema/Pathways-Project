@@ -1,15 +1,12 @@
 import React from "react";
 import { Table } from "../components/Table";
-import { Button } from "../components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ItemsToBorrowList } from "../components/ItemsToBorrow";
 import { Link } from "react-router-dom";
 import { Nav } from "../components/Nav";
-import { items } from "../atoms"
-import {useRecoilState, useRecoilValue} from "recoil";
-
-
+import { items } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const container = {
   display: "flex",
@@ -30,14 +27,32 @@ export function WelcomePage(props) {
         }}
       >
         <h1>Your items</h1>
-        <button onClick={()=> navigate("/additem")}>+ Add Item</button>
+        <button
+          onClick={() => navigate("/additem")}
+          style={{
+            display: "block",
+            backgroundColor: "#73b504",
+            border: 0,
+            color: "white",
+            padding: "10px",
+            borderRadius: "10px",
+            width: "125px",
+            marginTop: "10px",
+          }}
+        >
+          + Add Item
+        </button>
       </div>
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(item => item[1] === "user" || item[3] === "user")}
+        data={itemsForBorrowing.filter(
+          (item) => item[1] === "user" || item[3] === "user"
+        )}
       ></ItemsToBorrowList>
       <h1>Items for borrowing</h1>
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(item => item[3] == null && item[1] !== "user")}
+        data={itemsForBorrowing.filter(
+          (item) => item[3] == null && item[1] !== "user"
+        )}
         showSearchBar={true}
       ></ItemsToBorrowList>
       <div

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const button = {
   backgroundColor: "rgb(90, 141, 3)",
@@ -13,10 +12,11 @@ const button = {
   borderRadius: "10px",
 };
 
-export class Button extends React.Component {
-  render() {
-    return(<Link to={this.props.to} state={this.props.state}>
-    <button style={button}>{this.props.children}</button>
-    </Link>);
-  }
+export function Button(props) {
+  console.log(props);
+  return (
+    <button onClick={props.epic} style={button}>
+      {this.props.children}
+    </button>
+  );
 }
