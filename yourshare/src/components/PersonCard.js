@@ -35,7 +35,10 @@ export function PersonCard(props) {
           <p style={{ margin: "1px" }}>{item[0]}</p>
         ))}
 
-        <div className="heart"> </div>
+        <div className="heart">
+          {" "}
+          
+        </div>
       </div>
     </div>
   );
