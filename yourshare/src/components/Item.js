@@ -44,7 +44,7 @@ export function Item(props) {
       src={friends.find(friend => props.item[1] === friend[0])[2] }
     ></img>
       </div>
-      <img style={{ width: "150px" }} src={props.item[2]}></img>
+      <img style={{ width: "150px" }} src={props.item[2]} alt=""></img>
 
       <div
         style={{

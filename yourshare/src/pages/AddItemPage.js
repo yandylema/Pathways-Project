@@ -27,7 +27,14 @@ export function AddItemPage (props) {
         </div>
         <UploadBox setImage={(e)=>setImage(URL.createObjectURL(e.target.files[0]))}></UploadBox> 
       </div>
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "auto",
+        }}
+      >
         <CancelButton>Cancel</CancelButton>
         <button onClick={()=>{
           setItemsForBorrowing([...itemsForBorrowing, [name, "user", image, itemsForBorrowing.length]])
@@ -37,4 +44,3 @@ export function AddItemPage (props) {
       
     );
 }
-
