@@ -1,7 +1,6 @@
 import React from "react";
 import InputText from "../components/InputText";
 import logo from "../images/YS_icon.png";
-import { Button } from "../components/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,10 +30,35 @@ export function SignupPage() {
         <InputText placeholderInput="Phone number:" />
         <InputText placeholderInput="Zip code: " />
 
-        <button onClick={()=> navigate("/welcome")}>
+        <button
+          style={{
+            backgroundColor: "#73b504",
+            border: 0,
+            color: "white",
+            padding: "10px",
+            borderRadius: "10px",
+            width: "100px",
+            marginTop: "10px",
+            marginRight: "10px",
+          }}
+          onClick={() => navigate("/welcome")}
+        >
           Join
         </button>
-        <button onClick={()=> navigate("/welcome")}>Sign-in</button>
+        <button
+          style={{
+            backgroundColor: "#73b504",
+            border: 0,
+            color: "white",
+            padding: "10px",
+            borderRadius: "10px",
+            width: "100px",
+            marginTop: "10px",
+          }}
+          onClick={() => navigate("/welcome")}
+        >
+          Sign-in
+        </button>
       </div>
     </div>
   );
