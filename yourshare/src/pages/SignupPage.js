@@ -18,7 +18,9 @@ const img = {
 };
 export function SignupPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("asdsa");
+  const [name, setName] = useState("You");
+  const [phone, setPhone] = useState("");
+  const [zipcode, setZipcode] = useState("");
   return (
     <div style={signUpPage}>
       <div className="logoSignUpPage">
@@ -28,8 +30,8 @@ export function SignupPage() {
         <h1>Join our community</h1>
         <h4> Sign-up</h4>
         <InputText onChange={setName} placeholderInput="Username: " />
-        <InputText placeholderInput="Phone number:" />
-        <InputText placeholderInput="Zip code: " />
+        <InputText onChange={setPhone} placeholderInput="Phone number:" />
+        <InputText onChange={setZipcode} placeholderInput="Zip code: " />
 
         <button onClick={()=> navigate("/welcome")}>
           Join

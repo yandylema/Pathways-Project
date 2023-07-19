@@ -30,7 +30,9 @@ export function AddItemPage (props) {
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
         <CancelButton>Cancel</CancelButton>
         <button onClick={()=>{
-          setItemsForBorrowing([...itemsForBorrowing, [name, "user", image, itemsForBorrowing.length]])
+          console.log(itemsForBorrowing)
+          setItemsForBorrowing([...itemsForBorrowing, [name, "You", image, itemsForBorrowing.length]])
+          console.log(itemsForBorrowing)
           navigate("/welcome");}}>Add item</button>
         </div>
         </div>
