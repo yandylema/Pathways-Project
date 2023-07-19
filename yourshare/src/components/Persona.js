@@ -1,3 +1,9 @@
 export function Persona(props) {
-    return (<img style={{width:"30px", borderRadius: "100%"}} src={"https://th.bing.com/th/id/OIP.hCfHyL8u8XAbreXuaiTMQgHaHZ?pid=ImgDet&rs=1"}></img>)
+  console.log(props.img);
+  return (
+    <img
+      style={{ width: "50px", height: "50px", borderRadius: "100%" }}
+      src={props.img}
+    ></img>
+  );
 }
