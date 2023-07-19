@@ -8,40 +8,31 @@ import UploadBox from "../components/UploadBox"
 import { useNavigate } from "react-router-dom";
 import { items } from "../atoms";
 import { useRecoilState } from "recoil";
+import { community } from "../atoms";
 
-export function AddItemPage (props) {
+export function AddFriendPage (props) {
     const navigate = useNavigate();
     const [name, setName] = useState("");
-    const [type, setType] = useState("");
     const [image, setImage] = useState("");
-    const [itemsForBorrowing, setItemsForBorrowing] = useRecoilState(items)
+    const [friends, setFriends] = useRecoilState(community);
     return (
       <div>
         <div className="panel">
         <div>
-        <BackButton>Add Item</BackButton>
-        <p>Item name:</p>
-        <InputText onChange={setName} placeholderInput = {"Item"}></InputText>
-        <p>Type name:</p>
-
-        <InputText onChange={setType} placeholderInput = {"Type"}></InputText>
+        <BackButton>Add Friend</BackButton>
+        <p>Friend name:</p>
+        <InputText onChange={setName} placeholderInput = {"Friend"}></InputText>
         </div>
         <UploadBox setImage={(e)=>setImage(URL.createObjectURL(e.target.files[0]))}></UploadBox> 
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "auto",
-        }}
-      >
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
         <CancelButton>Cancel</CancelButton>
         <button onClick={()=>{
-          setItemsForBorrowing([...itemsForBorrowing, [name, "user", image, itemsForBorrowing.length]])
-          navigate("/welcome");}}>Add item</button>
+            setFriends([...friends, [name, false, image, friends.length]])
+          navigate("/community");}}>Add Friend</button>
         </div>
         </div>
       
     );
 }
+

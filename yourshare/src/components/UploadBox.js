@@ -6,11 +6,11 @@ const uploadbox = {
   width: "400px",
   backgroundColor: "silver",
   textAlign: "center",
-  margin: "auto",
+  margin: "100px",
 };
 
 
-const UploadBox = () => {
-  return (<input type="file" style={uploadbox} />);
+const UploadBox = (props) => {
+  return (<input type="file" style={uploadbox} onChange={props.setImage}/>);
 };
 export default UploadBox;

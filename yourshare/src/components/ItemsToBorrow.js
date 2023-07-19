@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Item } from "./Item";
 export function ItemsToBorrowList(props) {
+  const [search, setSearch] = useState("")
   return (
     <div>
       {props.showSearchBar ? (
@@ -16,11 +18,12 @@ export function ItemsToBorrowList(props) {
             color: "black",
             marginBottom: "20px",
           }}
+          onChange={(e)=>{setSearch(e.target.value)}}
         ></input>
       ) : null}
       <div>
-        {props.data.map((item) => (
-          <Item borrowOrReturn={props.borrowOrReturn} item={item}></Item>
+        {props.data.filter(item => item[0].toLowerCase().includes(search.toLowerCase())).map((item) => (
+          <Item item={item}></Item>
         ))}
       </div>
     </div>

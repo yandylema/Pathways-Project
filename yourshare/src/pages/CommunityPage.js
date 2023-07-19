@@ -7,6 +7,11 @@ import { useState } from "react";
 import { Persona } from "../components/Persona";
 import { PersonCard } from "../components/PersonCard";
 import { Nav } from "../components/Nav";
+import { community } from "../atoms";
+import { useRecoilValue } from "recoil";
+import { items } from "../atoms";
+import { Link } from "react-router-dom";
+
 const personCards = {
   display: "flex",
   margin: "25px",
@@ -33,6 +38,8 @@ const startingData = [
 ];
 
 export function CommunityPage() {
+  const friends = useRecoilValue(community);
+  const itemsForBorrowing = useRecoilValue(items);
   return (
     <div>
       <Nav></Nav>
@@ -40,13 +47,12 @@ export function CommunityPage() {
       <div>
         <h1>Community</h1>
         <div className="personCards" style={personCards}>
-          {startingData.map((person) => (
+          {friends.map((person) => (
             <PersonCard
-              key={person.id}
               name={person[0]}
-              image={person[1]}
-              itemsBorrowed={person[2]}
-              itemsLent={person[3]}
+              image={person[2]}
+              isBestfriend={person[1]}
+              items={itemsForBorrowing.filter(item => item[1] === person[0])}
             ></PersonCard>
           ))}
         </div>
@@ -65,7 +71,9 @@ export function CommunityPage() {
             <Checkbox>Block friends of friends from seeing my items</Checkbox>
           </div>
           <div style={{ marginRight: "20px", marginTop: "25px" }}>
-            <Button>Add Friend</Button>
+            <Link to={"/addfriend"}>
+            <button>Add Friend</button>
+            </Link>
           </div>
         </div>
       </div>
