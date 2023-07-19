@@ -6,7 +6,7 @@ const uploadbox = {
   width: "400px",
   backgroundColor: "silver",
   textAlign: "center",
-  margin: "auto",
+  margin: "100px",
 };
 
 

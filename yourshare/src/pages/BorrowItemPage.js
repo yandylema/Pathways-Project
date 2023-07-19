@@ -2,7 +2,6 @@ import React from "react";
 import Textbox from "../components/Textbox";
 import { CancelButton } from "../components/CancelButton";
 import InputText from "../components/InputText";
-import { Button } from "../components/Button";
 import { BackButton } from "../components/BackButton";
 import { Nav } from "../components/Nav";
 import { useRecoilState } from "recoil";
@@ -64,6 +63,7 @@ export function BorrowItemPage(props) {
             >
               {buttonText}
             </button>
+
           </div>
         </div>
       </div>

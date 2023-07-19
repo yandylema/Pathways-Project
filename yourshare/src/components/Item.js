@@ -49,7 +49,7 @@ export function Item(props) {
       alt="test"
     ></img>
       </div>
-      <img style={{ width: "150px" }} src={props.item[2]}></img>
+      <img style={{ width: "150px" }} src={props.item[2]} alt=""></img>
 
       <div
         style={{
