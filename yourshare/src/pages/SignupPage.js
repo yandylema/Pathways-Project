@@ -20,7 +20,7 @@ export function SignupPage() {
   return (
     <div style={signUpPage}>
       <div className="logoSignUpPage">
-        <img style={img} src={logo}></img>
+        <img style={img} src={logo} alt=""></img>
       </div>
       <div className="signUpPageInfo">
         <h1>Join our community</h1>
