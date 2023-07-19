@@ -23,7 +23,7 @@ export function Item(props) {
         <h5 style={{ marginBottom: "5px" }}>{props.item[0]}</h5>
         <Persona></Persona>
       </div>
-      <img style={{ width: "150px" }} src={props.item[2]}></img>
+      <img style={{ width: "150px" }} src={props.item[2]} alt=""></img>
 
       <div
         style={{

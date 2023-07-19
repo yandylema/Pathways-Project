@@ -4,7 +4,8 @@ import { Button } from "../components/Button";
 import { CancelButton } from "../components/CancelButton";
 import Textbox from "../components/Textbox";
 import { BackButton } from "../components/BackButton";
-import UploadBox from "../components/UploadBox"
+import UploadBox from "../components/UploadBox";
+import logo from "../images/YS_upload.png";
 
 
 export function AddItemPage (props) {
@@ -20,11 +21,11 @@ export function AddItemPage (props) {
         <InputText onchange={setName} placeholderInput = {"Item"}></InputText>
         <p>Type name:</p>
         <InputText onchange={setType} placeholderInput = {"Type"}></InputText>
-        <p>Description</p>
-        <Textbox onchange={setDescription}></Textbox>
+        <p>Enter description</p>
+        <Textbox onchange={setDescription} placeholderInput = {"Description"}></Textbox>
         </div>
          <div>
-        <UploadBox></UploadBox> 
+        <UploadBox><img src={logo} style={{width:"50px"}} alt=""></img></UploadBox> 
         </div>
       </div>
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "50px"}}>
