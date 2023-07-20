@@ -33,7 +33,7 @@ export function Nav() {
       </Link>
       <Link
         style={{
-          textDecoration: "bold",
+          textDecoration: "none",
           color: "black",
           width: "50%",
           backgroundColor:
