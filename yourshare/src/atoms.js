@@ -11,12 +11,12 @@ export const items = atom({
     default: [[
         "Rake", //name
         "Marcos", //owned by
-        "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
+        "https://th.bing.com/th/id/OIP.47vt0DRKtlaPf1h6oRCnMgHaFZ?pid=ImgDet&rs=1",
         "You", //borrowed by
         0
       ],
       [
-        "Car",
+        "Vacuum",
         "Marcos",
         "https://th.bing.com/th/id/R.93ffae8c571f89903bd67f5db2c2faa8?rik=dlyFWP7Vdv6MiQ&pid=ImgRaw&r=0",
         null,
