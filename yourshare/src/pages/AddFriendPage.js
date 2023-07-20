@@ -15,6 +15,7 @@ export function AddFriendPage(props) {
   const [image, setImage] = useState("");
   const [friends, setFriends] = useRecoilState(community);
   return (
+    <div style={{display: "flex", alignItems: "center", width: "100vw", justifyContent: "center"}}>
     <div>
       <div className="panel">
         <div>
@@ -54,6 +55,7 @@ export function AddFriendPage(props) {
           Add Friend
         </button>
       </div>
+    </div>
     </div>
   );
 }

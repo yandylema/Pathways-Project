@@ -14,7 +14,7 @@ export function AddItemPage(props) {
   const [image, setImage] = useState("");
   const [itemsForBorrowing, setItemsForBorrowing] = useRecoilState(items);
   return (
-    <div>
+    <div style={{width: "750px", margin: "auto"}}>
       <div className="panel">
         <div>
           <BackButton>Add Item</BackButton>
