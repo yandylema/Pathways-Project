@@ -82,7 +82,6 @@ export function PersonCard(props) {
 
           
       </div>
-      <button style={{zIndex: 999, position: "fixed", top:0, left: 0}} onClick={()=>setPersonItems([])}>Close</button>
       {personItems.length > 0 ? <div  style={{width: "100vw", height: "100vh", backgroundColor: "rgba(0,0,0,0.5)", position: "fixed", top: 0, left: 0, zIndex: 998}}>
         <div style={{position: "fixed", background:"#9cca4c", top: "50%", left: "50%", transform: "translate(-50%, -50%)", display: "flex", width: "350px", borderRadius: "20px", padding: "10px"}}>
         <div>
