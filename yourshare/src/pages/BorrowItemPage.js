@@ -16,8 +16,9 @@ export function BorrowItemPage(props) {
   const navigate = useNavigate();
 
   return (
+    <div style={{display: "flex", alignItems: "center", width: "100vw", justifyContent: "center"}}>
     <div>
-      <Nav></Nav>
+      
       <BackButton>{buttonText} Item</BackButton>
       <div
         style={{
@@ -67,6 +68,7 @@ export function BorrowItemPage(props) {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
