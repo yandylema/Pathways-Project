@@ -3,6 +3,7 @@ import { Persona } from "./Persona";
 import { items } from "../atoms"
 import { community } from "../atoms";
 import { useNavigate } from "react-router-dom";
+import "./Item.css"
 
 
 export function Item(props) {
@@ -23,16 +24,9 @@ export function Item(props) {
 
   return (
     <div
-      style={{
-        display: "inline-block",
-        margin: "10px",
-        backgroundColor: "rgb(129 199 9 / 13%)",
-        borderRadius: "20px",
-        padding: "18px",
-        paddingTop: "12px",
-        wdith: "186px",
-        height: "266px"
-        // boxShadow: "0 0 10 px 0px gray",
+      className="Item"
+      onClick={()=> {
+        navigate("/borrowitem", {state: {item: props.item, buttonText: buttonText}})
       }}
     >
       <div
@@ -49,33 +43,8 @@ export function Item(props) {
       alt="test"
     ></img>
       </div>
-      <img style={{ width: "150px" }} src={props.item[2]} alt=""></img>
+      <img style={{ width: "80%" }} src={props.item[2]} alt=""></img>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <button
-          style={{
-            display: "block",
-            backgroundColor: "#73b504",
-            border: 0,
-            color: "white",
-            padding: "10px",
-            borderRadius: "10px",
-            width: "80%",
-            marginTop: "10px",
-          }}
-          onClick={()=> {
-            navigate("/borrowitem", {state: {item: props.item, buttonText: buttonText}})
-          }}
-        >
-          {buttonText}
-        </button>
-      </div>
     </div>
   );
 }
