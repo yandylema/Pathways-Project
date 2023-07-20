@@ -1,11 +1,11 @@
 .Item{
     display: inline-block;
-    margin: 10px;
+    margin: 5px;
     background-color: rgb(211, 224, 190);
     border-radius: 20px;
     padding: 18px;
     padding-top: 12px;
-    width: 186px;
+    width: 178px;
     height: 186px;
 }
 
@@ -24,6 +24,7 @@
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 5px;
+    text-decoration: none;
 }
 
 .whiteButton{
