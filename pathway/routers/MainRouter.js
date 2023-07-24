@@ -4,6 +4,9 @@ import LegalRouter from "./LegalRouter";
 import ToDoRouter from "./ToDoRouter";
 import LocationRouter from "./LocationRouter";
 import GenerateRouter from "./GenerateRouter";
+import AIicon from "../assets/ai.png"
+import { Image } from "react-native";
+import { TabBarButton } from "../components/TabBarButton";
 
 
 const Tab = createBottomTabNavigator();
@@ -11,10 +14,10 @@ const Tab = createBottomTabNavigator();
 export default function MainRouter() {
   return (
       <Tab.Navigator> 
-        <Tab.Screen name="ToDoRouter" component={ToDoRouter} options={{ headerShown: false }}></Tab.Screen>
-        <Tab.Screen name="LegalRouter" component={LegalRouter} options={{ headerShown: false }}></Tab.Screen>
-        <Tab.Screen name="LocationRouter" component={LocationRouter} options={{ headerShown: false }}></Tab.Screen>
-        <Tab.Screen name="GenerateRouter" component={GenerateRouter} options={{ headerShown: false }}></Tab.Screen>
+        <Tab.Screen name="ToDoRouter" component={ToDoRouter} options={{headerShown: false}}></Tab.Screen>
+        <Tab.Screen name="LegalRouter" component={LegalRouter} options={{headerShown: false}}></Tab.Screen>
+        <Tab.Screen name="LocationRouter" component={LocationRouter} options={{headerShown: false}}></Tab.Screen>
+        <Tab.Screen name="GenerateRouter" component={GenerateRouter} options={{headerShown: false}}></Tab.Screen>
       </Tab.Navigator>
   );
 }

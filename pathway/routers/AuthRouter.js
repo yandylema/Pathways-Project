@@ -10,6 +10,8 @@ import Details from "../pages/auth/Details";
 import MainRouter from "./MainRouter";
 import Settings from "../pages/settings/Settings";
 import SettingsButton from "../components/SettingsButton";
+import BackButton from "../components/BackButton";
+import SettingsRouter from "./SettingsRouter";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,20 +19,23 @@ export default function AuthRouter() {
   return (
     <NavigationContainer>
       <Stack.Navigator> 
-        <Stack.Screen name="Splash" component={Splash}  options={{ headerShown: false }}/>
-        <Stack.Screen name="SignUp" component={SignUp}  options={{ headerShown: false }}/>
-        <Stack.Screen name="LogIn" component={LogIn}  options={{ headerShown: false }}/>
-        <Stack.Screen name="Details" component={Details}  options={{ headerShown: false }} />
+        <Stack.Screen name="Splash" component={Splash}/>
+        <Stack.Screen name="SignUp" component={SignUp}/>
+        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="Details" component={Details} />
         <Stack.Screen
           name="Main"
           component={MainRouter}
           options={({navigation}) => ({
-            headerTitle: "Pathway",
-            headerLeft: () => null,
-            headerRight: () => <SettingsButton goToSettings={()=>navigation.navigate("Settings")} />
+            // headerTitle: "Pathway",
+            // headerLeft: () => null,
+            // headerRight: () => <SettingsButton navigation={navigation} />
+            headerShown: false
           })}
         />
-        <Stack.Screen name="Settings" component={Settings}/>
+        <Stack.Screen name="SettingsRouter" component={SettingsRouter} options={({navigation}) => ({
+            headerShown: false
+          })}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
