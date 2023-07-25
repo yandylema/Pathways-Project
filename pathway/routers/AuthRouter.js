@@ -19,23 +19,27 @@ export default function AuthRouter() {
   return (
     <NavigationContainer>
       <Stack.Navigator> 
-        <Stack.Screen name="Splash" component={Splash}/>
-        <Stack.Screen name="SignUp" component={SignUp}/>
-        <Stack.Screen name="LogIn" component={LogIn} />
-        <Stack.Screen name="Details" component={Details} />
+        <Stack.Screen name="Splash" component={Splash} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="SignUp" component={SignUp} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="LogIn" component={LogIn} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="Details" component={Details} options={({navigation}) => ({headerShown: false})}/>
         <Stack.Screen
           name="Main"
           component={MainRouter}
-          options={({navigation}) => ({
+          options={({ navigation }) => ({
             // headerTitle: "Pathway",
             // headerLeft: () => null,
             // headerRight: () => <SettingsButton navigation={navigation} />
-            headerShown: false
+            headerShown: false,
           })}
         />
-        <Stack.Screen name="SettingsRouter" component={SettingsRouter} options={({navigation}) => ({
-            headerShown: false
-          })}/>
+        <Stack.Screen
+          name="SettingsRouter"
+          component={SettingsRouter}
+          options={({ navigation }) => ({
+            headerShown: false,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
