@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 7,
-    marginHorizontal: 72,
+    
   },
   text: {
     color: "white",
