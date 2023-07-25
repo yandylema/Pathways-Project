@@ -4,7 +4,7 @@ import { useState } from "react";
 import Tasks from "../../components/Tasks";
 
 export default function ToDo({ navigation }) {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
   return (
     <View>
       <Text style={styles.text}> To Do List </Text>
@@ -12,7 +12,6 @@ export default function ToDo({ navigation }) {
         <CheckList
           name={"Legal Docs"}
           percentage={"75%"}
-          onPress={() => setClick((click) => !click)}
         ></CheckList>
         <Tasks styleprop={click}></Tasks>
         <CheckList name={"Marketing"} percentage={"15%"}></CheckList>
