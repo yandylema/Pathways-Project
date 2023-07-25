@@ -18,11 +18,11 @@ const Stack = createNativeStackNavigator();
 export default function AuthRouter() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="LogIn" component={LogIn} />
-        <Stack.Screen name="Details" component={Details} />
+      <Stack.Navigator> 
+        <Stack.Screen name="Splash" component={Splash} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="SignUp" component={SignUp} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="LogIn" component={LogIn} options={({navigation}) => ({headerShown: false})}/>
+        <Stack.Screen name="Details" component={Details} options={({navigation}) => ({headerShown: false})}/>
         <Stack.Screen
           name="Main"
           component={MainRouter}

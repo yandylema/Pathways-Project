@@ -5,8 +5,16 @@ import ToDoRouter from "./ToDoRouter";
 import LocationRouter from "./LocationRouter";
 import GenerateRouter from "./GenerateRouter";
 import AIicon from "../assets/ai.png";
-import { Image } from "react-native";
+import { Image, Text } from "react-native";
 import { TabBarButton } from "../components/TabBarButton";
+const ai = require("../assets/ai.png");
+const aipurple = require("../assets/aipurple.png");
+const legal = require("../assets/legal.png");
+const legalpurple = require("../assets/legalpurple.png");
+const todo = require("../assets/todo.png");
+const todopurple = require("../assets/todopurple.png");
+const location = require("../assets/location.png");
+const locationpurple = require("../assets/locationpurple.png");
 
 const Tab = createBottomTabNavigator();
 
@@ -16,22 +24,66 @@ export default function MainRouter() {
       <Tab.Screen
         name="ToDoRouter"
         component={ToDoRouter}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{color: focused ? "purple" : "black"}}>To Do</Text>
+          ),
+          tabBarIcon: ({ size, focused, color }) => (
+            <Image
+              style={{ width: size, height: size }}
+              source={focused ? todopurple : todo}
+            />
+          ),
+        }}
       ></Tab.Screen>
       <Tab.Screen
         name="LegalRouter"
         component={LegalRouter}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{color: focused ? "purple" : "black"}}>Legal</Text>
+          ),
+          tabBarIcon: ({ size, focused, color }) => (
+            <Image
+              style={{ width: size, height: size }}
+              source={focused ? legalpurple : legal}
+            />
+          ),
+        }}
       ></Tab.Screen>
       <Tab.Screen
         name="LocationRouter"
         component={LocationRouter}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{color: focused ? "purple" : "black"}}>Location</Text>
+          ),
+          tabBarIcon: ({ size, focused, color }) => (
+            <Image
+              style={{ width: size, height: size }}
+              source={focused ? locationpurple : location}
+            />
+          ),
+        }}
       ></Tab.Screen>
       <Tab.Screen
         name="GenerateRouter"
         component={GenerateRouter}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused, color }) => (
+            <Text style={{color: focused ? "purple" : "black"}}>Generate</Text>
+          ),
+          tabBarIcon: ({ size, focused, color }) => (
+            <Image
+              style={{ width: size, height: size }}
+              source={focused ? aipurple : ai}
+            />
+          ),
+        }}
       ></Tab.Screen>
     </Tab.Navigator>
   );
