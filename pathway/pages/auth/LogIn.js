@@ -1,5 +1,11 @@
 import { Text, Button, View } from "react-native";
+import { AppTitle } from "../../components/AppTitle";
 
 export default function LogIn({ navigation }) {
-  return <Text>log in page</Text>;
+  return (
+    <View>
+      <AppTitle />
+      <Text>log in page</Text>
+    </View>
+  );
 }
