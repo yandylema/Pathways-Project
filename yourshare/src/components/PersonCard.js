@@ -54,8 +54,6 @@ export function PersonCard(props) {
               style={{
                 width: "30px",
                 height: "30px",
-                stroke: "green",
-                strokeWidth: "4",
               }}
             >
               <path
