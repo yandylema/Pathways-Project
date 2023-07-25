@@ -6,8 +6,12 @@ export default function ToDo({ navigation }) {
     <View>
       <Text style={styles.text}> To Do List </Text>
       <View>
-        <CheckList></CheckList>
-        <CheckList></CheckList>{" "}
+        <CheckList
+          name={"Legal Docs"}
+          percentage={"75%"}
+        ></CheckList>
+        <CheckList name={"Marketing"} percentage={"15%"}></CheckList>
+        <CheckList name={"Geographic"} percentage={"50%"}></CheckList>
       </View>
     </View>
   );
