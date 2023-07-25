@@ -4,18 +4,15 @@ import { StyleSheet, View, Image, Pressable } from "react-native";
 export default function InfoButton() {
   return (
     <View style={styles.container}>
-      <Pressable
-        onPress={() => console.log("Pressed Button")}
-        style={({ pressed }) => {
-          return { opactiy: pressed ? 0 : 1 };
-        }}
-      >
-        <Image
-          style={styles.image}
-          source={require("../assets/infoButton.png")}
-        />
-      </Pressable>
-      <StatusBar style="auto" />
+      
+        <Pressable onPress={() => console.log("Pressed Button")}>
+          <Image
+            style={styles.image}
+            source={require("../assets/infoButton.png")}
+          />
+        </Pressable>
+        <StatusBar style="auto" />
+      
     </View>
   );
 }

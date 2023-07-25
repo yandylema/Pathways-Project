@@ -1,7 +1,6 @@
 import { Text, Button, View, StyleSheet } from "react-native";
 import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
-import PageTitle from "../../components/PageTitle";
 import WhiteButton from "../../components/WhiteButton";
 
 const styles = StyleSheet.create({

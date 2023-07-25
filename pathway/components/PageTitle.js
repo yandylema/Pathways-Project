@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     fontFamily: "Jost",
     fontWeight: "bold",
     textAlign: "center",
+    margin: 5,
   },
 });
 

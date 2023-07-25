@@ -26,9 +26,10 @@ const ButtonWithI = (props) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "white",
-    width: 275,
+    width: 320,
     height: 50,
     borderRadius: 15,
+    alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
     margin: 7,
