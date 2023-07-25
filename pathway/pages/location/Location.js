@@ -1,8 +1,11 @@
 import { Text, Button, View, StyleSheet, ImageBackground } from "react-native";
 import { LocationNav } from "../../components/LocationNav";
 import mapscreenshot from "../../assets/mapscreenshot.png";
+import { useState } from "react";
 
 export default function Location({ navigation }) {
+    const [activePage, setActivePage] = useState("businesses");
+
   return (
     <View
       style={{
@@ -10,6 +13,7 @@ export default function Location({ navigation }) {
         alignItems: "center",
         flex: 1,
         width: "100%",
+        justifyContent: "center"
       }}
     >
       <ImageBackground
@@ -17,10 +21,20 @@ export default function Location({ navigation }) {
         style={{
           flex: 1,
           width: "100%",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
-        <LocationNav></LocationNav>
+        <LocationNav activePage={activePage} setActivePage={setActivePage}></LocationNav>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       </ImageBackground>
     </View>
   );
