@@ -1,5 +1,8 @@
 import { Text, Button, View, StyleSheet } from "react-native";
 import { AppTitle } from "../../components/AppTitle";
+import PurpleButton from "../../components/PurpleButton";
+import PageTitle from "../../components/PageTitle";
+import WhiteButton from "../../components/WhiteButton";
 
 const styles = StyleSheet.create({
   // secondary: {
@@ -24,10 +27,14 @@ export default function Splash({ navigation }) {
     >
       <AppTitle color="white" />
 
-      <View>
-        <Button title="sign up" onPress={() => navigation.navigate("SignUp")} />
-        <Button title="log in" onPress={() => navigation.navigate("LogIn")} />
-      </View>
+      <PurpleButton
+        text="Sign Up"
+        onPress={() => navigation.navigate("SignUp")}
+      />
+      <WhiteButton
+        text="Sign In"
+        onPress={() => navigation.navigate("LogIn")}
+      />
     </View>
   );
 }
