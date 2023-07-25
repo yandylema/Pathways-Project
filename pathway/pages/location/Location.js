@@ -2,9 +2,10 @@ import { Text, Button, View, StyleSheet, ImageBackground } from "react-native";
 import { LocationNav } from "../../components/LocationNav";
 import mapscreenshot from "../../assets/mapscreenshot.png";
 import { useState } from "react";
+import { BusinessPopup } from "../../components/BusinessPopup";
 
 export default function Location({ navigation }) {
-    const [activePage, setActivePage] = useState("businesses");
+  const [activePage, setActivePage] = useState("businesses");
 
   return (
     <View
@@ -13,7 +14,7 @@ export default function Location({ navigation }) {
         alignItems: "center",
         flex: 1,
         width: "100%",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
       <ImageBackground
@@ -24,18 +25,12 @@ export default function Location({ navigation }) {
           alignItems: "center",
         }}
       >
-        <LocationNav activePage={activePage} setActivePage={setActivePage}></LocationNav>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+        <LocationNav
+          activePage={activePage}
+          setActivePage={setActivePage}
+        ></LocationNav>
       </ImageBackground>
+      <BusinessPopup></BusinessPopup>
     </View>
   );
 }
