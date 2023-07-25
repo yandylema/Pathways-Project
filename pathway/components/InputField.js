@@ -19,9 +19,10 @@ const InputField = (props) => {
 const styles = StyleSheet.create({
   input: {
     fontFamily: "Jost",
-    height: 40,
+    height: 70,
     margin: 12,
     borderWidth: 3,
+    width: 380,
     padding: 30,
     borderColor: "#D5D8DE",
     borderRadius: 10,

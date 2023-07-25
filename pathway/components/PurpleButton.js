@@ -12,9 +12,9 @@ const PurpleButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#BD00FF",
-    width: 275,
-    height: 50,
+    backgroundImage: "linear-gradient(to right, #BD00FF, #AF02CB)",
+    width: 380,
+    height: 70,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",

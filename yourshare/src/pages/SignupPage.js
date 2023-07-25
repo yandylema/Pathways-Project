@@ -36,7 +36,7 @@ export function SignupPage() {
         >
           <span style={{ color: "black" }}>Your</span>Share
         </h1>
-        <h5 style={{fontWeight: "400", color: "gray"}}>Connect with your community: share your resources.</h5>
+        <h5 style={{fontWeight: "400", color: "gray"}}>Presented by Team 2: BJ, Hazel, Lilu, Yandy, JP</h5>
         <button className="greenButton" onClick={()=>document.getElementById("formDiv").scrollIntoView({ behavior: 'smooth', block: 'center' })}>Sign up</button>
         <button className="whiteButton" onClick={()=>document.getElementById("formDiv").scrollIntoView({ behavior: 'smooth', block: 'center' })}>Sign in</button>
       </div>

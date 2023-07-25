@@ -5,8 +5,8 @@ const pathway = require("../assets/pathway.png");
 
 const styles = StyleSheet.create({
     AppTitle: {
-        width: "100%",
-        height: 100
+        width: 350,
+        height: 200
     }
 })
 
