@@ -18,9 +18,10 @@ export function PersonCard(props) {
   const [flag, setFlag] = useState(true);
   const [personItems, setPersonItems] = useState([]);
 
-  // useEffect(() => {
-  //   setPersonItems([])
-  // }, [personItems]);
+  useEffect(() => {
+    
+  }, [personItems]);
+
   return (
     <div className="personCard" style={card} onClick={()=>setPersonItems(props.items)}>
       <div>
@@ -82,7 +83,7 @@ export function PersonCard(props) {
 
           
       </div>
-      {personItems.length > 0 ? <div  style={{width: "100vw", height: "100vh", backgroundColor: "rgba(0,0,0,0.5)", position: "fixed", top: 0, left: 0, zIndex: 998}}>
+      {personItems.length > 0 ? <div onClick={()=>{setPersonItems([]);console.log(personItems)}} style={{width: "100vw", height: "100vh", backgroundColor: "rgba(0,0,0,0.5)", position: "fixed", top: 0, left: 0, zIndex: 998}}>
         <div style={{position: "fixed", background:"#9cca4c", top: "50%", left: "50%", transform: "translate(-50%, -50%)", display: "flex", width: "350px", borderRadius: "20px", padding: "10px"}}>
         <div>
         <div
