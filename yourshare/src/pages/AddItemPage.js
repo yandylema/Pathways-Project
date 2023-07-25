@@ -21,7 +21,6 @@ export function AddItemPage(props) {
           <p>Item name:</p>
           <InputText onChange={setName} placeholderInput={"Item"}></InputText>
           <p>Type name:</p>
-
           <InputText onChange={setType} placeholderInput={"Type"}></InputText>
         </div>
         <UploadBox
