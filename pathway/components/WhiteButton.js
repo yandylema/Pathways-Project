@@ -13,8 +13,8 @@ const WhiteButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "white",
-    width: 275,
-    height: 50,
+    width: 380,
+    height: 70,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",

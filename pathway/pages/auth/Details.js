@@ -5,7 +5,13 @@ import { AppTitle } from "../../components/AppTitle";
 
 export default function Details({ navigation }) {
   return (
-    <View>
+    <View style={{
+      flex: 1,
+        // justifyContent: "space-between",
+        paddingBottom: 10,
+        paddingTop: 30,
+        alignItems: "center"
+    }}>
       <AppTitle></AppTitle>
       <Text>Business Details</Text>
       <GrayCaption>
