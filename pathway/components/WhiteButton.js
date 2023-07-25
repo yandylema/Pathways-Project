@@ -1,19 +1,38 @@
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+
+const WhiteButton = (props) => {
+  const content = (
+    <View style={[styles.button, styles.shadowProp]}>
+      <Text style={styles.text}>{props.text}</Text>
+    </View>
+  );
+
+  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
+};
 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "white",
+    width: 275,
+    height: 50,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 7,
+    marginHorizontal: 72,
+  },
+  text: {
     color: "black",
-    width: "250px",
-    height: "45px",
-    borderRadius: "15px",
-    border: "0",
-    margin: "15px",
-    boxShadow: "3px 5px 7px #c6c6c6",
+    fontSize: 15,
+    fontFamily: "Jost",
+    fontWeight: "bold",
+  },
+  shadowProp: {
+    shadowColor: "#747474",
+    shadowOffset: { width: 2, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
   },
 });
 
-export function WhiteButton(props) {
-  console.log(props);
-  return <Button style={styles.button}></Button>;
-}
+export default WhiteButton;

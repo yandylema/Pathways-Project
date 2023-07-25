@@ -1,7 +1,21 @@
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-const h1 = {};
-
-export function PageTitle() {
-  return <h1>Page Title</h1>;
+function PageTitle(props) {
+  return (
+    <View>
+      <Text style={styles.title}>{props.children}</Text>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: "#323941",
+    fontSize: 25,
+    fontFamily: "Jost",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});
+
+export default PageTitle;
