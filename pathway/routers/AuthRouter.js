@@ -26,16 +26,20 @@ export default function AuthRouter() {
         <Stack.Screen
           name="Main"
           component={MainRouter}
-          options={({navigation}) => ({
+          options={({ navigation }) => ({
             // headerTitle: "Pathway",
             // headerLeft: () => null,
             // headerRight: () => <SettingsButton navigation={navigation} />
-            headerShown: false
+            headerShown: false,
           })}
         />
-        <Stack.Screen name="SettingsRouter" component={SettingsRouter} options={({navigation}) => ({
-            headerShown: false
-          })}/>
+        <Stack.Screen
+          name="SettingsRouter"
+          component={SettingsRouter}
+          options={({ navigation }) => ({
+            headerShown: false,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,6 +5,7 @@ import SocialMedia from "../pages/generate/SocialMedia";
 import SettingsButton from "../components/SettingsButton";
 import Settings from "../pages/settings/Settings";
 import BackButton from "../components/BackButton";
+import HeaderBar from "../components/HeaderBar";
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,7 @@ export default function SettingsRouter() {
     return (
         <Stack.Navigator>
           <Stack.Screen name="Settings" component={Settings} options={({navigation}) => ({
-                headerTitle: "Pathway",
+                headerTitle: () => <HeaderBar />,
                 headerLeft: () => <BackButton navigation={navigation} />,
                 headerRight: () => <SettingsButton navigation={navigation} />
               })}/>
