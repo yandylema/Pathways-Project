@@ -2,6 +2,9 @@ import { Text, Button, View } from "react-native";
 import InputField from "../../components/InputField";
 import GrayCaption from "../../components/GrayCaption";
 import { AppTitle } from "../../components/AppTitle";
+import PurpleButton from "../../components/PurpleButton";
+import PageTitle from "../../components/PageTitle";
+import CheckList from "../../components/CheckList";
 
 export default function Details({ navigation }) {
   return (
@@ -13,15 +16,17 @@ export default function Details({ navigation }) {
         alignItems: "center"
     }}>
       <AppTitle></AppTitle>
-      <Text>Business Details</Text>
+      <PageTitle>Business Details</PageTitle>
       <GrayCaption>
-        This will help us personalize our services towards your business.
+        This will help us personalize
       </GrayCaption>
+      <GrayCaption>our services towards your business.</GrayCaption>
       <InputField placeholder={"Business name"}></InputField>
       <InputField placeholder={"Business product"}></InputField>
       <InputField placeholder={"Location: City, State, Zip"}></InputField>
       <InputField placeholder={"Business Type"}></InputField>
-      <Button title="Confirm" onPress={() => navigation.navigate("Main")} />
+      <CheckList></CheckList>
+      <PurpleButton text="Confirm" onPress={() => navigation.navigate("Main")}></PurpleButton>
     </View>
   );
 }
