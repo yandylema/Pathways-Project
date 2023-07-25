@@ -1,18 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
+import ButtonWithI from "./ButtonWithI";
 
 export default function GradientCard(props) {
   return (
     <View style={styles.container}>
       <View style={styles.containerTitle}>
-        <Text style={styles.title}> License </Text>
+        <Text style={styles.title}> {props.text} </Text>
       </View>
       <View>
-        <View style={styles.containerInside}>
-          <Text style={styles.containerInsideText}>
-            {" "}
-            This will include the card's name{" "}
-          </Text>
-        </View>
+        <View style={styles.containerInside}>{props.children}</View>
       </View>
     </View>
   );
@@ -20,7 +16,8 @@ export default function GradientCard(props) {
 const styles = StyleSheet.create({
   container: {
     width: "87%",
-    height: 380,
+    height: 250,
+    alignSelf: "center",
   },
   containerTitle: {
     width: "100%",
