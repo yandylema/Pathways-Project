@@ -4,12 +4,10 @@ const pathway = require("../assets/pathway.png");
 
 const HeaderBar = () => {
   return (
-    // <View style={styles.container}>
       <Image
         source={pathway}
         style={styles.image}
       />
-    // </View>
   );
 };
 
