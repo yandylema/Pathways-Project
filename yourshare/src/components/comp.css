@@ -1,5 +1,10 @@
 input::file-selector-button{
-    background-color: #4a4c53;
+    background-color: #4b4f5c;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    width: 40%;
 }
 .panel{
     display:flex;
