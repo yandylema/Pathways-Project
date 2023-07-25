@@ -8,14 +8,12 @@ export default function ToDo({ navigation }) {
   return (
     <View>
       <Text style={styles.text}> To Do List </Text>
-      <View onPress={() => setClick((click) => !click)}>
-        <CheckList name={"Legal Docs"} percentage={"75%"}></CheckList>
-        {/* if user pressed on it -> change clicked from false to true -> show the to do tasks.  */}
-        {/* {click ? (
-          <Tasks> </Tasks>
-        ) : (
-          <Tasks style={{ display: "none" }}></Tasks>
-        )} */}
+      <View>
+        <CheckList
+          name={"Legal Docs"}
+          percentage={"75%"}
+          onPress={() => setClick((click) => !click)}
+        ></CheckList>
         <Tasks styleprop={click}></Tasks>
         <CheckList name={"Marketing"} percentage={"15%"}></CheckList>
         <CheckList name={"Geographic"} percentage={"50%"}></CheckList>

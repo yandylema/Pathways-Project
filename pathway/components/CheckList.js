@@ -5,7 +5,6 @@ export default function CheckList(props) {
     <View style={styles.container}>
       <View style={styles.containerLeft}>
         <View style={styles.icon}>
-          {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="1em"
