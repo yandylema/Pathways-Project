@@ -12,39 +12,17 @@ import { items } from "../atoms";
 import { Link } from "react-router-dom";
 
 const personCards = {
-  display: "flex",
-  margin: "25px",
+  // display: "flex",
+  // margin: "25px",
 };
-const startingData = [
-  [
-    "Stacey",
-    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
-    [],
-    ["item1", "item2"],
-  ],
-  [
-    "Lily",
-    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
-    ["item1", "item2"],
-    [],
-  ],
-  [
-    "Haley",
-    "https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg",
-    ["item1", "item2"],
-    ["item1", "item2"],
-  ],
-];
 
 export function CommunityPage() {
   const friends = useRecoilValue(community);
   const itemsForBorrowing = useRecoilValue(items);
   return (
-    <div>
-      <Nav></Nav>
-      <BackButton>Manage Community</BackButton>{" "}
+    <div style={{maxWidth: "800px", margin: "auto"}}>
       <div>
-        <h1>Community</h1>
+        <h1 style={{marginTop: "30px"}}>Community</h1>
         <div className="personCards" style={personCards}>
           {friends.map((person) => (
             <PersonCard

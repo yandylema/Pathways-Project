@@ -18,8 +18,17 @@ export function WelcomePage(props) {
 
   return (
     <div>
-      <Nav></Nav>
-      <div
+      <div style={{maxWidth: "1200px", margin: "auto", paddingTop: "30px"}}>
+      
+
+      <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
+
+        <div style={{width: "48%"}}>
+        <div
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -27,45 +36,25 @@ export function WelcomePage(props) {
         }}
       >
         <h1>Your items</h1>
-        <button
-          onClick={() => navigate("/additem")}
-          style={{
-            display: "block",
-            backgroundColor: "#73b504",
-            border: 0,
-            color: "white",
-            padding: "10px",
-            borderRadius: "10px",
-            width: "125px",
-            marginTop: "10px",
-          }}
-        >
+        <button onClick={() => navigate("/additem")} className="greenButton">
           + Add Item
         </button>
       </div>
+
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(
-          (item) => item[1] === "user" || item[3] === "user"
-        )}
+        data={itemsForBorrowing.filter(item => item[1] === "You" || item[3] === "You")}
       ></ItemsToBorrowList>
+      </div>
+
+          <div style={{width: "48%"}}>
       <h1>Items for borrowing</h1>
       <ItemsToBorrowList
-        data={itemsForBorrowing.filter(
-          (item) => item[3] == null && item[1] !== "user"
-        )}
-        showSearchBar={true}
+        data={itemsForBorrowing.filter(item => item[3] == null && item[1] !== "You")} showSearchBar={true}
       ></ItemsToBorrowList>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          marginLeft: "15px",
-          width: "50%",
-        }}
-      >
-        <br></br>
       </div>
+      </div>
+      
+    </div>
     </div>
   );
 }

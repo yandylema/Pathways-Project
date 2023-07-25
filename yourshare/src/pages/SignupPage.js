@@ -5,61 +5,63 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const signUpPage = {
-  margin: "auto",
+  // margin: "auto",
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "center",
+  height: "100vh",
+  alignItems: "center",
 };
 const img = {
-  width: "300px",
+  width: "350px",
   height: "300px",
   paddingRight: "50px",
   marginTop: "100px",
 };
 export function SignupPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("asdsa");
+  const [name, setName] = useState("You");
+  const [phone, setPhone] = useState("");
+  const [zipcode, setZipcode] = useState("");
   return (
-    <div style={signUpPage}>
-      <div className="logoSignUpPage">
-        <img style={img} src={logo} alt=""></img>
+    <>
+      <div style={{
+            height: "100vh",
+            backgroundColor: "rgb(240,240,240)",
+            paddingTop: "30vh",
+            paddingLeft: "200px"
+          }}>
+        <h1
+          style={{color: "#73b504",
+          fontSize: "130px", marginBottom: "0px"}}
+        >
+          <span style={{ color: "black" }}>Your</span>Share
+        </h1>
+        <h5 style={{fontWeight: "400", color: "gray"}}>Presented by Team 2: BJ, Hazel, Lilu, Yandy, JP</h5>
+        <button className="greenButton" onClick={()=>document.getElementById("formDiv").scrollIntoView({ behavior: 'smooth', block: 'center' })}>Sign up</button>
+        <button className="whiteButton" onClick={()=>document.getElementById("formDiv").scrollIntoView({ behavior: 'smooth', block: 'center' })}>Sign in</button>
       </div>
-      <div className="signUpPageInfo">
-        <h1>Join our community</h1>
-        <h4> Sign-up</h4>
-        <InputText onChange={setName} placeholderInput="Username: " />
-        <InputText placeholderInput="Phone number:" />
-        <InputText placeholderInput="Zip code: " />
 
-        <button
-          style={{
-            backgroundColor: "#73b504",
-            border: 0,
-            color: "white",
-            padding: "10px",
-            borderRadius: "10px",
-            width: "100px",
-            marginTop: "10px",
-            marginRight: "10px",
-          }}
-          onClick={() => navigate("/welcome")}
-        >
-          Join
-        </button>
-        <button
-          style={{
-            backgroundColor: "#73b504",
-            border: 0,
-            color: "white",
-            padding: "10px",
-            borderRadius: "10px",
-            width: "100px",
-            marginTop: "10px",
-          }}
-          onClick={() => navigate("/welcome")}
-        >
-          Sign-in
-        </button>
+      <div id="formDiv" style={signUpPage}>
+        <div className="logoSignUpPage">
+          <img style={img} src={logo} alt=""></img>
+        </div>
+        <div className="signUpPageInfo">
+          <h1>Join our community</h1>
+          <InputText onChange={setName} placeholderInput="Username: " />
+          <InputText onChange={setPhone} placeholderInput="Phone number:" />
+          <InputText onChange={setZipcode} placeholderInput="Zip code: " />
+
+          <button className="greenButton" onClick={() => navigate("/welcome")}>
+            Sign up
+          </button>
+          <button
+            className="whiteButton"
+            onClick={() => navigate("/welcome")}
+          >
+            Sign-in
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

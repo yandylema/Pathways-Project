@@ -14,14 +14,13 @@ export function AddItemPage(props) {
   const [image, setImage] = useState("");
   const [itemsForBorrowing, setItemsForBorrowing] = useRecoilState(items);
   return (
-    <div>
+    <div style={{width: "750px", margin: "auto"}}>
       <div className="panel">
         <div>
           <BackButton>Add Item</BackButton>
           <p>Item name:</p>
           <InputText onChange={setName} placeholderInput={"Item"}></InputText>
           <p>Type name:</p>
-
           <InputText onChange={setType} placeholderInput={"Type"}></InputText>
         </div>
         <UploadBox
@@ -37,8 +36,7 @@ export function AddItemPage(props) {
         }}
       >
         <CancelButton>Cancel</CancelButton>
-        <button
-          style={{
+        <button style={{
             display: "block",
             backgroundColor: "#73b504",
             border: 0,
@@ -47,18 +45,13 @@ export function AddItemPage(props) {
             borderRadius: "10px",
             width: "100px",
             marginTop: "10px",
-          }}
-          onClick={() => {
-            setItemsForBorrowing([
-              ...itemsForBorrowing,
-              [name, "user", image, itemsForBorrowing.length],
-            ]);
-            navigate("/welcome");
-          }}
-        >
-          Add item
-        </button>
-      </div>
-    </div>
-  );
+          }} onClick={()=>{
+          console.log(itemsForBorrowing)
+          setItemsForBorrowing([...itemsForBorrowing, [name, "You", image, itemsForBorrowing.length]])
+          console.log(itemsForBorrowing)
+          navigate("/welcome");}}>Add item</button>
+        </div>
+        </div>
+      
+    );
 }
