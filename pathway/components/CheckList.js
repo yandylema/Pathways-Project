@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-
+import Tasks from "./Tasks";
 export default function CheckList(props) {
   return (
     <View style={styles.container}>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FAF7F7",
     display: "flex",
     flexDirection: "row",
-    marginBottom: "5%",
+    marginBottom: 50,
     borderRadius: 19,
     marginLeft: "2%",
     boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
@@ -79,5 +79,6 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     marginLeft: "70%",
+    marginTop: "4%",
   },
 });
