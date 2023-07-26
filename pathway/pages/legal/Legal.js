@@ -73,14 +73,23 @@ export default function Legal({ navigation }) {
   return (
     <View>
       <PageTitle>Legal Documents</PageTitle>
-      {forms.map(card => 
+      
+      <WhiteButton
+        text="View Business Plan"
+        onPress={() => navigation.navigate("BusinessPlan")}
+      ></WhiteButton>
+      {forms.map((card) => (
         <GradientCard text={card.name}>
-          {card.options.map(option =>
-            <ButtonWithI onPress={()=>{navigation.navigate("Form", {inputs: option.inputs})}} text={option.name}/>
-          )}
+          {card.options.map((option) => (
+            <ButtonWithI
+              onPress={() => {
+                navigation.navigate("Form", { inputs: option.inputs });
+              }}
+              text={option.name}
+            />
+          ))}
         </GradientCard>
-        
-      )}
+      ))}
     </View>
   );
 }
