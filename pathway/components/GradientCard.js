@@ -16,8 +16,10 @@ export default function GradientCard(props) {
 const styles = StyleSheet.create({
   container: {
     width: "87%",
-    height: 250,
+    // height: 250,
     alignSelf: "center",
+    marginBottom: 12,
+    marginTop: 12
   },
   containerTitle: {
     width: "100%",
@@ -37,12 +39,14 @@ const styles = StyleSheet.create({
   },
   containerInside: {
     width: "100%",
-    height: 200,
+    // height: 200,
     textAlign: "center",
     backgroundImage:
       "linear-gradient(rgba(207,167,231,0.4),rgba(183,117,223,0.152))",
     border: "1px solid rgba(183,117,223,0.152)",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
+    paddingBottom: 20,
+    paddingTop: 17
   },
 });
