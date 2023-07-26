@@ -35,8 +35,6 @@ export default function Location({ navigation }) {
           alignItems: "center",
         }}
       >
-        
-
         {activePage == "businesses" ? <BusinessPin onPress={()=>setShowBusinessPopup(true)}></BusinessPin> : null}
         {showBusinessPopup && activePage == "businesses" ? <BusinessPopup onPress={()=>{
             setShowBusinessPopup(false);
