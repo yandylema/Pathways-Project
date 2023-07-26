@@ -1,10 +1,10 @@
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import WhiteButton from "./WhiteButton";
 import PurpleButton from "./PurpleButton";
 const building = require("../assets/building.png");
 export function RealEstatePopup(props) {
   return (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: "rgba(0,0,0,0.5)",
         height: "100vh",
@@ -14,11 +14,12 @@ export function RealEstatePopup(props) {
         left: 0,
         justifyContent: "flex-end",
       }}
+      onPress={props.onPress}
     >
       <View
         style={{
           backgroundColor: "white",
-          height: "70vh",
+          height: "53vh",
           borderTopRightRadius: 30,
           borderTopLeftRadius: 30,
         }}
@@ -97,9 +98,15 @@ export function RealEstatePopup(props) {
             <Text style={{ fontWeight: "light" }}> $35/SF/Year</Text>
           </View>
         </View>
+        <View style={{flexDirection: "row"}}>
+          <View style={{width: "49%"}}>
         <WhiteButton text={"View Details"}></WhiteButton>
+        </View>
+        <View style={{width: "49%"}}>
         <PurpleButton text={"Contact Property"}></PurpleButton>
+        </View>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

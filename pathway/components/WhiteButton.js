@@ -1,29 +1,22 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const WhiteButton = (props) => {
-  const content = (
-    <View style={[styles.button, styles.shadowProp]}>
+  return (
+    <TouchableOpacity onPress={props.onPress} style={[styles.button, styles.shadowProp]}>
       <Text style={styles.text}>{props.text}</Text>
-    </View>
+    </TouchableOpacity>
   );
-
-  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "white",
-    width: 380,
-    height: 70,
+    height: 60,
+    width: "96%",
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
-<<<<<<< HEAD
     margin: 7,
-=======
-    margin: 22,
-   
->>>>>>> c468f9ed37d6aaeee5e4e15312dbb0cc95eff7fe
   },
   text: {
     color: "black",

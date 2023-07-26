@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, Linking } from "react-native";
+import { View, StyleSheet, Text, Image, Linking, TouchableOpacity } from "react-native";
 
 const rating = require("../assets/rating.png");
 const phoHorizontal = require("../assets/phoHorizontal.png");
@@ -9,9 +9,9 @@ const phoVertical = require("../assets/phoVertical.png");
 const locationSmall = require("../assets/locationSmall.png");
 const worldSmall = require("../assets/worldSmall.png");
 
-export function BusinessPopup() {
+export function BusinessPopup(props) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <View style={styles.card}>
         <Text
           style={{
@@ -104,7 +104,7 @@ export function BusinessPopup() {
           Reviews
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
