@@ -1,20 +1,19 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const PurpleButton = (props) => {
-  const content = (
-    <View style={[styles.button, styles.shadowProp]}>
+  return (
+    <TouchableOpacity onPress={props.onPress}  style={[styles.button, styles.shadowProp]}>
       <Text style={styles.text}>{props.text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
-  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
   button: {
     backgroundImage: "linear-gradient(to right, #BD00FF, #AF02CB)",
-    width: 380,
-    height: 70,
+    width: "96%",
+    height: 60,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",

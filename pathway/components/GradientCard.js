@@ -14,8 +14,7 @@ export default function GradientCard(props) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: "87%",
-    // height: 250,
+    width: 370,
     alignSelf: "center",
     marginBottom: 12,
     marginTop: 12
@@ -33,8 +32,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: "30",
     color: "white",
-    paddingTop: 7,
-    paddingBottom: 7,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
   containerInside: {
     width: "100%",

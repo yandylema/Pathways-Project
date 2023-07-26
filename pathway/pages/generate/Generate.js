@@ -10,20 +10,17 @@ const dalle1= require("../../assets/dalle1.png")
 const dalle2= require("../../assets/dalle2.png")
 const dalle3= require("../../assets/dalle3.png")
 const dalle4= require("../../assets/dalle4.png")
-
+import GradientCard from "../../components/GradientCard";
 
 export default function Generate({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.containerTitle}>
-        <Text style={styles.title}> Social Media </Text>
-      </View>
-      <View>
-        <View style={style1.logoContainer}>
+      <GradientCard text="Social Media">
+      <View style={style1.logoContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}>
           <Image 
             source= {facebooklogo}
-            style = {{height:55, width:65, marginBottom: 60, padding: 20}}/>
+            style = {{height:55, width:65}}/>
             </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}> 
           <Image 
@@ -41,40 +38,17 @@ export default function Generate({ navigation }) {
             style = {{height: 60, width:60, padding: 20}}/>
           </TouchableOpacity>
         </View>
-      </View>
+      </GradientCard>
 
-
-      <View style={styles.containerTitle}>
-        <Text style={styles.title}> Website </Text>
-      </View>
+      <GradientCard text="Website">
       <View>
-        <View style={styles.containerInside}>
-          <TouchableOpacity onPress = {() => {
-            // navi
-          }}>
-            <View style = {[style4.button, style4.shadowProp]}>
-              <Text style={style4.text}>Visit Website</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress = {() => {
-            // navi
-          }}>
-            <View style = {[style4.button, style4.shadowProp]}>
-              <Text style={style4.text}>Manage website</Text>
-            </View>
-          </TouchableOpacity>
+          <WhiteButton text="Visit Website"></WhiteButton>
+          <WhiteButton text="Manage Website"></WhiteButton>
           </View>     
-       </View>
+       </GradientCard>
       
-  
 
-   
-
-
-      <View style={style3.containerTitle}>
-        <Text style={style3.title}> Logo Ideas </Text>
-      </View>
+      <GradientCard text="Logo Ideas">
       <View style = {{flex:5}}>
         <View style={style3.containerInside}>
           <View style = {style2.row}>
@@ -86,17 +60,11 @@ export default function Generate({ navigation }) {
         <Image source= {dalle4} style = {style2.image}/>
           </View>
         
-
-          <TouchableOpacity onPress = {() => {
-            // navi
-          }}>
-            <View style = {[style5.button, style5.shadowProp]}>
-              <Text style={style5.text}>Regenerate</Text>
-            </View>
-          </TouchableOpacity>
+          <PurpleButton text="Regenerate"></PurpleButton>
 
         </View>
       </View>
+      </GradientCard>
     </View>
     
   );
@@ -108,19 +76,11 @@ const style1 = StyleSheet.create({
     width: 60,
     height: 55,
     resizeMode: 'contain',
-    padding: 20
+    // padding: 20
   },
   logoContainer: {
     flexDirection:'row',
-    justifyContent: 'space-between',
-    height: 60,
-    textAlign: "center",
-    marginBottom: 7,
-    backgroundImage:
-      "linear-gradient(rgba(207,167,231,0.4),rgba(183,117,223,0.152))",
-    border: "1px solid rgba(183,117,223,0.152)",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
+    justifyContent: 'space-around',
   }
 });
 
@@ -130,16 +90,14 @@ const style1 = StyleSheet.create({
 const style2 = StyleSheet.create({
   image: {
     width: 150,
-    height: 150,
-    margin: 12,
+    height: 100,
+    margin: 3,
     resizeMode: 'contain'
     
   },
   row: {
     flexDirection: 'row',
     justifyContent: "center",
-    marginTop:-35,
-    marginBottom: -40, // Add some margin if needed between the rows
   },
   containerInside: {
     flexDirection: 'column',
@@ -183,11 +141,7 @@ const styles = StyleSheet.create({
   },
   containerInside: {
     width: "100%",
-    height: 150,
-    textAlign: "center",
-    backgroundImage:
-      "linear-gradient(rgba(207,167,231,0.4),rgba(183,117,223,0.152))",
-    border: "1px solid rgba(183,117,223,0.152)",
+   textAlign: "center",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
   },
@@ -206,7 +160,6 @@ const style3 = StyleSheet.create({
   containerTitle: {
     width: "100%",
     textTransform: "uppercase",
-    backgroundImage: "linear-gradient(to left, #AF02CB, #AD00FF)",
     textAlign: "left",
     paddingLeft: "5%",
     borderTopLeftRadius: 20,
@@ -221,11 +174,7 @@ const style3 = StyleSheet.create({
   },
   containerInside: {
     width: "100%",
-    height: 435,
     textAlign: "center",
-    backgroundImage:
-      "linear-gradient(rgba(207,167,231,0.4),rgba(183,117,223,0.152))",
-    border: "1px solid rgba(183,117,223,0.152)",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
   },
@@ -262,14 +211,12 @@ const style4 = StyleSheet.create({
 //Purple Button 
 const style5 = StyleSheet.create({
   button: {
-    backgroundImage: "linear-gradient(to right, #BD00FF, #AF02CB)",
     width: 342,
     height: 70,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
     margin: 7,
-    marginTop: 150
     
   },
   text: {

@@ -5,7 +5,7 @@ import ToDoRouter from "./ToDoRouter";
 import LocationRouter from "./LocationRouter";
 import GenerateRouter from "./GenerateRouter";
 import AIicon from "../assets/ai.png";
-import { Image, Text } from "react-native";
+import { Image, Text, StyleSheet } from "react-native";
 import { TabBarButton } from "../components/TabBarButton";
 const ai = require("../assets/ai.png");
 const aipurple = require("../assets/aipurple.png");
@@ -18,20 +18,23 @@ const locationpurple = require("../assets/locationpurple.png");
 
 const Tab = createBottomTabNavigator();
 
+
 export default function MainRouter() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      tabBarStyle: {height: 60, paddingTop:6},
+      }}>
       <Tab.Screen
         name="ToDoRouter"
         component={ToDoRouter}
         options={{
           headerShown: false,
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{color: focused ? "purple" : "black"}}>To Do</Text>
+            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>To Do</Text>
           ),
           tabBarIcon: ({ size, focused, color }) => (
             <Image
-              style={{ width: size, height: size }}
+              style={{ width: size+4, height: size+5 }}
               source={focused ? todopurple : todo}
             />
           ),
@@ -43,11 +46,11 @@ export default function MainRouter() {
         options={{
           headerShown: false,
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{color: focused ? "purple" : "black"}}>Legal</Text>
+            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>Legal</Text>
           ),
           tabBarIcon: ({ size, focused, color }) => (
             <Image
-              style={{ width: size, height: size }}
+              style={{ width: size+4, height: size+4 }}
               source={focused ? legalpurple : legal}
             />
           ),
@@ -59,11 +62,11 @@ export default function MainRouter() {
         options={{
           headerShown: false,
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{color: focused ? "purple" : "black"}}>Location</Text>
+            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>Location</Text>
           ),
           tabBarIcon: ({ size, focused, color }) => (
             <Image
-              style={{ width: size, height: size }}
+              style={{ width: size-4, height: size+5 }}
               source={focused ? locationpurple : location}
             />
           ),
@@ -75,11 +78,11 @@ export default function MainRouter() {
         options={{
           headerShown: false,
           tabBarLabel: ({ focused, color }) => (
-            <Text style={{color: focused ? "purple" : "black"}}>Generate</Text>
+            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>Generate</Text>
           ),
           tabBarIcon: ({ size, focused, color }) => (
             <Image
-              style={{ width: size, height: size }}
+              style={{ width: size+5, height: size+5 }}
               source={focused ? aipurple : ai}
             />
           ),

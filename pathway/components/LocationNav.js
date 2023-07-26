@@ -37,7 +37,12 @@ const styles = StyleSheet.create({
         height: 70,
         boxShadow: "0px 0px 5px 0px gray",
         flexDirection: "row",
-        padding: 20
+        padding: 20,
+        zIndex: 999,
+        position: "absolute",
+        top: 20,
+        left: "50%",
+        transform: "translate(-50%)"
     },
     buttonContainer: {
         justifyContent: "center",
