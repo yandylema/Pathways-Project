@@ -3,6 +3,7 @@ import { LocationNav } from "../../components/LocationNav";
 import mapscreenshot from "../../assets/mapscreenshot.png";
 import { useState } from "react";
 import { BusinessPopup } from "../../components/BusinessPopup";
+import { RealEstatePopup } from "../../components/RealEstatePopup";
 
 export default function Location({ navigation }) {
   const [activePage, setActivePage] = useState("businesses");
@@ -30,7 +31,7 @@ export default function Location({ navigation }) {
           setActivePage={setActivePage}
         ></LocationNav>
       </ImageBackground>
-      <BusinessPopup></BusinessPopup>
+      <RealEstatePopup></RealEstatePopup>
     </View>
   );
 }
