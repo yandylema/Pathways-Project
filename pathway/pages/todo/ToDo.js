@@ -2,18 +2,16 @@ import { StyleSheet, Text, Button, View } from "react-native";
 import CheckList from "../../components/CheckList";
 import { useState } from "react";
 import Tasks from "../../components/Tasks";
+import PageTitle from "../../components/PageTitle";
 
 export default function ToDo({ navigation }) {
   const [click, setClick] = useState(true);
   return (
     <View>
-      <Text style={styles.text}> To Do List </Text>
+      <PageTitle>To-Do List</PageTitle>
       <View>
-        <CheckList
-          name={"Legal Docs"}
-          percentage={"75%"}
-        ></CheckList>
-        <Tasks styleprop={click}></Tasks>
+        <CheckList name={"Legal Docs"} percentage={"75%"}></CheckList>
+        <Tasks styleprop={click}> 1. Submit Business License</Tasks>
         <CheckList name={"Marketing"} percentage={"15%"}></CheckList>
         <CheckList name={"Geographic"} percentage={"50%"}></CheckList>
       </View>
