@@ -1,4 +1,4 @@
-import { Text, Button, View } from "react-native";
+import { View } from "react-native";
 import ButtonWithI from "../../components/ButtonWithI";
 import GradientCard from "../../components/GradientCard";
 import PageTitle from "../../components/PageTitle";

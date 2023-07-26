@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-import ButtonWithI from "./ButtonWithI";
 
 export default function GradientCard(props) {
   return (
