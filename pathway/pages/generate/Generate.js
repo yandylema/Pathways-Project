@@ -50,7 +50,6 @@ export default function Generate({ navigation }) {
 
       <GradientCard text="Logo Ideas">
       <View style = {{flex:5}}>
-        <View style={style3.containerInside}>
           <View style = {style2.row}>
         <Image source= {dalle1} style = {style2.image}/>
         <Image source= {dalle2} style = {style2.image}/>
@@ -61,8 +60,6 @@ export default function Generate({ navigation }) {
           </View>
         
           <PurpleButton text="Regenerate"></PurpleButton>
-
-        </View>
       </View>
       </GradientCard>
     </View>
@@ -99,17 +96,6 @@ const style2 = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
   },
-  containerInside: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    marginBottom: 30,
-    backgroundImage: "linear-gradient(rgba(207,167,231,0.4),rgba(183,117,223,0.152))",
-    border: "1px solid rgba(183,117,223,0.152)",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-  }
 });
 
 
@@ -123,27 +109,12 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     marginBottom: 10
   },
-  containerTitle: {
-    width: "100%",
-    textTransform: "uppercase",
-    backgroundImage: "linear-gradient(to left, #AF02CB, #AD00FF)",
-    textAlign: "left",
-    paddingLeft: "5%",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
   title: {
     fontWeight: "bold",
     fontSize: "30",
     color: "white",
     paddingTop: 7,
     paddingBottom: 7,
-  },
-  containerInside: {
-    width: "100%",
-   textAlign: "center",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
   },
 });
 
@@ -171,12 +142,6 @@ const style3 = StyleSheet.create({
     color: "white",
     paddingTop: 7,
     paddingBottom: 7,
-  },
-  containerInside: {
-    width: "100%",
-    textAlign: "center",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
   },
 });
 

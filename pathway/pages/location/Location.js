@@ -7,6 +7,8 @@ import { BusinessPopup } from "../../components/BusinessPopup";
 import { RealEstatePopup } from "../../components/RealEstatePopup";
 import { BusinessPin } from "../../components/BusinessPin";
 import { RealEstatePin } from "../../components/RealEstatePin";
+// import MapView from 'react-native-maps';
+
 
 export default function Location({ navigation }) {
   const [activePage, setActivePage] = useState("businesses");
@@ -27,6 +29,15 @@ export default function Location({ navigation }) {
           activePage={activePage}
           setActivePage={setActivePage}
         ></LocationNav>
+        {/* <MapView style={{
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+}} /> */}
       <ImageBackground
         source={mapscreenshot}
         style={{

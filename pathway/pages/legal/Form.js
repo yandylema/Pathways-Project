@@ -12,8 +12,8 @@ export function Form({ navigation, route }) {
         alignItems: "center",
       }}
     >
-      {inputs.map((input) => (
-        <View>
+      {inputs.map((input, idx) => (
+        <View key={idx}>
           <Text>{input.name}</Text>
           {input.type == "checkbox" ? (
             <Checkbox

@@ -75,8 +75,8 @@ export default function Legal({ navigation }) {
   return (
     <View>
       <PageTitle>Legal Documents</PageTitle>
-      {forms.map((card) => (
-        <GradientCard text={card.name}>
+      {forms.map((card, idx) => (
+        <GradientCard key={idx} text={card.name}>
           {card.options.map((option) => (
             <ButtonWithI
               onPress={() => {

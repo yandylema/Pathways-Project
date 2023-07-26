@@ -44,7 +44,7 @@ export default function CheckList(props) {
             fontWeight: "bold",
           }}
         >
-          {props.percentage}
+          <Text>{props.percentage}</Text>
         </View>
       </View>
     </View>
