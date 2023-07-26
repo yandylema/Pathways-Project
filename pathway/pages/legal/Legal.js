@@ -12,6 +12,13 @@ const forms = [
       inputs : [
         {name: "Business name", type: "text"},
         {name: "Will you employ people", type: "checkbox"},
+        {name: "Business name", type: "text"},
+        {name: "Business name", type: "text"},
+        {name: "Business name", type: "text"},
+        {name: "Business name", type: "text"},
+        {name: "Business name", type: "text"},
+        {name: "Will you employ people", type: "checkbox"},
+        {name: "Will you employ people", type: "checkbox"},
       ]
     },
     {
