@@ -6,6 +6,7 @@ import SocialMedia from "../pages/generate/SocialMedia";
 import SettingsButton from "../components/SettingsButton";
 import ToDo from "../pages/todo/ToDo";
 import HeaderBar from "../components/HeaderBar";
+import { Form } from "../pages/legal/Form";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,11 @@ export default function LegalRouter() {
                 headerLeft: null,
                 headerRight: () => <SettingsButton navigation={navigation} />
               })}/>
+          <Stack.Screen name="Form" component={Form} options={({navigation}) => ({
+                headerTitle: () => <HeaderBar />,
+                headerRight: () => <SettingsButton navigation={navigation} />
+              })}/>
         </Stack.Navigator>
+        
     );
 }

@@ -1,6 +1,8 @@
-import { Text, Button, View } from "react-native";
+import { Text, Button, View, TouchableOpacity, Image } from "react-native";
 
 
 export default function BackButton(props) {
-    return <Button onPress={() => props.navigation.navigate("Main")} title="back"></Button>
+    return <TouchableOpacity onPress={() => props.navigation.navigate("Main")}>
+        <Image source={require("../assets/backarrow.png")} style={{width: 15, height: 15, marginLeft: 17, marginRight: 20}}></Image>
+    </TouchableOpacity>
 }

@@ -31,7 +31,10 @@ export default function Location({ navigation }) {
           setActivePage={setActivePage}
         ></LocationNav>
       </ImageBackground>
+<<<<<<< HEAD
       <RealEstatePopup></RealEstatePopup>
+=======
+>>>>>>> 082a0f5fba9a0befc80523726868e0f92b4229ee
     </View>
   );
 }
