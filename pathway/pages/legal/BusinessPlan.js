@@ -13,11 +13,9 @@ export default function BusinessPlan() {
         }}
       >
         <PageTitle>Business Plan</PageTitle>
-        <WhiteButton text="Executive Summary. Pho Express is an authentic Vietnamese Pho restaurant opening in Seattle, WA, on November 1st, 2023. We aim to offer delicious and flavorful pho, using fresh ingredients, and providing a welcoming dining experience."></WhiteButton>
+        <WhiteButton text="Executive Summary"></WhiteButton>
         <WhiteButton text="Mission"></WhiteButton>
         <WhiteButton text="Vision"></WhiteButton>
       </View>
     );
 }
-
-//How do I put a comp inside a comp ="{}"
