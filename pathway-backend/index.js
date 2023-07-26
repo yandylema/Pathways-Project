@@ -48,5 +48,39 @@ async function getImages(businessName) {
     }
     return ret
 }
+
+app.use("/logo", async (req, res) => { 
+    let color = req.query.color; //coffee
+    let theme = req.query.theme; //47.602038,-122.333964
+    const promptValue = `Generate a logo for a Vietnamese restaurant called "PhoExpress" with ${color} color and a ${theme} theme.`;
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: promptValue,
+        n: 4,
+        size: "512x512",
+      }),
+    };
+    try {
+        const response = await fetch(
+          "https://api.openai.com/v1/images/generations",
+          options
+        );
+        const data = await response.json();
+        let ret = [];
+        data?.data.forEach((imageObject) => {
+            ret.push(imageObject.url)
+        });
+        res.send(ret);
+      } catch (error) {
+        console.error(error);
+      }
+})
+
+
 console.log("server starting, port 80")
 http.createServer(app).listen(80);
