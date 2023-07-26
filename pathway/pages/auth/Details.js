@@ -25,7 +25,7 @@ export default function Details({ navigation }) {
       <InputField placeholder={"Business product"}></InputField>
       <InputField placeholder={"Location: City, State, Zip"}></InputField>
       <InputField placeholder={"Business Type"}></InputField>
-      <CheckList></CheckList>
+      
       <PurpleButton text="Confirm" onPress={() => navigation.navigate("Main")}></PurpleButton>
     </View>
   );
