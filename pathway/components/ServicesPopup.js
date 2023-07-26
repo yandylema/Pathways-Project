@@ -17,7 +17,7 @@ export function ServicesPopup(props) {
             text={
               <>
                 <Image source={UberIcon} style={styles.images} />
-                <Text style={styles.text}>Learn More</Text>
+                <Text>Learn More</Text>
               </>
             }
           />
@@ -69,7 +69,4 @@ const styles = StyleSheet.create({
     height: 50, 
     margin: 1 
   },
-  text: {
-    alignItems: "right"
-  }
 });
