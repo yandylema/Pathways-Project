@@ -1,5 +1,7 @@
 import { Text, Button, View, Image } from "react-native";
 import PageTitle from "../../components/PageTitle";
+import PurpleButton from "../../components/PurpleButton";
+import WhiteButton from "../../components/WhiteButton";
 
 const upload = require("../../assets/upload.png");
 export default function SocialMedia({ navigation }) {
@@ -20,6 +22,9 @@ export default function SocialMedia({ navigation }) {
         source={upload}
         style={{ width: 400, height: 400, alignSelf: "center" }}
       />
+      <PurpleButton text="Generate"></PurpleButton>
+
+      <WhiteButton text="Cancel" onPress={() => navigation.navigate("Generate")}></WhiteButton>
       
     </View>
   );
