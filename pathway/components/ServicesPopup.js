@@ -1,6 +1,12 @@
-import { View, StyleSheet, Text, Image, Linking, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  Linking,
+  TouchableOpacity,
+} from "react-native";
 import PageTitle from "./PageTitle";
-import WhiteButton from "./WhiteButton";
 
 const YelpIcon = require("../assets/YelpAppIcon.png");
 const UberIcon = require("../assets/Uber-Eats-Icon-200x200.png");
@@ -12,35 +18,63 @@ export function ServicesPopup(props) {
       <View style={styles.card}>
         <PageTitle>Expand your business</PageTitle>
 
-        <View style={{ }}>
-          <WhiteButton
-            text={
-              <>
-                <Image source={UberIcon} style={styles.images} />
-                <Text>Learn More</Text>
-              </>
-            }
-          />
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "93%",
+            height: "20%",
+            borderRadius: 13,
+            padding: 10,
+            marginLeft: 7,
+            justifyContent: "space-around",
+            boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
+            alignItems: "center",
+          }}
+        >
+          <Image source={UberIcon} style={styles.images} />
+          <Text style={{ fontSize: 20, fontWeight: "bold", paddingTop: 13 }}>
+            Learn More
+          </Text>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <WhiteButton
-            text={
-              <>
-                <Image source={YelpIcon} style={styles.images} />
-                <Text>Learn More</Text>
-              </>
-            }
-          />
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            width: "93%",
+            borderRadius: 13,
+            padding: 10,
+            marginLeft: 7,
+            height: "20%",
+            justifyContent: "space-around",
+            boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
+            alignItems: "center",
+          }}
+        >
+          <Image source={YelpIcon} style={styles.images} />
+          <Text style={{ fontSize: 20, fontWeight: "bold", paddingTop: 13 }}>
+            Learn More
+          </Text>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <WhiteButton
-            text={
-              <>
-                <Image source={SquareIcon} style={styles.images} />
-                <Text>Learn More</Text>
-              </>
-            }
-          />
+
+        <View
+          style={{
+            display: "flex",
+            height: "20%",
+            flexDirection: "row",
+            width: "93%",
+            borderRadius: 13,
+            padding: 10,
+            marginLeft: 7,
+            justifyContent: "space-around",
+            boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
+            alignItems: "center",
+          }}
+        >
+          <Image source={SquareIcon} style={styles.images} />
+          <Text style={{ fontSize: 20, fontWeight: "bold", paddingTop: 13 }}>
+            Learn More
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -64,9 +98,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     alignItems: "Left",
   },
-  images: { 
-    width: 50, 
-    height: 50, 
-    margin: 1 
+  images: {
+    width: 50,
+    height: 50,
+    margin: 1,
   },
 });
