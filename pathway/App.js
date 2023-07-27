@@ -1,3 +1,4 @@
+import './config/firebase';
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -5,9 +6,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthRouter from "./routers/AuthRouter";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
+import { useAuthentication } from './utils/useAuthentication';
+import MainRouter from "./routers/MainRouter";
+
 
 
 export default function App() {
+  const { user } = useAuthentication();
   const [fontsLoaded, setFontsLoaded] = useState(false);
   useEffect(() => {
     async function loadFonts() {
@@ -22,7 +27,9 @@ export default function App() {
   return (
     <>
       {fontsLoaded ? (
-          <AuthRouter></AuthRouter>
+        <>
+          {user ? <MainRouter></MainRouter> : <AuthRouter></AuthRouter>}
+          </>
       ) : null}
     </>
   );

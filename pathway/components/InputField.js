@@ -2,14 +2,12 @@ import { Text, Button, View, TextInput, SafeAreaView, StyleSheet} from "react-na
 import { useState } from "react";
 
 const InputField = (props) => {
-  const [text, onChangeText] = useState('');
-
   return (
     <SafeAreaView>
       <TextInput
         style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
+        onChangeText={(e) => props.onChange(e)}
+        value={props.value}
         placeholder={props.placeholder}
       />
     </SafeAreaView>

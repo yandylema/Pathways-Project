@@ -4,8 +4,13 @@ import GrayCaption from "../../components/GrayCaption";
 import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
 import PageTitle from "../../components/PageTitle";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-export default function Details({ navigation }) {
+const auth = getAuth();
+
+export default function Details({ navigation, route }) {
+  const email = route.params.email;
+  const password = route.params.password;
   return (
     <View
       style={{
@@ -27,7 +32,7 @@ export default function Details({ navigation }) {
 
       <PurpleButton
         text="Confirm"
-        onPress={() => navigation.navigate("Main")}
+        onPress={async () => await createUserWithEmailAndPassword(auth, email, password)}
       ></PurpleButton>
     </View>
   );
