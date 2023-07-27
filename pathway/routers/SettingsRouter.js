@@ -15,7 +15,6 @@ export default function SettingsRouter() {
           <Stack.Screen name="Settings" component={Settings} options={({navigation}) => ({
                 headerTitle: () => <HeaderBar />,
                 headerLeft: () => <BackButton navigation={navigation} />,
-                headerRight: () => <SettingsButton navigation={navigation} />
               })}/>
         </Stack.Navigator>
       );

@@ -84,19 +84,14 @@ export function ServicesPopup(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgba(0,0,0,0.5)",
-    height: "100vh",
-    width: "100vw",
-    position: "fixed",
-    top: 0,
-    left: 0,
+    flex: 1,
+    width: "100%",
     justifyContent: "flex-end",
   },
   card: {
     backgroundColor: "white",
-    height: "50%",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    alignItems: "Left",
   },
   images: {
     width: 50,

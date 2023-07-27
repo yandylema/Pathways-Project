@@ -7,19 +7,15 @@ export function RealEstatePopup(props) {
     <TouchableOpacity
       style={{
         backgroundColor: "rgba(0,0,0,0.5)",
-        height: "100vh",
-        width: "100vw",
-        position: "fixed",
-        top: 0,
-        left: 0,
         justifyContent: "flex-end",
+        flex: 1,
+        width: "100%",
       }}
       onPress={props.onPress}
     >
       <View
         style={{
           backgroundColor: "white",
-          height: "53vh",
           borderTopRightRadius: 30,
           borderTopLeftRadius: 30,
         }}
