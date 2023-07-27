@@ -83,6 +83,43 @@ app.use("/logo", async (req, res) => {
       }
 })
 
+app.use("/website", async (req, res) => { 
+    let name = req.query.name; // business name
+    let product = req.query.product;
+    let location = req.query.location;
+    let details = req.query.details;
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_KEY_2}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {
+              "role": "system",
+              "content": "You are a website generator for small businesses. Your job is to generate a one page website, complete with CSS styling. Use bright colors and make it look visually appealing."
+            },
+            {
+              "role": "user",
+              "content": `Generate a website for a business called ${name}. This business sells ${product}. It is located in ${location}. Some extra details you should include in the website are that it ${details}. Use the image url https://th.bing.com/th/id/OIP.BwxQLgo0-hVHbzOtFqsxDQHaFj?pid=ImgDet&rs=1 and include this image.`
+            }
+          ] 
+      }),
+    };
+    try {
+        const response = await fetch(
+          "https://api.openai.com/v1/chat/completions",
+          options
+        );
+        const data = await response.json();
+        res.send(data.choices[0].message.content);
+      } catch (error) {
+        console.error(error);
+      }
+})
+
 
 console.log("server starting, port 80")
 http.createServer(app).listen(80);

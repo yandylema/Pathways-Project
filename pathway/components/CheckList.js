@@ -44,7 +44,7 @@ export default function CheckList(props) {
             fontWeight: "bold",
           }}
         >
-          {props.percentage}
+          <Text>{props.percentage}</Text>
         </View>
       </View>
     </View>
@@ -62,7 +62,11 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     borderRadius: 19,
     marginLeft: "2%",
-    boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
+    shadowColor: "#747474",
+        shadowOffset: { width: 2, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 5,
     padding: 5,
   },
   containerLeft: {
