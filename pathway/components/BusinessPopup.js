@@ -16,7 +16,6 @@ export function BusinessPopup(props) {
         <Text
           style={{
             fontWeight: "bold",
-            alignSelf: "left",
             fontSize: 30,
             padding: 10,
             paddingLeft: 15,
@@ -24,12 +23,12 @@ export function BusinessPopup(props) {
         >
           Pho Mama
         </Text>
-        <Text style={{ alignSelf: "Left", paddingLeft: 15 }}>
+        <Text style={{ paddingLeft: 15 }}>
           2.1
           <Image source={rating} style={{ width: 70, height: 20 }} />
           (87)
         </Text>
-        <Text style={{ alignSelf: "Left", paddingLeft: 15 }}>
+        <Text style={{  paddingLeft: 15 }}>
           Vietnamese Restaurant
         </Text>
         <View style={{ flexDirection: "row" }}>
@@ -62,7 +61,6 @@ export function BusinessPopup(props) {
         <Text
           style={{
             flexDirection: "row",
-            alignSelf: "Left",
             paddingTop: 7,
             paddingLeft: 15,
           }}
@@ -76,10 +74,9 @@ export function BusinessPopup(props) {
         <Text
           style={{
             flexDirection: "row",
-            alignSelf: "Left",
             paddingTop: 7,
             paddingLeft: 15,
-            textDecoration: "underline",
+            textDecorationLine: 'underline',
           }}
           onPress={() => {
             Linking.openURL("http://www.phomama.com/");
@@ -94,7 +91,6 @@ export function BusinessPopup(props) {
         <Text
           style={{
             flexDirection: "row",
-            alignSelf: "Left",
             paddingTop: 7,
             paddingLeft: 15,
             fontWeight: "bold",
@@ -111,18 +107,13 @@ export function BusinessPopup(props) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgba(0,0,0,0.5)",
-    height: "100vh",
-    width: "100vw",
-    position: "fixed",
-    top: 0,
-    left: 0,
+    flex: 1,
+    width: "100%",
     justifyContent: "flex-end",
   },
   card: {
     backgroundColor: "white",
-    height: "50vh",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
-    alignItems: "Left",
   },
 });

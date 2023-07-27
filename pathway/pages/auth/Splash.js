@@ -2,6 +2,7 @@ import { Text, Button, View, StyleSheet, Image } from "react-native";
 import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
+import { LinearGradient } from "expo-linear-gradient";
 
 const styles = StyleSheet.create({
   // secondary: {
@@ -22,13 +23,12 @@ const styles = StyleSheet.create({
 
 export default function Splash({ navigation }) {
   return (
-    <View
+    <LinearGradient colors={["#68008D", "#3D00A0"]}
       style={{
         flex: 1,
         justifyContent: "space-between",
         paddingBottom: 10,
         paddingTop: 30,
-        backgroundImage: "linear-gradient(#68008D, #3D00A0)",
         alignItems: "center",
       }}
     >
@@ -57,6 +57,6 @@ export default function Splash({ navigation }) {
           onPress={() => navigation.navigate("LogIn")}
         />
       </View>
-    </View>
+    </LinearGradient>
   );
 }

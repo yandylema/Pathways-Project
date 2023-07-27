@@ -18,7 +18,6 @@ export default function Location({ navigation }) {
   return (
     <View
       style={{
-        padding: 10,
         alignItems: "center",
         flex: 1,
         width: "100%",

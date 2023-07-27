@@ -51,7 +51,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 10,
     borderRadius: 15,
-    boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
+    shadowColor: "#747474",
+        shadowOffset: { width: 2, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 5
   },
   buttonText: {
     fontSize: 18,

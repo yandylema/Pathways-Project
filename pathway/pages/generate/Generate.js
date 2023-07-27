@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: "30",
+    fontSize: 30,
     color: "white",
     paddingTop: 7,
     paddingBottom: 7,
@@ -138,7 +138,7 @@ const style3 = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: "30",
+    fontSize: 30,
     color: "white",
     paddingTop: 7,
     paddingBottom: 7,
@@ -169,6 +169,7 @@ const style4 = StyleSheet.create({
     shadowOffset: { width: 2, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
+    elevation: 5
   },
 });
 
@@ -197,15 +198,3 @@ const style5 = StyleSheet.create({
     shadowRadius: 3,
   },
 });
-
-    // <View>
-    //   <Text>generate page</Text>
-    //   <Button
-    //     title="Generate Social Media"
-    //     onPress={() => navigation.navigate("SocialMedia")}
-    //   />
-    //   <Button
-    //     title="Generate Logo"
-    //     onPress={() => navigation.navigate("Logo")}
-    //   />
-    // </View>

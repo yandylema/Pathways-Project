@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import ButtonWithI from "../../components/ButtonWithI";
 import GradientCard from "../../components/GradientCard";
 import PageTitle from "../../components/PageTitle";
@@ -73,12 +73,17 @@ const forms = [
 
 export default function Legal({ navigation }) {
   return (
-    <View>
+    <ScrollView>
       <PageTitle>Legal Documents</PageTitle>
+      
+      <WhiteButton
+        text="View Business Plan"
+        onPress={() => navigation.navigate("BusinessPlan")}
+      ></WhiteButton>
       {forms.map((card, idx) => (
         <GradientCard key={idx} text={card.name}>
-          {card.options.map((option) => (
-            <ButtonWithI
+          {card.options.map((option, idx) => (
+            <ButtonWithI key={idx}
               onPress={() => {
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
@@ -87,6 +92,6 @@ export default function Legal({ navigation }) {
           ))}
         </GradientCard>
       ))}
-    </View>
+    </ScrollView>
   );
 }
