@@ -11,21 +11,57 @@ const forms = [
       {
         name: "Business License",
         inputs: [
-          { name: "Starting date", type: "text" },
-          { name: "Will you employ people", type: "checkbox", length: 1, answer1: "2" },
-          { name: "Business address", type: "text" },
-          { name: "Mailing address", type: "text" },
-          { name: "Mailing address for taxes", type: "text" },
-          { name: "Nature of business", type: "text" },
-          { name: "Tax reporting status", type: "checkbox", length: 2, answer1: "yes", answer2: "no"},
-          { name: "Will you employ people", type: "checkbox" },
+          {
+            question: "Starting date",
+            type: "text",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
+          {
+            question: "Physical Business address",
+            type: "text",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
+          {
+            question: "Nature of Business",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
+          {
+            question: "Tax reporting status",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
       {
         name: "Alcohol License",
         inputs: [
-          { name: "Business name", type: "text" },
-          { name: "Will you serve alcohol", type: "checkbox" },
+          { question: "Business name", type: "text", answers: [] },
+          {
+            question: "Will you serve alcohol",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
     ],
@@ -36,15 +72,31 @@ const forms = [
       {
         name: "Food Service Permit",
         inputs: [
-          { name: "Business name", type: "text" },
-          { name: "Will you employ people", type: "checkbox" },
+          { question: "Business name", type: "text" },
+          {
+            question: "Will you employ people",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
       {
         name: "Other",
         inputs: [
-          { name: "Business name", type: "text" },
-          { name: "Will you serve alcohol", type: "checkbox" },
+          { question: "Business name", type: "text" },
+          {
+            question: "Will you serve alcohol",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
     ],
@@ -53,17 +105,33 @@ const forms = [
     name: "Other",
     options: [
       {
-        name: "Employee ID number",
+        name: "Other",
         inputs: [
-          { name: "Business name", type: "text" },
-          { name: "Will you employ people", type: "checkbox" },
+          { question: "Business name", type: "text" },
+          {
+            question: "Will you serve alcohol",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
       {
-        name: "Certificate Of Occupancy",
+        name: "Other",
         inputs: [
-          { name: "Business name", type: "text" },
-          { name: "Will you serve alcohol", type: "checkbox" },
+          { question: "Business name", type: "text" },
+          {
+            question: "Will you serve alcohol",
+            type: "checkbox",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+              // Add more answers for Question 1
+            ],
+          },
         ],
       },
     ],
@@ -74,7 +142,7 @@ export default function Legal({ navigation }) {
   return (
     <View>
       <PageTitle>Legal Documents</PageTitle>
-      
+
       <WhiteButton
         text="View Business Plan"
         onPress={() => navigation.navigate("BusinessPlan")}
