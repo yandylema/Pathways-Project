@@ -1,96 +1,104 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
 const facebooklogo = require("../../assets/facebooklogo.png");
 const instagramlogo = require("../../assets/instagramlogo.png")
 const tiktoklogo = require("../../assets/tiktoklogo.png")
 const twitterlogo= require("../../assets/twittersymbol.png")
-//dalle images placeholder
-const dalle1= require("../../assets/dalle1.png")
-const dalle2= require("../../assets/dalle2.png")
-const dalle3= require("../../assets/dalle3.png")
-const dalle4= require("../../assets/dalle4.png")
 import GradientCard from "../../components/GradientCard";
+import {useEffect, useState} from 'react';
 
 export default function Generate({ navigation }) {
+  const [logos, setLogos] = useState([]);
+
+  const fetchLogos = async () => {
+    try {
+      const result = await fetch("http://127.0.0.1/logo?color=red&theme=vintage");
+      const jsoned = await result.json();
+      setLogos(jsoned);
+    } catch (error) {
+      console.error("Error fetching logos:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchLogos();
+  }, []);
+
+  
+  const [showWebsiteOptions, setShowWebsiteOptions] = useState(false);
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <GradientCard text="Social Media">
-      <View style={style1.logoContainer}>
+      <View style={styles.logoContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}>
           <Image 
             source= {facebooklogo}
-            style = {{height:55, width:65}}/>
+            style = {styles.image}/>
             </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}> 
           <Image 
             source= {instagramlogo}
-            style = {style1.image}/>
+            style = {styles.image}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}> 
           <Image 
             source= {tiktoklogo}
-            style = {style1.image}/>
+            style = {styles.image}/>
            </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}>  
           <Image 
             source= {twitterlogo}
-            style = {{height: 60, width:60, padding: 20}}/>
+            style = {styles.image}/>
           </TouchableOpacity>
         </View>
       </GradientCard>
 
       <GradientCard text="Website">
-      <View>
-          <WhiteButton text="Visit Website"></WhiteButton>
-          <WhiteButton text="Manage Website"></WhiteButton>
-          </View>     
-       </GradientCard>
+            <View>
+                {showWebsiteOptions ? (
+                    <>
+                        <WhiteButton text="Visit Website"></WhiteButton>
+                        <WhiteButton text="Manage Website"></WhiteButton>
+                    </>
+                ) : (
+                    <PurpleButton text="Generate Website" onPress={() => setShowWebsiteOptions(true)}></PurpleButton>
+                )}
+            </View>     
+        </GradientCard>
       
 
       <GradientCard text="Logo Ideas">
-      <View style = {{flex:5}}>
-          <View style = {style2.row}>
-        <Image source= {dalle1} style = {style2.image}/>
-        <Image source= {dalle2} style = {style2.image}/>
+        <View>
+          {/* First Row */}
+          <View style={styles.row}>
+            <Image source = {{uri: logos[0]}} style ={styles.image} ></Image>
+            <Image source = {{uri: logos[1]}} style ={styles.image} ></Image>
           </View>
-          <View style = {style2.row}>
-        <Image source= {dalle3} style = {style2.image}/>
-        <Image source= {dalle4} style = {style2.image}/>
+          {/* Second Row */}
+          <View style = {styles.row}>
+            <Image source = {{uri: logos[2]}} style ={styles.image} ></Image>
+            <Image source = {{uri: logos[3]}} style ={styles.image} ></Image>
           </View>
-        
-          <PurpleButton text="Regenerate"></PurpleButton>
+          <PurpleButton text="Regenerate" onPress={fetchLogos}></PurpleButton>
       </View>
       </GradientCard>
-    </View>
+    </ScrollView>
     
   );
 }
 
 //Logo Sizes
-const style1 = StyleSheet.create({
+const styles = StyleSheet.create({
   image: {
-    width: 60,
-    height: 55,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
     // padding: 20
   },
   logoContainer: {
     flexDirection:'row',
     justifyContent: 'space-around',
-  }
-});
-
-
-
-//Dall-e Image Placeholder container
-const style2 = StyleSheet.create({
-  image: {
-    width: 150,
-    height: 100,
-    margin: 3,
-    resizeMode: 'contain'
-    
   },
   row: {
     flexDirection: 'row',
@@ -101,100 +109,3 @@ const style2 = StyleSheet.create({
 
 
 
-//Gradient Box for website generator
-const styles = StyleSheet.create({
-  container: {
-    width: "87%",
-    height: 370,
-    alignSelf:"center",
-    marginBottom: 10
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "white",
-    paddingTop: 7,
-    paddingBottom: 7,
-  },
-});
-
-//Gradient box for logo generator
-const style3 = StyleSheet.create({
-  container: {
-    width: "87%",
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent:'space-between',
-    height: 380,
-    alignSelf:"center"
-  },
-  containerTitle: {
-    width: "100%",
-    textTransform: "uppercase",
-    textAlign: "left",
-    paddingLeft: "5%",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "white",
-    paddingTop: 7,
-    paddingBottom: 7,
-  },
-});
-
-
-//White button css
-const style4 = StyleSheet.create({
-  button: {
-    backgroundColor: "white",
-    width: 342,
-    height: 55,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 7,
-   
-  },
-  text: {
-    color: "black",
-    fontSize: 15,
-    fontFamily: "Jost",
-    fontWeight: "bold",
-  },
-  shadowProp: {
-    shadowColor: "#747474",
-    shadowOffset: { width: 2, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 5
-  },
-});
-
-
-//Purple Button 
-const style5 = StyleSheet.create({
-  button: {
-    width: 342,
-    height: 70,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 7,
-    
-  },
-  text: {
-    color: "white",
-    fontSize: 15,
-    fontFamily: "Jost",
-    fontWeight: "bold",
-  },
-  shadowProp: {
-    shadowColor: "#747474",
-    shadowOffset: { width: 2, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-  },
-});

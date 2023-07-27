@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthRouter from "./routers/AuthRouter";
-import { RecoilRoot } from "recoil";
 import * as Font from "expo-font";
 import { useEffect, useState } from "react";
+
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -22,9 +22,7 @@ export default function App() {
   return (
     <>
       {fontsLoaded ? (
-        <RecoilRoot>
           <AuthRouter></AuthRouter>
-        </RecoilRoot>
       ) : null}
     </>
   );

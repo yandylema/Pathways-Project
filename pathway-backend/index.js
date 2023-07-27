@@ -1,10 +1,12 @@
 var express = require('express');
 var http = require('http');
+let cors = require("cors");
+
 require('dotenv').config()
 
 var app = express();
 
-
+app.use(cors());
 
 app.use("/businesses", async (req, res) => {
     let businessType = req.query.type; //coffee
@@ -50,9 +52,9 @@ async function getImages(businessName) {
 }
 
 app.use("/logo", async (req, res) => { 
-    let color = req.query.color; //coffee
-    let theme = req.query.theme; //47.602038,-122.333964
-    const promptValue = `Generate a logo for a Vietnamese restaurant called "PhoExpress" with ${color} color and a ${theme} theme.`;
+    let color = req.query.color; //red
+    let theme = req.query.theme; //vintage
+    const promptValue = `Generate a logo for a Vietnamese restaurant with ${color} color and a ${theme} theme, without any text`;
     const options = {
       method: "POST",
       headers: {
@@ -62,7 +64,7 @@ app.use("/logo", async (req, res) => {
       body: JSON.stringify({
         prompt: promptValue,
         n: 4,
-        size: "512x512",
+        size: "1024x1024",
       }),
     };
     try {
