@@ -2,6 +2,7 @@ import { Text, ScrollView, View, StyleSheet } from "react-native";
 import InputField from "../../components/InputField";
 import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
+import PurpleButton from "../../components/PurpleButton";
 
 export function Form({ navigation, route }) {
   const inputs = route.params.inputs;
@@ -62,6 +63,12 @@ export function Form({ navigation, route }) {
           </View>
         ))}
       </View>
+      <PurpleButton
+        onPress={() => {
+          navigation.navigate("PDFPage");
+        }}
+        text="Generate PDF"
+      ></PurpleButton>
     </ScrollView>
   );
 }
