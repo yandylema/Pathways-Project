@@ -5,14 +5,38 @@ const facebooklogo = require("../../assets/facebooklogo.png");
 const instagramlogo = require("../../assets/instagramlogo.png")
 const tiktoklogo = require("../../assets/tiktoklogo.png")
 const twitterlogo= require("../../assets/twittersymbol.png")
-//dalle images placeholder
-const dalle1= require("../../assets/dalle1.png")
-const dalle2= require("../../assets/dalle2.png")
-const dalle3= require("../../assets/dalle3.png")
-const dalle4= require("../../assets/dalle4.png")
 import GradientCard from "../../components/GradientCard";
+import {useEffect, useState} from 'react';
 
 export default function Generate({ navigation }) {
+  const [logos, setLogos] = useState([]);
+  useEffect(()=>{
+    async function getLogos() {
+      const result = await fetch("http://127.0.0.1/logo?color=red&theme=vintage");
+      const jsoned = await result.json();
+      setLogos(jsoned)
+
+      
+    }
+  getLogos();
+
+  }, [])
+  const fetchLogos = async () => {
+    try {
+      const result = await fetch("http://127.0.0.1/logo?color=red&theme=vintage");
+      const jsoned = await result.json();
+      setLogos(jsoned);
+    } catch (error) {
+      console.error("Error fetching logos:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchLogos();
+  }, []);
+
+  
+  const [showWebsiteOptions, setShowWebsiteOptions] = useState(false);
   return (
     <View style={styles.container}>
       <GradientCard text="Social Media">
@@ -41,26 +65,33 @@ export default function Generate({ navigation }) {
       </GradientCard>
 
       <GradientCard text="Website">
-      <View>
-          <WhiteButton text="Visit Website"></WhiteButton>
-          <WhiteButton text="Manage Website"></WhiteButton>
-          </View>     
-       </GradientCard>
+            <View>
+                {showWebsiteOptions ? (
+                    <>
+                        <WhiteButton text="Visit Website"></WhiteButton>
+                        <WhiteButton text="Manage Website"></WhiteButton>
+                    </>
+                ) : (
+                    <PurpleButton text="Generate Website" onPress={() => setShowWebsiteOptions(true)}></PurpleButton>
+                )}
+            </View>     
+        </GradientCard>
       
 
       <GradientCard text="Logo Ideas">
       <View style = {{flex:5}}>
         <View style={style3.containerInside}>
-          <View style = {style2.row}>
-        <Image source= {dalle1} style = {style2.image}/>
-        <Image source= {dalle2} style = {style2.image}/>
+          {/* First Row */}
+          <View style={style2.row}>
+            <Image source = {{uri: logos[0]}} style ={style2.image} ></Image>
+            <Image source = {{uri: logos[1]}} style ={style2.image} ></Image>
           </View>
+          {/* Second Row */}
           <View style = {style2.row}>
-        <Image source= {dalle3} style = {style2.image}/>
-        <Image source= {dalle4} style = {style2.image}/>
+            <Image source = {{uri: logos[2]}} style ={style2.image} ></Image>
+            <Image source = {{uri: logos[3]}} style ={style2.image} ></Image>
           </View>
-        
-          <PurpleButton text="Regenerate"></PurpleButton>
+          <PurpleButton text="Regenerate" onPress={fetchLogos}></PurpleButton>
 
         </View>
       </View>
