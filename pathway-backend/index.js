@@ -91,7 +91,7 @@ app.use("/website", async (req, res) => {
     const options = {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.OPENAI_KEY_2}`,
+        Authorization: `Bearer ${process.env.OPENAI_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -114,6 +114,7 @@ app.use("/website", async (req, res) => {
           options
         );
         const data = await response.json();
+        console.log(data)
         res.send(data.choices[0].message.content);
       } catch (error) {
         console.error(error);
