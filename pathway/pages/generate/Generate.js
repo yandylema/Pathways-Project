@@ -10,6 +10,7 @@ import {useEffect, useState} from 'react';
 
 export default function Generate({ navigation }) {
   const [logos, setLogos] = useState([]);
+  const [websiteContent, setWebsiteContent] = useState(null);
 
   const fetchLogos = async () => {
     try {
@@ -23,7 +24,25 @@ export default function Generate({ navigation }) {
 
   useEffect(() => {
     fetchLogos();
-  }, []);
+  } , []);
+
+  const generateWebsite = async () => {
+    try {
+        const response = await fetch("http://127.0.0.1/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable");
+        const data = await response.text();
+        console.log(data)
+        // write this to an html file websites folder
+        setWebsiteContent(data);
+        setShowWebsiteOptions(true);
+    } catch (error) {
+        console.error("Error generating website:", error);
+    }
+}
+const openGeneratedWebsite = () => {
+  const newWindow = window.open("", "_blank");
+  newWindow.document.write(websiteContent);
+}
+
 
   
   const [showWebsiteOptions, setShowWebsiteOptions] = useState(false);
@@ -58,8 +77,8 @@ export default function Generate({ navigation }) {
             <View>
                 {showWebsiteOptions ? (
                     <>
-                        <WhiteButton text="Visit Website"></WhiteButton>
-                        <WhiteButton text="Manage Website"></WhiteButton>
+                        <WhiteButton text="Visit Website" onPress={openGeneratedWebsite}></WhiteButton>
+                        <WhiteButton text="Manage Website" onPress={generateWebsite}></WhiteButton>
                     </>
                 ) : (
                     <PurpleButton text="Generate Website" onPress={() => setShowWebsiteOptions(true)}></PurpleButton>
