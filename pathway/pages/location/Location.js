@@ -7,7 +7,7 @@ import { BusinessPopup } from "../../components/BusinessPopup";
 import { RealEstatePopup } from "../../components/RealEstatePopup";
 import { BusinessPin } from "../../components/BusinessPin";
 import { RealEstatePin } from "../../components/RealEstatePin";
-// import MapView from 'react-native-maps';
+import MapLogic from "./MapLogic";
 
 
 export default function Location({ navigation }) {
@@ -28,23 +28,7 @@ export default function Location({ navigation }) {
           activePage={activePage}
           setActivePage={setActivePage}
         ></LocationNav>
-        {/* <MapView style={{
-  container: {
-    flex: 1,
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-}} /> */}
-      <ImageBackground
-        source={mapscreenshot}
-        style={{
-          flex: 1,
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
+    <MapLogic></MapLogic>
         {activePage == "businesses" ? <BusinessPin onPress={()=>setShowBusinessPopup(true)}></BusinessPin> : null}
         {showBusinessPopup && activePage == "businesses" ? <BusinessPopup onPress={()=>{
             setShowBusinessPopup(false);
@@ -60,7 +44,6 @@ export default function Location({ navigation }) {
             setShowRealEstatePopup(false);
             setActivePage("realestate");
         }}></RealEstatePopup> : null}
-      </ImageBackground>
     </View>
   );
 }

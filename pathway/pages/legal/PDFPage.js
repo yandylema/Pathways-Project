@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   container: { flexDirection: "row", alignSelf: "flex-end" },
   images: {
     marginTop: 10,
-    magrin: 5,
     alignSelf: "center",
     width: 400,
     height: 550,
