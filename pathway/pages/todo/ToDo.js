@@ -3,7 +3,10 @@ import CheckList from "../../components/CheckList";
 import { useState } from "react";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
-
+const purple = require("../../assets/Ellipse5.png");
+const red = require("../../assets/Ellipse6.png");
+const green = require("../../assets/Ellipse7.png");
+const yellow = require("../../assets/Ellipse8.png");
 
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -19,23 +22,27 @@ const ToDo = () => {
       <PageTitle>To-Do List</PageTitle>
       <View style={styles.container}>
         <Dropdown
+          icon={purple}
           label="Legal Documents"
           options={options}
           onSelect={handleOptionSelect}
         />
 
         <Dropdown
+          icon={red}
           label="Location"
           options={options}
           onSelect={handleOptionSelect}
         />
 
         <Dropdown
+          icon={green}
           label="Marketing"
           options={options}
           onSelect={handleOptionSelect}
         />
         <Dropdown
+          icon={yellow}
           label="Demographics"
           options={options}
           onSelect={handleOptionSelect}
