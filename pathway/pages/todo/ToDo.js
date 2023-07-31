@@ -1,6 +1,5 @@
-import { StyleSheet, Text, Button, View } from "react-native";
-import CheckList from "../../components/CheckList";
-import { useState } from "react";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
 import TestingFirebase from "../../components/TestingFirebase";
@@ -13,8 +12,26 @@ const yellow = require("../../assets/Ellipse8.png");
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
-
+  const legalDocumentsOptions = [
+    "1. Submit Business License Tax form",
+    "2. Obtain Food Service Permit",
+    "3. blahblahblah",
+    "4. blahblahblah",
+  ];
+  const locationOptions = [
+    "1. View competitors",
+    "2. View real estate options",
+    "3. Set up third party services",
+  ];
+  const marketingOptions = [
+    "1. Create social media post",
+    "2. Generate website",
+    "3. Generate business logo",
+  ];
+  const additionalOptions = [
+    "1. Personalize language setting",
+    "2. Verify account details",
+  ];
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
@@ -26,27 +43,27 @@ const ToDo = () => {
         <Dropdown
           icon={purple}
           label="Legal Documents"
-          options={options}
+          options={legalDocumentsOptions}
           onSelect={handleOptionSelect}
         />
 
         <Dropdown
           icon={red}
           label="Location"
-          options={options}
+          options={locationOptions}
           onSelect={handleOptionSelect}
         />
 
         <Dropdown
           icon={green}
           label="Marketing"
-          options={options}
+          options={marketingOptions}
           onSelect={handleOptionSelect}
         />
         <Dropdown
           icon={yellow}
-          label="Demographics"
-          options={options}
+          label="Other"
+          options={additionalOptions}
           onSelect={handleOptionSelect}
         />
         <TestingFirebase />
@@ -63,9 +80,6 @@ const styles = StyleSheet.create({
     display: "flex",
     alignSelf: "center",
     flex: 1,
-  },
-  selectedOptionContainer: {
-    marginTop: 20,
   },
 });
 

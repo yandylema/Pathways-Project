@@ -1,10 +1,24 @@
 import { Text, ScrollView, View, StyleSheet } from "react-native";
-import InputField from "../../components/InputField";
 import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import PurpleButton from "../../components/PurpleButton";
+import Dropdown from "../../components/DropdownChecklist";
+import PageTitle from "../../components/PageTitle";
 
 export function Form({ navigation, route }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const typesOptions = [
+    "Sole Proprietorship",
+    "Partnership",
+    "Limited Liability Company",
+    "Limited Liability Partnership",
+    "Corporation",
+  ];
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
   const inputs = route.params.inputs;
   // Initialize an array of state variables for checkboxes
   const [checkedStates, setCheckedStates] = useState(inputs.map(() => false));
@@ -24,6 +38,14 @@ export function Form({ navigation, route }) {
         alignItems: "center",
       }}
     >
+      <PageTitle>Business License Tax Form</PageTitle>
+
+      <Dropdown
+        label="Business Type"
+        options={typesOptions}
+        onSelect={handleOptionSelect}
+      />
+
       {/* {inputs.map((input, index) => (
         <View key={input.name}>
           <Text style={styles.text}>{input.name}</Text>

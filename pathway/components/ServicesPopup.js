@@ -1,11 +1,4 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  Linking,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import PageTitle from "./PageTitle";
 
 const YelpIcon = require("../assets/YelpAppIcon.png");

@@ -1,11 +1,11 @@
-import { Text, Button, View } from "react-native";
+import { View } from "react-native";
 import InputField from "../../components/InputField";
 import GrayCaption from "../../components/GrayCaption";
 import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
 import PageTitle from "../../components/PageTitle";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get } from "firebase/database";
 import { useState } from "react";
 
 const auth = getAuth();
@@ -19,33 +19,51 @@ export default function Details({ navigation, route }) {
   const [businessType, setBusinessType] = useState("");
 
   const writeData = (
-    businessId,
     businessName,
     businessProduct,
     businessLocation,
     businessType
   ) => {
     const db = getDatabase();
-    set(ref(db, "businesses/" + businessId), {
-      businessName: businessName,
-      businessProduct: businessProduct,
-      businessLocation: businessLocation,
-      businessType: businessType,
+    const businessesRef = ref(db, "businesses/");
+    get(businessesRef).then((snapshot) => {
+      set(ref(db, "businesses/" + snapshot.size), {
+        businessName: businessName,
+        businessProduct: businessProduct,
+        businessLocation: businessLocation,
+        businessType: businessType,
+        businessPlan: {
+          HR: "",
+          operations: "",
+        },
+        completed_forms: {
+          business_license: false,
+          alcohol_license: false,
+          food_service_permit: false,
+          other_permit: false,
+        },
+        settings: {
+          language: "",
+          notifications: false,
+        },
+        websiteURL: "",
+      });
     });
   };
   const createUser = async () => {
     await createUserWithEmailAndPassword(auth, email, password);
   };
   const combinedFunction = () => {
-    writeData();
+    // Pass all the required arguments to writeData function
+    writeData(businessName, productName, locationName, businessType);
     createUser();
   };
   console.log(businessName);
+
   return (
     <View
       style={{
         flex: 1,
-        // justifyContent: "space-between",
         paddingBottom: 10,
         paddingTop: 30,
         alignItems: "center",
@@ -57,7 +75,6 @@ export default function Details({ navigation, route }) {
       <GrayCaption>our services towards your business.</GrayCaption>
       <InputField
         placeholder={"Business name"}
-        onWriteData={writeData}
         onChange={(text) => {
           setBusinessName(text);
         }}
@@ -66,7 +83,6 @@ export default function Details({ navigation, route }) {
 
       <InputField
         placeholder={"Business product"}
-        onWriteData={writeData}
         onChange={(text) => {
           setBusinessProduct(text);
         }}
@@ -74,7 +90,6 @@ export default function Details({ navigation, route }) {
       ></InputField>
       <InputField
         placeholder={"Location: City, State, Zip"}
-        onWriteData={writeData}
         onChange={(text) => {
           setLocation(text);
         }}
@@ -82,7 +97,6 @@ export default function Details({ navigation, route }) {
       ></InputField>
       <InputField
         placeholder={"Business Type"}
-        onWriteData={writeData}
         onChange={(text) => {
           setBusinessType(text);
         }}

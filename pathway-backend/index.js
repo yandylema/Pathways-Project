@@ -103,7 +103,7 @@ app.use("/website", async (req, res) => {
             },
             {
               "role": "user",
-              "content": `Generate a website for a business called ${name}. This business sells ${product}. It is located in ${location}. Some extra details you should include in the website are that it ${details}. Use the image url https://th.bing.com/th/id/OIP.BwxQLgo0-hVHbzOtFqsxDQHaFj?pid=ImgDet&rs=1 and include this image.`
+              "content": `Generate a website for a business called ${name}. This business sells ${product}. It is located in ${location}. Some extra details you should include in the website are that it ${details}. Use the image url https://th.bing.com/th/id/R.aa3ccda9ea46e6a3d6cd8393416149f5?rik=s5ULBFrMwPfnQQ&riu=http%3a%2f%2fmedia.blogto.com%2flistings%2f2949-20161116-590-Pho.jpg%3fh%3d1365%26cmd%3dresize_then_crop%26quality%3d70%26w%3d2048&ehk=4qIDBWx2nKhYOwk2pNzTWCna6CcH5h0eeg2JboUBXME%3d&risl=&pid=ImgRaw&r=0 and include this image.`
             }
           ] 
       }),
@@ -120,6 +120,47 @@ app.use("/website", async (req, res) => {
         console.error(error);
       }
 })
+
+//Social media generator endpoint
+app.use("/social", async (req, res) => { 
+  let businessName = req.query.businessName; // business name
+  let product = req.query.product;
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "model": "gpt-3.5-turbo",
+      "messages": [
+          {
+            "role": "system",
+            "content": "You are a website generator that mimics the design of a Facebook post. Your job is to generate a simple one-page website post based on the business and product details provided."
+          },
+          {
+            "role": "user",
+            "content": `Generate a Facebook-like post for a business named "${businessName}" that promotes the product "${product}", use this image URL: https://www.measuringcupsoptional.com/wp-content/uploads/2016/12/Beef-Pho.jpg and include this image.`
+          }
+        ] 
+    }),
+  };
+
+  try {
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        options
+      );
+      const data = await response.json();
+      console.log(data)
+      res.send(data.choices[0].message.content);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error generating website content.');
+    }
+});
+
 
 
 console.log("server starting, port 80")

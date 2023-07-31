@@ -18,7 +18,7 @@ get(businessesRef)
     console.error("Error fetching data:", error);
   });
 
-get(bdocumentsRef)
+get(documentsRef)
   .then((snapshot) => {
     if (snapshot.exists()) {
       // snapshot.val() gives you the entire data under 'businesses' node
