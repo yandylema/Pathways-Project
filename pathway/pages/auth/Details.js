@@ -37,10 +37,12 @@ export default function Details({ navigation, route }) {
           operations: "",
         },
         completed_forms: {
-          business_license: false,
-          alcohol_license: false,
-          food_service_permit: false,
-          other_permit: false,
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+          6: false,
         },
         settings: {
           language: "",

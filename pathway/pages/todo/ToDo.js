@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
-import TestingFirebase from "../../components/TestingFirebase";
 
 const purple = require("../../assets/Ellipse5.png");
 const red = require("../../assets/Ellipse6.png");
@@ -66,7 +65,6 @@ const ToDo = () => {
           options={additionalOptions}
           onSelect={handleOptionSelect}
         />
-        <TestingFirebase />
       </View>
     </View>
   );

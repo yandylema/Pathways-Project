@@ -9,39 +9,6 @@ import {
 import { useState } from "react";
 
 const InputField = (props) => {
-  // const [businessName, setBusinessName] = useState("");
-  // const [product, setProduct] = useState("");
-  // const [message, setMessage] = useState("");
-  // const handleNameChange = (event) => {
-  //   setName(event.target.value);
-  // };
-
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
-  // const handleMessageChange = (event) => {
-  //   setMessage(event.target.value);
-  // };
-
-  // const handleFormSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   // Assuming you want to save the input values to Firebase
-  //   const data = {
-  //     name: name,
-  //     email: email,
-  //     message: message,
-  //   };
-  //   // Call the function passed as a prop to write data to Firebase
-  //   props.onWriteData(data);
-
-  //   // Reset the form fields
-  //   setName("");
-  //   setEmail("");
-  //   setMessage("");
-  // };
-
   return (
     <SafeAreaView>
       <TextInput
