@@ -26,7 +26,7 @@ export default function Generate({ navigation }) {
   // Fetches logo data from the server
   const fetchLogos = async () => {
     try {
-      const result = await fetch("http://127.0.0.1/logo?color=red&theme=vintage");
+      const result = await fetch("http://172.174.85.112:8080/logo?color=red&theme=vintage");
       const jsoned = await result.json();
       setLogos(jsoned);
     } catch (error) {
@@ -43,7 +43,7 @@ export default function Generate({ navigation }) {
   const generateWebsite = async () => {
     try {
       setIsGenerating(true);
-      const response = await fetch("http://127.0.0.1/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable");
+      const response = await fetch("http://172.174.85.112:8080/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable");
       const data = await response.text();
       setWebsiteContent(data);
       setIsGenerating(false);
@@ -67,16 +67,16 @@ export default function Generate({ navigation }) {
         <View style={styles.logoContainer}>
           {/* Navigating to different screens upon clicking on each logo */}
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}>
-            <Image source={facebooklogo} style={{height: 48, width: 48, marginTop: -4}} />
+            <Image source={facebooklogo} style={{height: 84, width: 84, marginTop: -6}} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}> 
-            <Image source={instagramlogo} style={{height: 40, width: 40}} />
+            <Image source={instagramlogo} style={{height: 70, width: 70}} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}> 
-            <Image source={tiktoklogo} style={{height: 40, width: 40}} />
+            <Image source={tiktoklogo} style={{height: 70, width: 70}} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SocialMedia")}>  
-            <Image source={twitterlogo} style={{height: 40, width: 40}} />
+            <Image source={twitterlogo} style={{height: 70, width: 70}} />
           </TouchableOpacity>
         </View>
       </GradientCard>
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     height: 80, // Increased size from 40 to 80
     resizeMode: 'contain',
     marginVertical: 15, // Spaced them out vertically
+    marginHorizontal: 15
   },
   logoContainer: {
     flexDirection: 'row',
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: "space-around",  // Used space-around for even spacing
-    marginBottom: 20,  // Spaced out each row vertically
+    marginBottom: 10,  // Spaced out each row vertically
   },
 });
 

@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 let cors = require("cors");
-
+const fetch = require("node-fetch");
 require('dotenv').config()
 
 var app = express();
@@ -16,6 +16,7 @@ app.use("/businesses", async (req, res) => {
     const response = await fetch(url)
     const result = await response.json()
     let ret = [];
+    
     // need start rating, reviews, how many ratings, images
     for(let business of result.resourceSets[0].resources) {
         await ret.push({
@@ -74,9 +75,9 @@ app.use("/logo", async (req, res) => {
         );
         const data = await response.json();
         let ret = [];
-        data?.data.forEach((imageObject) => {
-            ret.push(imageObject.url)
-        });
+        for (let imageObject of data.data) {
+          ret.push(imageObject.url)
+        }
         res.send(ret);
       } catch (error) {
         console.error(error);
@@ -163,5 +164,5 @@ app.use("/social", async (req, res) => {
 
 
 
-console.log("server starting, port 80")
-http.createServer(app).listen(80);
+console.log("server starting, port 8080")
+http.createServer(app).listen(8080);
