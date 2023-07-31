@@ -3,6 +3,8 @@ import CheckList from "../../components/CheckList";
 import { useState } from "react";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
+import TestingFirebase from "../../components/TestingFirebase";
+
 const purple = require("../../assets/Ellipse5.png");
 const red = require("../../assets/Ellipse6.png");
 const green = require("../../assets/Ellipse7.png");
@@ -47,6 +49,7 @@ const ToDo = () => {
           options={options}
           onSelect={handleOptionSelect}
         />
+        <TestingFirebase />
       </View>
     </View>
   );
