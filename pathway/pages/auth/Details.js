@@ -5,7 +5,16 @@ import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
 import PageTitle from "../../components/PageTitle";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getDatabase, ref, set } from "firebase/database";
 
+function writeUserData(userId, name, email, imageUrl) {
+  const db = getDatabase();
+  set(ref(db, "users/" + userId), {
+    username: name,
+    email: email,
+    profile_picture: imageUrl,
+  });
+}
 const auth = getAuth();
 
 export default function Details({ navigation, route }) {
