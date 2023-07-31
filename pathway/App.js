@@ -11,7 +11,6 @@ import { useAuthentication } from './utils/useAuthentication';
 import MainRouter from "./routers/MainRouter";
 
 
-
 export default function App() {
   const { user } = useAuthentication();
   const [fontsLoaded, setFontsLoaded] = useState(false);

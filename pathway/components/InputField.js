@@ -1,4 +1,11 @@
-import { Text, Button, View, TextInput, SafeAreaView, StyleSheet} from "react-native";
+import {
+  Text,
+  Button,
+  View,
+  TextInput,
+  SafeAreaView,
+  StyleSheet,
+} from "react-native";
 import { useState } from "react";
 
 const InputField = (props) => {
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
     padding: 30,
     borderColor: "#D5D8DE",
     borderRadius: 10,
-    fontSize: 15
+    fontSize: 15,
   },
 });
 
