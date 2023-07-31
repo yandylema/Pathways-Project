@@ -14,8 +14,7 @@ const ToDo = () => {
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
-    "3. blahblahblah",
-    "4. blahblahblah",
+    "3. Upload Employee ID Number",
   ];
   const locationOptions = [
     "1. View competitors",
@@ -72,6 +71,7 @@ const ToDo = () => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     width: "95%",
     borderRadius: 3,
     backgroundColor: "E9E4E4",
