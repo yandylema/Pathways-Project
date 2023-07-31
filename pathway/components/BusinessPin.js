@@ -18,7 +18,7 @@ export function BusinessPin(props) {
         elevation: 5,
         position: "absolute",
         top: 300,
-        left: 300
+        left: 300,
       }}
       onPress={props.onPress}
     >

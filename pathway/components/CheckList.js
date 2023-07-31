@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-import Tasks from "./Tasks";
 
 export default function CheckList(props) {
   return (
