@@ -1,31 +1,84 @@
-import { Text, Button, View, Image } from "react-native";
+import { Text, Button, View, Image, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
+import { useState } from "react";
 
-const upload = require("../../assets/upload.png");
+// Image asset
+const upload = require("../../assets/pho1.jpg");
+
 export default function SocialMedia({ navigation }) {
-  return (
-    <View>
-      <PageTitle>Social Media Marketing</PageTitle>
-      <Text
-        style={{
-          alignSelf: "center",
-          fontFamily: "Jost",
-          fontWeight: "bold",
-          fontSize: 20,
-        }}
-      >
-        Insert Image
-      </Text>
-      <Image
-        source={upload}
-        style={{ width: 400, height: 400, alignSelf: "center" }}
-      />
-      <PurpleButton text="Generate"></PurpleButton>
+  
+  // State to store the generated social media post content
+  const [generatedPost, setGeneratedPost] = useState(null);
+  
+  // State to determine if the post has been generated successfully
+  const [postGenerated, setPostGenerated] = useState(false);
+  
+  // State to check if the post is currently being generated
+  const [loading, setLoading] = useState(false);
 
-      <WhiteButton text="Cancel" onPress={() => navigation.navigate("Generate")}></WhiteButton>
-      
-    </View>
+  // Function to fetch a generated social media post based on certain parameters
+  const fetchSocialMediaPost = async () => {
+    setLoading(true); // Indicate the start of the loading process
+    try { 
+      const response = await fetch("http://127.0.0.1/social?businessName=PhoExpress&product=Pho");
+      const data = await response.text();
+      setGeneratedPost(data);   // Save the generated post content
+      setPostGenerated(true);   // Mark the post as generated
+    } catch (error) {
+      console.error("Error fetching social media post: ", error);
+    }
+    setLoading(false); // Indicate the end of the loading process
+  }
+
+  // Function to view the generated post in a new window/tab
+  const viewGeneratedPost = () => {
+    const newWindow = window.open("", "_blank");
+    newWindow.document.write(generatedPost);
+    newWindow.document.close();
+    console.log(generatedPost);
+  }
+
+  return (
+    <ScrollView style={{flex: 1}}> 
+      <View>
+        {/* Displaying the title for the page */}
+        <PageTitle>Social Media Marketing</PageTitle>
+
+        {/* Label for the Image insertion */}
+        <Text
+          style={{
+            alignSelf: "center",
+            fontFamily: "Jost",
+            fontWeight: "bold",
+            fontSize: 20,
+          }}
+        >
+          Insert Image
+        </Text>
+
+        {/* Displaying the uploaded image */}
+        <Image
+          source={upload}
+          style={{ width: 400, height: 400, alignSelf: "center" }}
+        />
+
+        {/* Conditionally rendering buttons based on the generation state */}
+        {!postGenerated ? (
+          loading ? 
+            // Display a loading button while generating the post
+            <PurpleButton text="Loading... Don't click anything" disabled={true}></PurpleButton> :
+            // Display the button to initiate the generation process
+            <PurpleButton text="Generate" onPress={fetchSocialMediaPost}></PurpleButton>
+        ) : 
+          // Display the button to view the generated post once it's ready
+          <PurpleButton text="Click to see your post" onPress={viewGeneratedPost}></PurpleButton>
+        }
+
+        {/* Button to navigate back to the "Generate" page */}
+        <WhiteButton text="Cancel" onPress={() => navigation.navigate("Generate")}></WhiteButton>
+      </View>
+    </ScrollView>
   );
 }
