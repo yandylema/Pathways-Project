@@ -22,7 +22,7 @@ export default function SocialMedia({ navigation }) {
   const fetchSocialMediaPost = async () => {
     setLoading(true); // Indicate the start of the loading process
     try { 
-      const response = await fetch("http://127.0.0.1/social?businessName=PhoExpress&product=Pho");
+      const response = await fetch("http://172.174.85.112:8080/social?businessName=PhoExpress&product=Pho");
       const data = await response.text();
       setGeneratedPost(data);   // Save the generated post content
       setPostGenerated(true);   // Mark the post as generated
