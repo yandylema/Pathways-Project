@@ -154,6 +154,9 @@ export default function Legal({ navigation }) {
               onPress={() => {
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
+              iPress={() => {
+                navigation.navigate("DocumentInfo", {documentName: option.name})
+              }}
               text={option.name}
             />
           ))}
