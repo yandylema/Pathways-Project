@@ -9,6 +9,7 @@ import HeaderBar from "../components/HeaderBar";
 import { Form } from "../pages/legal/Form";
 import BusinessPlan from "../pages/legal/BusinessPlan";
 import { PDFPage } from "../pages/legal/PDFPage";
+import DocumentInfo from "../pages/legal/DocumentInfo";
 const Stack = createNativeStackNavigator();
 
 export default function LegalRouter() {
@@ -46,6 +47,14 @@ export default function LegalRouter() {
           headerTitle: () => <HeaderBar />,
           headerRight: () => <SettingsButton navigation={navigation} />,
         })}
+      />
+      <Stack.Screen
+      name="DocumentInfo"
+      component={DocumentInfo}
+      options={({ navigation }) => ({
+        headerTitle: () => <HeaderBar />,
+        headerRight: () => <SettingsButton navigation={navigation} />,
+      })}
       />
     </Stack.Navigator>
   );
