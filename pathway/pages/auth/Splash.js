@@ -3,27 +3,22 @@ import { AppTitle } from "../../components/AppTitle";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
 import { LinearGradient } from "expo-linear-gradient";
+import FloatingImage from "../../components/FloatingImage";
 
 const styles = StyleSheet.create({
-  // secondary: {
-  //   height: "70vh",
-  //   justifyContent: "flex-end"
-  // },
-  // primary: {
-  //   paddingTop: 100
-  // }
   caption: {
     textAlign: "center",
     color: "white",
     fontFamily: "Jost",
     fontSize: 20,
-    fontWeight: 300
+    fontWeight: 300,
   },
 });
 
 export default function Splash({ navigation }) {
   return (
-    <LinearGradient colors={["#68008D", "#3D00A0"]}
+    <LinearGradient
+      colors={["#68008D", "#3D00A0"]}
       style={{
         flex: 1,
         justifyContent: "space-between",
@@ -35,16 +30,10 @@ export default function Splash({ navigation }) {
       <AppTitle color="white" />
 
       <View style={{ paddingBottom: 110 }}>
-        <Image
-          style={{ width: 230, height: 230 }}
-          source={require("../../assets/splashimage.png")}
-        />
+        
+        <FloatingImage />
         <Text style={styles.caption}>Create your business.</Text>
-        <Text
-          style={styles.caption}
-        >
-          It's only a few clicks.
-        </Text>
+        <Text style={styles.caption}>It's only a few clicks.</Text>
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>
