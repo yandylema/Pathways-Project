@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Image, Pressable } from "react-native";
 
-export default function InfoButton() {
+export default function InfoButton(props) {
   return (
     <View style={styles.container}>
       
-        <Pressable onPress={() => console.log("Pressed Button")}>
+        <Pressable onPress={props.onPress}>
           <Image
             style={styles.image}
             source={require("../assets/infoButton.png")}

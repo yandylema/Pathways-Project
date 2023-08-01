@@ -162,6 +162,47 @@ app.use("/social", async (req, res) => {
     }
 });
 
+// Business license 
+app.use("/documentinfo", async (req, res) => { 
+  let documentName = req.query.documentName;
+  let product = req.query.product;
+  let businessName = req.query.businessName;
+  let location = req.query.location;
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "model": "gpt-3.5-turbo",
+      "messages": [
+          {
+            "role": "system",
+            "content": "You are a business consultant. Your job is to generate a simple one paragraph response to a business question that can be understood by someone with a 9th grade reading level."
+          },
+          {
+            "role": "user",
+            "content": `Generate an explanation of what a "${documentName}" is and why it is important that my new business that will be called "${businessName}" that will sell "${product}" in "${location}" should have a "${documentName}".`
+          }
+        ] 
+    }),
+  };
+
+  try {
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        options
+      );
+      const data = await response.json();
+      console.log(data)
+      res.send(data.choices[0].message.content);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error generating website content.');
+    }
+});
 
 
 console.log("server starting, port 8080")

@@ -16,7 +16,7 @@ const ButtonWithI = (props) => {
       ]}
     >
       <Text style={styles.text}>{props.text}</Text>
-      <InfoButton />
+      <InfoButton onPress={props.iPress} />
     </View>
   );
 
