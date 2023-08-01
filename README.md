@@ -2,10 +2,9 @@
 
 TODO:
 
- - Business plan page/info page
- - Business details dropdown
- - Put map icons in right place on Map
- - To DO List homepage
+ - Make map icons popup appear onclick
  - Legal forms page
- - Finish off social media + website generation
  - Able to download logo image
+ - firebase business plan, legal docs
+- animated loading components
+- deploy app
