@@ -3,6 +3,7 @@ import PageTitle from "../../components/PageTitle";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
 import { useState } from "react";
+import CONFIG from "../../config/config";
 
 // Image asset
 const upload = require("../../assets/pho1.jpg");
@@ -22,7 +23,7 @@ export default function SocialMedia({ navigation }) {
   const fetchSocialMediaPost = async () => {
     setLoading(true); // Indicate the start of the loading process
     try { 
-      const response = await fetch("http://172.174.85.112:8080/social?businessName=PhoExpress&product=Pho");
+      const response = await fetch(`${CONFIG.SERVER_URL}/social?businessName=PhoExpress&product=Pho`);
       const data = await response.text();
       setGeneratedPost(data);   // Save the generated post content
       setPostGenerated(true);   // Mark the post as generated
@@ -68,7 +69,7 @@ export default function SocialMedia({ navigation }) {
         {!postGenerated ? (
           loading ? 
             // Display a loading button while generating the post
-            <PurpleButton text="Loading... Don't click anything" disabled={true}></PurpleButton> :
+            <PurpleButton text="Generating your post! Please wait..." disabled={true}></PurpleButton> :
             // Display the button to initiate the generation process
             <PurpleButton text="Generate" onPress={fetchSocialMediaPost}></PurpleButton>
         ) : 
