@@ -6,7 +6,7 @@ import SettingsButton from "../components/SettingsButton"
 export default function Header(props) {
     return (
         <View style={{backgroundColor: "white", flexDirection: "column", borderBottomWidth: 1, borderBottomColor: "#dddddd"}}>
-            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", paddingTop: 30, paddingLeft: 10, paddingRight: 10}}>
+            <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", width:"100%", paddingTop: 35, paddingLeft: 10, paddingRight: 10}}>
             <View style={{flexDirection: "row", alignItems: "center"}}>
             {props.showBackButton ? <BackButton navigation={props.navigation} ></BackButton> : null}
             <HeaderBar></HeaderBar>
