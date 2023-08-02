@@ -44,7 +44,7 @@ export default function MainRouter() {
               style={{ width: size+4, height: size+5 }}
               source={focused ? todopurple : todo}
             />
-            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>To Do</Text>
+            <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>ToDo</Text>
             </View>
           ),
         }}

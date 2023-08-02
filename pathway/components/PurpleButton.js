@@ -14,13 +14,13 @@ const PurpleButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: "96%",
+    width: "90%",
     height: 60,
     borderRadius: 15,
     alignItems: "center",
     justifyContent: "center",
     margin: 7,
-    
+    alignSelf: "center"
   },
   lG: {
     width: "100%",
