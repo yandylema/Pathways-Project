@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
 import GradientCard from "../../components/GradientCard";
 import { useEffect, useState } from 'react';
+import CONFIG from "../../config/config";
+
 
 // Image assets for social media logos
 const facebooklogo = require("../../assets/facebooklogo.png");
@@ -23,14 +25,19 @@ export default function Generate({ navigation }) {
   // State to check if the website has been successfully generated
   const [websiteGenerated, setWebsiteGenerated] = useState(false);
 
+  const [isLoadingLogos, setIsLoadingLogos] = useState(false);
+
   // Fetches logo data from the server
   const fetchLogos = async () => {
     try {
-      const result = await fetch("http://172.174.85.112:8080/logo?color=red&theme=vintage");
+      setIsLoadingLogos(true);
+      const result = await fetch(`${CONFIG.SERVER_URL}/logo?color=red&theme=vintage`);
       const jsoned = await result.json();
       setLogos(jsoned);
+      setIsLoadingLogos(false);
     } catch (error) {
       console.error("Error fetching logos:", error);
+      setIsLoadingLogos(false);
     }
   }
 
@@ -43,7 +50,7 @@ export default function Generate({ navigation }) {
   const generateWebsite = async () => {
     try {
       setIsGenerating(true);
-      const response = await fetch("http://172.174.85.112:8080/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable");
+      const response = await await fetch(`${CONFIG.SERVER_URL}/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable`);
       const data = await response.text();
       setWebsiteContent(data);
       setIsGenerating(false);
@@ -87,9 +94,12 @@ export default function Generate({ navigation }) {
           {!websiteGenerated ? (
             <>
               {isGenerating ? (
-                <PurpleButton text="Loading" disabled={true}></PurpleButton>
-              ) : (
-                <PurpleButton text="Generate Website" onPress={generateWebsite}></PurpleButton>
+                <View style={styles.loadingContainer}>
+                  <ActivityIndicator size="large" color="white" />
+                  <Text style={styles.loadingText}>Generating website. Please wait...</Text>
+                </View>
+            ) : (
+              <PurpleButton text="Generate Website" onPress={generateWebsite}></PurpleButton>
               )}
             </>
           ) : (
@@ -103,20 +113,28 @@ export default function Generate({ navigation }) {
 
       {/* Gradient Card for displaying Logo Ideas */}
       <GradientCard text="Logo Ideas">
-        <View>
-          {/* Displaying two rows of logos */}
-          <View style={styles.row}>
-            <Image source={{uri: logos[0]}} style={styles.image} />
-            <Image source={{uri: logos[1]}} style={styles.image} />
-          </View>
-          <View style={styles.row}>
-            <Image source={{uri: logos[2]}} style={styles.image} />
-            <Image source={{uri: logos[3]}} style={styles.image} />
-          </View>
-          {/* Button to re-fetch and regenerate logos */}
-          <PurpleButton text="Regenerate" onPress={fetchLogos}></PurpleButton>
-        </View>
+      <View>
+        {/* Displaying two rows of logos */}
+      <View style={styles.row}>
+        <Image source={{uri: logos[0]}} style={styles.image} />
+        <Image source={{uri: logos[1]}} style={styles.image} />
+      </View>
+      <View style={styles.row}>
+        <Image source={{uri: logos[2]}} style={styles.image} />
+        <Image source={{uri: logos[3]}} style={styles.image} />
+      </View>
+      {/* Button to re-fetch and regenerate logos */}
+      {isLoadingLogos ? (
+        <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="white" />
+        <Text style={styles.loadingText}>Generating...</Text>
+      </View>
+      ) : (
+        <PurpleButton text="Regenerate" onPress={fetchLogos}></PurpleButton>
+      )}
+    </View>
       </GradientCard>
+
     </ScrollView>
   );
 }
@@ -138,6 +156,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",  // Used space-around for even spacing
     marginBottom: 10,  // Spaced out each row vertically
   },
+  loadingContainer: {
+    width: "96%",
+    height: 60,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 7,
+    flexDirection: 'row',
+    padding: 10,
+    backgroundColor:["#af02cb"] // assuming the purple color is the color of your PurpleButton
+  },
+  loadingText: {
+    color: "white",
+    fontSize: 15,
+    fontFamily: "Jost",
+    fontWeight: "bold",
+  }
 });
 
 

@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { View, ScrollView, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet, ActivityIndicator } from "react-native";
 import PageTitle from "../../components/PageTitle";
+import CONFIG from "../../config/config"
 
 export default function DocumentInfo({navigation, route}) {
     const documentName = route.params.documentName;
+    const [loading, setLoading] = useState(false)
 
     const [websiteContent, setWebsiteContent] = useState("");  // Initialize state
 
     const documentsimplify = async () => {
+    setLoading(true);// start loading
     try {
-      const response = await fetch(`http://172.174.85.112:8080/documentinfo?documentName=${documentName}&product=Pho&businessName=PhoExpress&location=Seattle`);
+      const response = await fetch(`${CONFIG.SERVER_URL}/documentinfo?documentName=${documentName}&product=Pho&businessName=PhoExpress&location=Seattle`);
       const data = await response.text();
       setWebsiteContent(data);
     } catch (error) {
       console.error("Error generating website:", error);
     }
+    setLoading(false);//End of loading 
   }
 
   useEffect(() => {
     documentsimplify();  // call the function when the component is rendered
   }, []);
 
-    return (
-        <ScrollView>
-            <PageTitle>Document Info</PageTitle>
-            <View>
-                <Text>{websiteContent}</Text>
-            </View>
-        </ScrollView>
-    )
+  return (
+    <ScrollView>
+        <PageTitle>Document Info</PageTitle>
+        <View>
+            {loading ? <ActivityIndicator size="large" color = "black"></ActivityIndicator> : 
+             websiteContent ? <Text>{websiteContent}</Text> : null
+            }
+        </View>            
+    </ScrollView>
+)
+
 }
 
 const styles = StyleSheet.create({
