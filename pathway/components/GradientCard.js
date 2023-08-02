@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function GradientCard(props) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.passedStyle]}>
       <LinearGradient style={[styles.containerTitle]} start={{x:1, y:0}} end={{x:0, y: 0}} colors={["#AF02CB", "#AD00FF"]}>
         <Text style={styles.title}> {props.text} </Text>
         </LinearGradient>
@@ -16,7 +16,7 @@ export default function GradientCard(props) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: 370,
+    width: "100%",
     alignSelf: "center",
     marginBottom: 12,
     marginTop: 12
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 20,
     color: "white",
     paddingTop: 5,
     paddingBottom: 5,
