@@ -1,38 +1,38 @@
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import React, { useState } from 'react';
-const businessIcon = {
-  path: "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
-  fillColor: "red",
-  fillOpacity: 0.9,
-  scale: 2,
-  strokeColor: "gold",
-  strokeWeight: 2,
-};
+import { View } from 'react-native';
 
-const realestateIcon = {
-  path: "M8 12l-4.7023 2.4721.898-5.236L.3916 5.5279l5.2574-.764L8 0l2.3511 4.764 5.2574.7639-3.8043 3.7082.898 5.236z",
-  fillColor: "green",
-  fillOpacity: 0.9,
-  scale: 2,
-  strokeColor: "gold",
-  strokeWeight: 2,
-};
+function businessMarker() {
+  return (<View style={{width: 10, height: 10, backgroundColor: "red"}}></View>);
+}
 
 export default function MapLogic(props) {
   console.log(props.markers)
     return (<MapView
-        style={{ alignSelf: 'stretch', height: '100%' }}
-        region={props.mapRegion}
+        style={{ alignSelf: 'stretch', height: '100%', zIndex: 0 }}
+        region={{...props.mapRegion, latitudeDelta: 0.01844, longitudeDelta: 0.00842}}
       >
-        {props.markers.map((marker) => {console.log(marker.lat);return (
+      {props.activePage == "businesses" ? props.businessMarkers.map((marker, idx) => {console.log(marker.lat);return (
           <Marker
-            icon={businessIcon}
-            onPress={() => console.log("sokork")}
-            title={"Loltest"}
-            description={"Deez"}
+            key={idx}
+            icon={businessMarker}
+            onPress={()=>{props.setActiveBusinessPopup(marker); console.log("lol")}}
+            // title={"Loltest"}
+            // description={"Deez"}
             coordinate={{ latitude: marker.lat, longitude: marker.long }}
           ></Marker>
-        )})}
+        )}): null}
+
+        {props.activePage == "realestate" ? props.realEstateMarkers.map((marker, idx) => {console.log(marker.lat);return (
+          <Marker
+            key={idx}
+            icon={businessMarker}
+            onPress={()=>{props.setActiveRealEstatePopup(marker); console.log("lol")}}
+            // title={"Loltest"}
+            // description={"Deez"}
+            coordinate={{ latitude: marker.lat, longitude: marker.long }}
+          ></Marker>
+        )}): null}
       </MapView>);
 }

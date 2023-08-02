@@ -34,7 +34,7 @@ const FloatingImage = () => {
 
   return (
     <Animated.Image
-      source={require("../assets/splashimage3.png")}
+      source={require("../assets/splashImage3.png")}
       style={[
         styles.floatingImage,
         { transform: [{ translateY: floatInterpolate }] },
