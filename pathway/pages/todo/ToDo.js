@@ -75,9 +75,11 @@ const styles = StyleSheet.create({
     width: "95%",
     borderRadius: 3,
     backgroundColor: "E9E4E4",
+    maxWidth: 500,
     display: "flex",
     alignSelf: "center",
     flex: 1,
+    alignSelf: "center"
   },
 });
 

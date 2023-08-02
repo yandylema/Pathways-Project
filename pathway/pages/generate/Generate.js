@@ -4,6 +4,7 @@ import WhiteButton from "../../components/WhiteButton";
 import GradientCard from "../../components/GradientCard";
 import { useEffect, useState } from 'react';
 import CONFIG from "../../config/config";
+import PageTitle from "../../components/PageTitle";
 
 
 // Image assets for social media logos
@@ -14,7 +15,7 @@ const twitterlogo = require("../../assets/twittersymbol.png");
 
 export default function Generate({ navigation }) {
   // State for the fetched logos
-  const [logos, setLogos] = useState([]);
+  const [logos, setLogos] = useState(null);
   
   // State to store the generated website content
   const [websiteContent, setWebsiteContent] = useState(null);
@@ -68,7 +69,8 @@ export default function Generate({ navigation }) {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{width: "95%", maxWidth: 500, alignSelf: "center"}}>
+      <PageTitle>AI Generation</PageTitle>
       {/* Gradient Card for Social Media logos */}
       <GradientCard text="Social Media">
         <View style={styles.logoContainer}>
@@ -94,10 +96,9 @@ export default function Generate({ navigation }) {
           {!websiteGenerated ? (
             <>
               {isGenerating ? (
-                <View style={styles.loadingContainer}>
-                  <ActivityIndicator size="large" color="white" />
-                  <Text style={styles.loadingText}>Generating website. Please wait...</Text>
-                </View>
+                <PurpleButton text={<>
+                  <Text>Generating...</Text></>
+                }></PurpleButton>
             ) : (
               <PurpleButton text="Generate Website" onPress={generateWebsite}></PurpleButton>
               )}
@@ -112,23 +113,24 @@ export default function Generate({ navigation }) {
       </GradientCard>
 
       {/* Gradient Card for displaying Logo Ideas */}
-      <GradientCard text="Logo Ideas">
+      <GradientCard text="Logo Ideas" passedStyle={{height: 600}}>
       <View>
+        {isLoadingLogos ? <ActivityIndicator size="large" color="white" /> : null}
         {/* Displaying two rows of logos */}
-      <View style={styles.row}>
+        {logos? <View style={{alignSelf: "center"}}><View style={styles.row}>
         <Image source={{uri: logos[0]}} style={styles.image} />
         <Image source={{uri: logos[1]}} style={styles.image} />
       </View>
       <View style={styles.row}>
         <Image source={{uri: logos[2]}} style={styles.image} />
         <Image source={{uri: logos[3]}} style={styles.image} />
-      </View>
+      </View></View> : null}
+      
       {/* Button to re-fetch and regenerate logos */}
       {isLoadingLogos ? (
-        <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="white" />
-        <Text style={styles.loadingText}>Generating...</Text>
-      </View>
+        <PurpleButton text={<>
+          <Text>Generating...</Text></>
+        }></PurpleButton>
       ) : (
         <PurpleButton text="Regenerate" onPress={fetchLogos}></PurpleButton>
       )}
@@ -141,11 +143,12 @@ export default function Generate({ navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    width: 80,  // Increased size from 40 to 80
-    height: 80, // Increased size from 40 to 80
-    resizeMode: 'contain',
+    width: 180,  // Increased size from 40 to 80
+    height: 180, // Increased size from 40 to 80
+    resizeMode: 'cover',
     marginVertical: 15, // Spaced them out vertically
-    marginHorizontal: 15
+    marginHorizontal: 15,
+    borderRadius: 15,
   },
   logoContainer: {
     flexDirection: 'row',
@@ -156,23 +159,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",  // Used space-around for even spacing
     marginBottom: 10,  // Spaced out each row vertically
   },
-  loadingContainer: {
-    width: "96%",
-    height: 60,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 7,
-    flexDirection: 'row',
-    padding: 10,
-    backgroundColor:["#af02cb"] // assuming the purple color is the color of your PurpleButton
-  },
-  loadingText: {
-    color: "white",
-    fontSize: 15,
-    fontFamily: "Jost",
-    fontWeight: "bold",
-  }
 });
 
 
