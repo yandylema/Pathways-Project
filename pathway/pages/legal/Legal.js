@@ -12,24 +12,6 @@ const forms = [
         name: "Business License",
         inputs: [
           {
-            question: "Starting date",
-            type: "text",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
-          },
-          {
-            question: "Physical Business address",
-            type: "text",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
-          },
-          {
             question: "Nature of Business",
             type: "checkbox",
             answers: [
@@ -52,7 +34,14 @@ const forms = [
       {
         name: "Alcohol License",
         inputs: [
-          { question: "Business name", type: "text", answers: [] },
+          {
+            question: "Business name",
+            type: "text",
+            answers: [
+              { id: 1, label: "Answer 1", isChecked: false },
+              { id: 2, label: "Answer 2", isChecked: false },
+            ],
+          },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -150,7 +139,8 @@ export default function Legal({ navigation }) {
       {forms.map((card, idx) => (
         <GradientCard key={idx} text={card.name}>
           {card.options.map((option, idx) => (
-            <ButtonWithI key={idx}
+            <ButtonWithI
+              key={idx}
               onPress={() => {
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
