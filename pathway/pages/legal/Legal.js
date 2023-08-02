@@ -85,7 +85,7 @@ const forms = [
         ],
       },
       {
-        name: "Sellers Permit",
+        name: "Sign Permit",
         inputs: [
           { question: "Business name", type: "text" },
           {
