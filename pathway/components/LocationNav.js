@@ -1,7 +1,11 @@
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import businesses from "../assets/businesses.png"
+import businessespurple from "../assets/businessespurple.png"
 import realestate from "../assets/realestate.png"
+import realestatepurple from "../assets/realestatepurple.png"
 import services from "../assets/services.png"
+import servicespurple from "../assets/servicespurple.png"
+
 
 
 
@@ -9,18 +13,18 @@ export function LocationNav(props) {
     return (
         <View style={styles.locationNav}>
             <TouchableOpacity style={styles.buttonContainer} onPress={()=>props.setActivePage("businesses")}>
-                <Image source={businesses} style={{width: 35, height: 35}}/>
+                <Image source={props.activePage == "businesses" ? businessespurple : businesses} style={{width: 35, height: 35}}/>
                 <Text style={{color: props.activePage == "businesses" ? "purple": "black"}}>Businesses</Text>
             </TouchableOpacity>
             <View style={{height: 50, backgroundColor: "black", width: 1}}></View>
             <TouchableOpacity style={styles.buttonContainer} onPress={()=>props.setActivePage("services")}>
-                <Image source={services} style={{width: 35, height: 35}} />
+                <Image source={props.activePage == "services" ? servicespurple : services} style={{width: 35, height: 35}} />
                 <Text style={{color: props.activePage == "services" ? "purple": "black"}}>Services</Text>
             </TouchableOpacity>
             <View style={{height: 50, backgroundColor: "black", width: 1}}></View>
 
             <TouchableOpacity style={styles.buttonContainer} onPress={()=>props.setActivePage("realestate")}>
-                <Image source={realestate} style={{width: 35, height: 35}} />
+                <Image source={props.activePage == "realestate" ? realestatepurple : realestate} style={{width: 35, height: 35}} />
                 <Text style={{color: props.activePage == "realestate" ? "purple": "black"}}>Real Estate</Text>
             </TouchableOpacity>
         </View>
@@ -32,6 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignItems: "center",
         width: "90%",
+        maxWidth: 500,
         backgroundColor: "white",
         borderRadius: 25,
         height: 70,
@@ -48,6 +53,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1
     }
 });

@@ -13,36 +13,47 @@ import * as Location from 'expo-location';
 
 export default function LocationPage({ navigation }) {
   const [activePage, setActivePage] = useState("businesses");
-  const [showBusinessPopup, setShowBusinessPopup] = useState(false);
-  const [showRealEstatePopup, setShowRealEstatePopup] = useState(false);
+  const [activeBusinessPopup, setActiveBusinessPopup] = useState(null);
+  const [activeRealEstatePopup, setActiveRealEstatePopup] = useState(null);
   const [mapRegion, setmapRegion] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
   });
-  const [markers, setMarkers] = useState([]);
+  const [businessMarkers, setBusinessMarkers] = useState([]);
+  const [realEstateMarkers, setRealEstateMarkers] = useState([]);
 
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      console.log(status)
-      if (status !== 'granted' && status !== 'undetermined') {return;}
-      let location = await Location.getCurrentPositionAsync({});
+      let location = await getLocation();
       console.log(location)
-      setmapRegion({latitude: location.coords.latitude, longitude: location.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,});
+      
+      setmapRegion({latitude: location.coords.latitude, longitude: location.coords.longitude});
 
-      getMarkers(location.coords.latitude, location.coords.longitude);
+      getBusinessMarkers(location.coords.latitude, location.coords.longitude);
+
+      getRealEstateMarkers(location.coords.latitude, location.coords.longitude);
     })();
   }, []);
 
-  async function getMarkers(lat, long) {
+  async function getLocation() {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log(status)
+      if (status == 'denied') {return;}
+      let location = await Location.getCurrentPositionAsync({});
+     return location;
+  }
+
+  async function getBusinessMarkers(lat, long) {
     const response = await fetch(`http://172.174.85.112:8080/businesses?type=coffee&location=${lat},${long}`);
     const responseJson = await response.json();
-    setMarkers(responseJson);
+    setBusinessMarkers(responseJson);
+  }
+
+  async function getRealEstateMarkers(lat, long) {
+    const response = await fetch(`http://172.174.85.112:8080/realestate?location=${lat},${long}`);
+    const responseJson = await response.json();
+    setRealEstateMarkers(responseJson);
   }
 
   return (
@@ -58,22 +69,24 @@ export default function LocationPage({ navigation }) {
           activePage={activePage}
           setActivePage={setActivePage}
         ></LocationNav>
-    <MapLogic mapRegion={mapRegion} markers={markers}></MapLogic>
-        {activePage == "businesses" ? <BusinessPin onPress={()=>setShowBusinessPopup(true)}></BusinessPin> : null}
-        {showBusinessPopup && activePage == "businesses" ? <BusinessPopup onPress={()=>{
-            setShowBusinessPopup(false);
-            setShowRealEstatePopup(false);
+   
+        {activeBusinessPopup && activePage == "businesses" ? <BusinessPopup business={activeBusinessPopup} onPress={()=>{
+            setActiveBusinessPopup(null);
+            setActiveRealEstatePopup(null);
             setActivePage("businesses");
         }}></BusinessPopup> : null}
 
-        {activePage == "services" ? <ServicesPopup></ServicesPopup> : null}
+        {activePage == "services" ? <ServicesPopup onPress={()=>{
+            setActivePage("businesses");
+        }}></ServicesPopup> : null}
 
-        {activePage == "realestate" ? <RealEstatePin onPress={()=>setShowRealEstatePopup(true)}></RealEstatePin> : null}
-        {showRealEstatePopup && activePage == "realestate" ? <RealEstatePopup onPress={()=>{
-            setShowBusinessPopup(false);
-            setShowRealEstatePopup(false);
+        {activeRealEstatePopup && activePage == "realestate" ? <RealEstatePopup realestate={activeRealEstatePopup} onPress={()=>{
+            setActiveBusinessPopup(null);
+            setActiveRealEstatePopup(null);
             setActivePage("realestate");
         }}></RealEstatePopup> : null}
+
+    <MapLogic mapRegion={mapRegion} businessMarkers={businessMarkers} realEstateMarkers={realEstateMarkers} setActiveRealEstatePopup={setActiveRealEstatePopup} setActiveBusinessPopup={setActiveBusinessPopup} activePage={activePage}></MapLogic>
     </View>
   );
 }
