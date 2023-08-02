@@ -85,7 +85,7 @@ const forms = [
         ],
       },
       {
-        name: "Other",
+        name: "Sellers Permit",
         inputs: [
           { question: "Business name", type: "text" },
           {
@@ -105,7 +105,7 @@ const forms = [
     name: "Other",
     options: [
       {
-        name: "Other",
+        name: "Employer Identification Number",
         inputs: [
           { question: "Business name", type: "text" },
           {
@@ -120,7 +120,7 @@ const forms = [
         ],
       },
       {
-        name: "Other",
+        name: "Certificate of Occupancy",
         inputs: [
           { question: "Business name", type: "text" },
           {
@@ -150,12 +150,15 @@ export default function Legal({ navigation }) {
       {forms.map((card, idx) => (
         <GradientCard key={idx} text={card.name}>
           {card.options.map((option, idx) => (
-            <ButtonWithI key={idx}
+            <ButtonWithI
+              key={idx}
               onPress={() => {
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
               iPress={() => {
-                navigation.navigate("DocumentInfo", {documentName: option.name})
+                navigation.navigate("DocumentInfo", {
+                  documentName: option.name,
+                });
               }}
               text={option.name}
             />

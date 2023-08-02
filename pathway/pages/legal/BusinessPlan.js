@@ -1,6 +1,5 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
-import WhiteButton from "../../components/WhiteButton";
 
 export default function BusinessPlan() {
   return (
