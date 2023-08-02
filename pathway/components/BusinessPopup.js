@@ -21,7 +21,7 @@ export function BusinessPopup(props) {
             paddingLeft: 15,
           }}
         >
-          Pho Mama
+          {props.business.name}
         </Text>
         <Text style={{ paddingLeft: 15 }}>
           2.1
@@ -29,31 +29,31 @@ export function BusinessPopup(props) {
           (87)
         </Text>
         <Text style={{  paddingLeft: 15 }}>
-          Vietnamese Restaurant
+          {props.business.type}
         </Text>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "column" }}>
             <Image
-              source={phoHorizontal2}
+              source={{uri: props.business.images[0]}}
               style={{ width: 120, height: 80, margin: 7, borderRadius: 20 }}
             />
             <Image
-              source={phoHorizontal}
+              source={{uri: props.business.images[1]}}
               style={{ width: 120, height: 80, margin: 7, borderRadius: 20 }}
             />
           </View>
 
           <Image
-            source={phoVertical}
+            source={{uri: props.business.images[2]}}
             style={{ width: 125, height: 175, margin: 7, borderRadius: 20 }}
           />
           <View style={{ flexDirection: "column" }}>
             <Image
-              source={phoHorizontal3}
+              source={{uri: props.business.images[3]}}
               style={{ width: 120, height: 80, margin: 7, borderRadius: 20 }}
             />
             <Image
-              source={phoHorizontal4}
+              source={{uri: props.business.images[4]}}
               style={{ width: 120, height: 80, margin: 7, borderRadius: 20 }}
             />
           </View>
@@ -69,7 +69,7 @@ export function BusinessPopup(props) {
             source={worldSmall}
             style={{ width: 20, height: 20, marginRight: 10 }}
           />
-          4141 University Way NE, Seattle, WA 13037
+          {props.business.address}
         </Text>
         <Text
           style={{
@@ -86,7 +86,7 @@ export function BusinessPopup(props) {
             source={locationSmall}
             style={{ width: 20, height: 20, marginRight: 10 }}
           />
-          https://www.phomama.com
+          {props.business.websiteURL}
         </Text>
         <Text
           style={{
@@ -110,6 +110,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     justifyContent: "flex-end",
+    zIndex: 999,
+    position: "absolute", 
+    alignSelf: "stretch", height: "100%"
   },
   card: {
     backgroundColor: "white",

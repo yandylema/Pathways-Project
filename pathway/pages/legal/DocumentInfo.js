@@ -9,7 +9,7 @@ export default function DocumentInfo({navigation, route}) {
 
     const documentsimplify = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8080/documentinfo?documentName=${documentName}&product=Pho&businessName=PhoExpress&location=Seattle`);
+      const response = await fetch(`http://172.174.85.112:8080/documentinfo?documentName=${documentName}&product=Pho&businessName=PhoExpress&location=Seattle`);
       const data = await response.text();
       setWebsiteContent(data);
     } catch (error) {

@@ -36,7 +36,10 @@ export default function Splash({ navigation }) {
         <Text style={styles.caption}>It's only a few clicks.</Text>
       </View>
 
-      <View style={{ width: "100%", alignItems: "center" }}>
+      <View style={{ 
+        width: "100%",
+         alignItems: "center" 
+        }}>
         <PurpleButton
           text="Sign Up"
           onPress={() => navigation.navigate("SignUp")}

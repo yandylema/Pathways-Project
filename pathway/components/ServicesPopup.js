@@ -13,14 +13,12 @@ export function ServicesPopup(props) {
 
         <View
           style={{
-            display: "flex",
             flexDirection: "row",
-            width: "93%",
-            height: "20%",
+            width: "85%",
             borderRadius: 13,
-            padding: 10,
+            padding: 20,
             marginLeft: 7,
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
             alignItems: "center",
           }}
@@ -32,14 +30,12 @@ export function ServicesPopup(props) {
         </View>
         <View
           style={{
-            display: "flex",
             flexDirection: "row",
-            width: "93%",
+            width: "85%",
             borderRadius: 13,
-            padding: 10,
+            padding: 20,
             marginLeft: 7,
-            height: "20%",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
             alignItems: "center",
           }}
@@ -52,14 +48,12 @@ export function ServicesPopup(props) {
 
         <View
           style={{
-            display: "flex",
-            height: "20%",
             flexDirection: "row",
-            width: "93%",
+            width: "85%",
             borderRadius: 13,
-            padding: 10,
+            padding: 20,
             marginLeft: 7,
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             boxShadow: "3px 3px rgba(1, 1, 1, 0.2)",
             alignItems: "center",
           }}
@@ -80,11 +74,18 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     justifyContent: "flex-end",
+    zIndex: 999,
+    position: "absolute", 
+    alignSelf: "stretch", 
+    height: "100%"
   },
   card: {
     backgroundColor: "white",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
+    paddingBottom: 20,
+    alignItems: "center",
+    paddingTop: 20
   },
   images: {
     width: 50,
