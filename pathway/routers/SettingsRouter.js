@@ -6,6 +6,7 @@ import SettingsButton from "../components/SettingsButton";
 import Settings from "../pages/settings/Settings";
 import BackButton from "../components/BackButton";
 import HeaderBar from "../components/HeaderBar";
+import Header from "./Header";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,8 +14,7 @@ export default function SettingsRouter() {
     return (
         <Stack.Navigator>
           <Stack.Screen name="Settings" component={Settings} options={({navigation}) => ({
-                headerTitle: () => <HeaderBar />,
-                headerLeft: () => <BackButton navigation={navigation} />,
+                header: () => <Header navigation={navigation} showBackButton={true}></Header>
               })}/>
         </Stack.Navigator>
       );

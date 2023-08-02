@@ -10,6 +10,7 @@ import { Form } from "../pages/legal/Form";
 import BusinessPlan from "../pages/legal/BusinessPlan";
 import { PDFPage } from "../pages/legal/PDFPage";
 import DocumentInfo from "../pages/legal/DocumentInfo";
+import Header from "./Header";
 const Stack = createNativeStackNavigator();
 
 export default function LegalRouter() {
@@ -19,41 +20,35 @@ export default function LegalRouter() {
         name="Legal"
         component={Legal}
         options={({ navigation }) => ({
-          headerTitle: () => <HeaderBar />,
-          headerLeft: null,
-          headerRight: () => <SettingsButton navigation={navigation} />,
+          header: () => <Header navigation={navigation} showBackButton={false}></Header>
         })}
       />
       <Stack.Screen
         name="Form"
         component={Form}
         options={({ navigation }) => ({
-          headerTitle: () => <HeaderBar />,
-          headerRight: () => <SettingsButton navigation={navigation} />,
+          header: () => <Header navigation={navigation} showBackButton={true}></Header>
         })}
       />
       <Stack.Screen
         name="BusinessPlan"
         component={BusinessPlan}
         options={({ navigation }) => ({
-          headerTitle: () => <HeaderBar />,
-          headerRight: () => <SettingsButton navigation={navigation} />,
+          header: () => <Header navigation={navigation} showBackButton={true}></Header>
         })}
       />
       <Stack.Screen
         name="PDFPage"
         component={PDFPage}
         options={({ navigation }) => ({
-          headerTitle: () => <HeaderBar />,
-          headerRight: () => <SettingsButton navigation={navigation} />,
+          header: () => <Header navigation={navigation} showBackButton={true}></Header>
         })}
       />
       <Stack.Screen
       name="DocumentInfo"
       component={DocumentInfo}
       options={({ navigation }) => ({
-        headerTitle: () => <HeaderBar />,
-        headerRight: () => <SettingsButton navigation={navigation} />,
+        header: () => <Header navigation={navigation} showBackButton={true}></Header>
       })}
       />
     </Stack.Navigator>

@@ -26,6 +26,7 @@ export default function App() {
 
   return (
     <>
+    <StatusBar></StatusBar>
       {fontsLoaded ? (
         <>
           {user ? <MainRouter></MainRouter> : <AuthRouter></AuthRouter>}
