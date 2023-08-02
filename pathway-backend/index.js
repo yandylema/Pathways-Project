@@ -204,6 +204,64 @@ app.use("/documentinfo", async (req, res) => {
     }
 });
 
+app.use("/realestate", async (req, res) => {
+  let location = req.query.location; //47.602038,-122.333964
+  let address = await getAddressFromCoordinates(location) //redmond-wa-98052
+  // let key = process.env.BING_MAPS_KEY;
+  let url = "https://api.apify.com/v2/acts/epctex~loopnet-scraper/run-sync-get-dataset-items?token=apify_api_w6xpWsyeODI2z6LNaBInYCHO87SWCq1qKutg"
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "startUrls": [`https://www.loopnet.com/search/commercial-real-estate/${address}/for-lease/`],
+      "maxItems": 3
+    },
+    body: JSON.stringify({
+      "startUrls": [`https://www.loopnet.com/search/commercial-real-estate/${address}/for-lease/`],
+      "maxItems": 3
+    }),
+  };
+
+  const response = await fetch(url, options)
+  const result = await response.json()
+  console.log(result)
+
+  let ret = [];
+  
+  for(let property of result) {
+      let coords = await getCoordinatesFromAddress(property.address);
+      console.log(coords)
+      ret.push({
+          title: property.title, 
+          type: property.type,
+          url: property.url,
+          phone: property.contactPhone,
+          address: property.address,
+          images: property.images,
+          size: property.buildingSize,
+          year: property.yearBuiltRenovated,
+          floorSize: property.typicalFloorSize,
+          lat: coords[0],
+          long: coords[1]
+      })
+  }
+  res.send(ret);
+})
+
+async function getCoordinatesFromAddress(address) {
+  let response = await fetch(`http://dev.virtualearth.net/REST/v1/Locations?q=${address}&key=${process.env.BING_MAPS_KEY}`);
+  let responseJson = await response.json();
+  return responseJson.resourceSets[0].resources[0].point.coordinates;
+}
+
+async function getAddressFromCoordinates(location) {
+  console.log(location)
+  let response = await fetch(`http://dev.virtualearth.net/REST/v1/Locations/${location}?includeEntityTypes=Address&key=${process.env.BING_MAPS_KEY}`);
+  let responseJson = await response.json();
+  let address = responseJson.resourceSets[0].resources[0].address;
+  console.log(address)
+  return `${address.locality.toLowerCase()}-${address.adminDistrict.toLowerCase()}-${address.postalCode}`;
+}
 
 console.log("server starting, port 8080")
 http.createServer(app).listen(8080);
