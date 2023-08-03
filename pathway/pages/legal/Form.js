@@ -20,7 +20,7 @@ export function Form({ navigation, route }) {
     console.log("the answer ", i.answer);
   });
 
-  const handleInputBoxChange = (questionIndex, newValue) => {
+  const handleInputBoxChange = (questionIndex, e) => {
     setInputValues((prevInputValues) => {
       const newInputValues = [...prevInputValues];
       newInputValues[questionIndex].answer = e.target.value;
@@ -136,13 +136,7 @@ export function Form({ navigation, route }) {
             ) : null}
             {questions.type === "text" ? (
               <View style={styles.inputContainer}>
-                <InputField
-                  placeholder="Answer here..."
-                  value={inputValues}
-                  onChangeText={() => {
-                    handleInputBoxChange(questionIndex,);
-                  }}
-                />
+                <InputField placeholder="Answer here..." />
               </View>
             ) : null}
           </View>

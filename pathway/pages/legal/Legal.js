@@ -12,21 +12,51 @@ const forms = [
         name: "Business License",
         inputs: [
           {
+            question: "Legal name of Business Entity",
+            type: "text",
+            answer: "",
+          },
+          {
+            question: "Trade name",
+            type: "text",
+            answer: "",
+          },
+          {
+            question: "Starting Date",
+            type: "text",
+            answer: "",
+          },
+          {
+            question: "Physical Business Location",
+            type: "text",
+            answer: "",
+          },
+          {
+            question: "List other Business Locations in Seattle",
+            type: "text",
+            answer: "",
+          },
+          {
             question: "Nature of Business",
-            type: "checkbox",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
+            type: "text",
+            answer: "",
+          },
+          {
+            question:
+              "Names of Sole Proprietor, Parters, Corporate Officers, and Resident Agents",
+            type: "text",
+            answer: " ",
           },
           {
             question: "Tax reporting status",
             type: "checkbox",
             answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
+              {
+                id: 1,
+                label:
+                  "I understand the tax filing requirements associated with this business tax license ",
+                isChecked: false,
+              },
             ],
           },
         ],
