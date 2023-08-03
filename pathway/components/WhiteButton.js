@@ -2,7 +2,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 const WhiteButton = (props) => {
   return (
-    <TouchableOpacity onPress={props.onPress} style={[styles.button, styles.shadowProp]}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[styles.button, styles.shadowProp]}
+    >
       <Text style={styles.text}>{props.text}</Text>
     </TouchableOpacity>
   );
@@ -17,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 7,
-   alignSelf: "center"
+    alignSelf:"center"
   },
   text: {
     color: "black",
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
-    elevation: 5
+    elevation: 5,
   },
 });
 

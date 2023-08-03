@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -27,21 +27,22 @@ const ToDo = () => {
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
-    "3. Upload Employee ID Number",
+    "3. Set up Employee Identification Number",
+    "4. Obtain Alcohol License",
   ];
   const locationOptions = [
-    "1. View competitors",
-    "2. View real estate options",
-    "3. Set up third party services",
+    "1. View Competitors",
+    "2. View Real Estate Options",
+    "3. Set Up Third Party Services",
   ];
   const marketingOptions = [
-    "1. Create social media post",
-    "2. Generate website",
-    "3. Generate business logo",
+    "1. Create Social Media Post",
+    "2. Generate Website",
+    "3. Generate Business Logo",
   ];
   const additionalOptions = [
-    "1. Personalize language setting",
-    "2. Verify account details",
+    "1. Personalize Language Settings",
+    "2. Verify Account Details",
   ];
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
@@ -53,9 +54,8 @@ const ToDo = () => {
 
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
       <PageTitle>To-Do List</PageTitle>
-      <View style={styles.container}>
         <Dropdown
           icon={purple}
           label="Legal Documents"
@@ -82,8 +82,7 @@ const ToDo = () => {
           options={additionalOptions}
           onSelect={handleOptionSelect}
         />
-      </View>
-    </View>
+      </ScrollView>
   );
 };
 
@@ -95,7 +94,6 @@ const styles = StyleSheet.create({
     backgroundColor: "E9E4E4",
     maxWidth: 500,
     display: "flex",
-    alignSelf: "center",
     flex: 1,
     alignSelf: "center",
   },

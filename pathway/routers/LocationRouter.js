@@ -7,6 +7,7 @@ import SocialMedia from "../pages/generate/SocialMedia";
 import SettingsButton from "../components/SettingsButton";
 import LocationPage from "../pages/location/LocationPage";
 import HeaderBar from "../components/HeaderBar";
+import Header from "./Header";
 const Stack = createNativeStackNavigator();
 
 
@@ -14,9 +15,7 @@ export default function LocationRouter() {
     return (
         <Stack.Navigator>
           <Stack.Screen name="Location" component={LocationPage} options={({navigation}) => ({
-                headerTitle: () => <HeaderBar />,
-                headerLeft: null,
-                headerRight: () => <SettingsButton navigation={navigation} />
+                header: () => <Header navigation={navigation} showBackButton={false}></Header>
               })}/>
         </Stack.Navigator>
     );

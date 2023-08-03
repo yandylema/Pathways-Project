@@ -1,11 +1,10 @@
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
+import RealEstate from '../../assets/realestatepng.png';
+import Shop from '../../assets/shoppng.png';
 
-function businessMarker() {
-  return (<View style={{width: 10, height: 10, backgroundColor: "red"}}></View>);
-}
 
 export default function MapLogic(props) {
   console.log(props.markers)
@@ -16,23 +15,21 @@ export default function MapLogic(props) {
       {props.activePage == "businesses" ? props.businessMarkers.map((marker, idx) => {console.log(marker.lat);return (
           <Marker
             key={idx}
-            icon={businessMarker}
             onPress={()=>{props.setActiveBusinessPopup(marker); console.log("lol")}}
             // title={"Loltest"}
             // description={"Deez"}
             coordinate={{ latitude: marker.lat, longitude: marker.long }}
-          ></Marker>
+          ><Image source={Shop} style={{width: 40, resizeMode: "contain"}}></Image></Marker>
         )}): null}
 
         {props.activePage == "realestate" ? props.realEstateMarkers.map((marker, idx) => {console.log(marker.lat);return (
           <Marker
             key={idx}
-            icon={businessMarker}
             onPress={()=>{props.setActiveRealEstatePopup(marker); console.log("lol")}}
             // title={"Loltest"}
             // description={"Deez"}
             coordinate={{ latitude: marker.lat, longitude: marker.long }}
-          ></Marker>
+          ><Image source={RealEstate} style={{width: 40, resizeMode: "contain"}}></Image></Marker>
         )}): null}
       </MapView>);
 }

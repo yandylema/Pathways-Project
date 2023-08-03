@@ -151,7 +151,7 @@ const forms = [
 
 export default function Legal({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView style={{maxWidth: 500, width: "100%", alignSelf: "center"}}>
       <PageTitle>Legal Documents</PageTitle>
 
       <WhiteButton
@@ -164,6 +164,7 @@ export default function Legal({ navigation }) {
             <ButtonWithI
               key={idx}
               onPress={() => {
+                console.log("dkfndjfndjfnfjdn")
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
               text={option.name}

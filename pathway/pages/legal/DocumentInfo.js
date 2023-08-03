@@ -12,7 +12,6 @@ import CONFIG from "../../config/config";
 export default function DocumentInfo({ navigation, route }) {
   const documentName = route.params.documentName;
   const [loading, setLoading] = useState(false);
-
   const [websiteContent, setWebsiteContent] = useState(""); // Initialize state
 
   const documentsimplify = async () => {

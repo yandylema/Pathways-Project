@@ -16,6 +16,7 @@ const InputField = (props) => {
         onChangeText={(e) => props.onChange(e)}
         value={props.value}
         placeholder={props.placeholder}
+        secureTextEntry={props.secure}
       />
     </SafeAreaView>
   );
