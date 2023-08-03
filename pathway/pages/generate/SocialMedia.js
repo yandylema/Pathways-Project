@@ -40,8 +40,14 @@ export default function SocialMedia({ navigation }) {
 
   // Function to view the generated post in a new window/tab
   const viewGeneratedPost = () => {
-    navigation.navigate('GeneratedSoc', { generatedPostContent: generatedPost });
-  }
+
+    const newWindow = window.open("", "_blank");
+
+    newWindow.document.write(generatedPost);
+
+}
+
+ 
 
   return (
     <ScrollView style={{flex: 1}}> 
