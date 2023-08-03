@@ -5,8 +5,6 @@ import CONFIG from "../../config/config";
 import { getDatabase, ref, get } from "firebase/database";
 import { useAuthentication } from "../../utils/useAuthentication";
 
-  
-
 export default function BusinessPlan() {
   const [businessPlan, setBusinessPlan] = useState(null);
   useEffect(() => {
