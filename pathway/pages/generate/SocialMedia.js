@@ -28,25 +28,26 @@ export default function SocialMedia({ navigation }) {
     const database = getDatabase();
     const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
-    if (snapshot.exists()) {
       const businessData = snapshot.val();
       console.log(businessData);
-      try { 
-        const response = await fetch(`${CONFIG.SERVER_URL}/social?businessName=${businessData.businessName}&product=${businessData.businessProduct}`);
+        const response = await fetch(`${CONFIG.SERVER_URL}/social?businessName=${businessData?.businessName}&product=${businessData?.businessProduct}`);
         const data = await response.text();
         setGeneratedPost(data);   // Save the generated post content
         setPostGenerated(true);   // Mark the post as generated
-      } catch (error) {
-        console.error("Error fetching social media post: ", error);
-      }
-    }})
+    })
     setLoading(false); // Indicate the end of the loading process
   }
 
   // Function to view the generated post in a new window/tab
   const viewGeneratedPost = () => {
-    navigation.navigate('GeneratedSoc', { generatedPostContent: generatedPost });
-  }
+
+    const newWindow = window.open("", "_blank");
+
+    newWindow.document.write(generatedPost);
+
+}
+
+ 
 
   return (
     <ScrollView style={{flex: 1}}> 

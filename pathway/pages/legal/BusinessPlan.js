@@ -18,13 +18,11 @@ export default function BusinessPlan() {
         const database = getDatabase();
         const businessesRef = ref(database, "businesses/" + myContext.id);
         get(businessesRef).then(async (snapshot) => {
-          if (snapshot.exists()) {
             const businessData = snapshot.val();
             console.log(businessData);
-            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData.businessType}&businessLocation=${businessData.businessLocation}&businessProduct=${businessData.businessProduct}`);
+            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData?.businessType}&businessLocation=${businessData?.businessLocation}&businessProduct=${businessData?.businessProduct}`);
             const data = await response.text();
             setBusinessPlan(data);
-          }
         })
         
       } catch (error) {
@@ -33,13 +31,13 @@ export default function BusinessPlan() {
     })();
   })
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Other sections of the business plan */}
       <PageTitle>Business Plan</PageTitle>
-      {businessPlan}
+      {/* {businessPlan} */}
 
 
-{/*       
+ 
       <View style={styles.section}>
         <View style={styles.subSection}>
           <Text style={styles.content}>
@@ -176,7 +174,7 @@ export default function BusinessPlan() {
           <Text style={styles.content}>Expansion & franchising.</Text>
         </View>
 
-      </View> */}
+      </View>
       {/* Continue with other sections of the business plan */}
     </ScrollView>
   );
@@ -185,7 +183,10 @@ export default function BusinessPlan() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    textAlign: "center",
+    textAlign: "left",
+    alignSelf: "center",
+    width: "100%",
+    maxWidth: 500
   },
   section: {
     marginBottom: 20,

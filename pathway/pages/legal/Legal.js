@@ -96,7 +96,7 @@ const forms = [
         ],
       },
       {
-        name: "Other",
+        name: "Seller's Permit",
         inputs: [
           {
             question: "Business name",
@@ -116,7 +116,7 @@ const forms = [
     name: "Other",
     options: [
       {
-        name: "Other",
+        name: "Employer ID number",
         inputs: [
           { question: "Business name", type: "text", answer: "" },
           {
@@ -131,7 +131,7 @@ const forms = [
         ],
       },
       {
-        name: "Other",
+        name: "Employment Agreements",
         inputs: [
           { question: "Business name", type: "text", answer: "" },
           {
@@ -166,6 +166,9 @@ export default function Legal({ navigation }) {
               onPress={() => {
                 console.log("dkfndjfndjfnfjdn")
                 navigation.navigate("Form", { inputs: option.inputs });
+              }}
+              iPress={() => {
+                navigation.navigate("DocumentInfo", { documentName: option.name });
               }}
               text={option.name}
             />

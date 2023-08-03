@@ -38,21 +38,15 @@ export default function Generate({ navigation }) {
     const database = getDatabase();
     const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
-    if (snapshot.exists()) {
       // snapshot.val() gives you the entire data under 'businesses' node
       const businessData = snapshot.val();
       console.log(businessData);
-      try {
         setIsLoadingLogos(true);
-        const result = await fetch(`${CONFIG.SERVER_URL}/logo?businessType=${businessData.businessType}&businessProduct=${businessData.businessProduct}`);
+        const result = await fetch(`${CONFIG.SERVER_URL}/logo?businessType=${businessData?.businessType}&businessProduct=${businessData?.businessProduct}`);
         const jsoned = await result.json();
         setLogos(jsoned);
         setIsLoadingLogos(false);
-      } catch (error) {
-        console.error("Error fetching logos:", error);
-        setIsLoadingLogos(false);
-      }
-    }})
+    })
 
   }
 
@@ -66,21 +60,15 @@ export default function Generate({ navigation }) {
     const database = getDatabase();
     const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
-    if (snapshot.exists()) {
       const businessData = snapshot.val();
       console.log(businessData);
-      try {
         setIsGenerating(true);
-        const response = await fetch(`${CONFIG.SERVER_URL}/website?name=${businessData.businessName}&product=${businessData.businessProduct}&location=${businessData.businessLocation}`);
+        const response = await fetch(`${CONFIG.SERVER_URL}/website?name=${businessData?.businessName}&product=${businessData?.businessProduct}&location=${businessData?.businessLocation}`);
         const data = await response.text();
         setWebsiteContent(data);
         setIsGenerating(false);
         setWebsiteGenerated(true);
-      } catch (error) {
-        console.error("Error generating website:", error);
-        setIsGenerating(false);
-      }
-    }})
+    })
   }
 
   // Opens a new window/tab with the generated website content
