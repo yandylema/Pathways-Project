@@ -3,15 +3,12 @@ var http = require('http');
 let cors = require("cors");
 const fetch = require("node-fetch");
 require('dotenv').config()
-var fs = require('fs');
 
 var app = express();
 
 app.use(cors());
 
 app.use("/businesses", async (req, res) => {
-  fs.writeFile('myjsonfile.json', json, 'utf8', callback);
-
     let businessType = req.query.type; //coffee
     let location = req.query.location; //47.602038,-122.333964
     let key = process.env.BING_MAPS_KEY;

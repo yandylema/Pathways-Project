@@ -126,7 +126,7 @@ const forms = [
 
 export default function Legal({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView style={{maxWidth: 500, width: "100%", alignSelf: "center"}}>
       <PageTitle>Legal Documents</PageTitle>
 
       <WhiteButton
