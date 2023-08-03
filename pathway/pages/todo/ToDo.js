@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
-
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
 const purple = require("../../assets/Ellipse5.png");
 const red = require("../../assets/Ellipse6.png");
 const green = require("../../assets/Ellipse7.png");
@@ -10,28 +11,45 @@ const yellow = require("../../assets/Ellipse8.png");
 
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const db = getDatabase();
+  const auth = getAuth();
+  // const userId = auth.currentUser.uid;
+  let value = false;
+  const returnValue = () => {
+    return onValue(
+      ref(db, "businesses/1/completed_forms/1"),
+      (snapshot) => {
+        value = snapshot.val();
+      },
+      {
+        onlyOnce: true,
+      }
+    );
+  };
+  console.log(value);
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
-    "3. Upload Employee ID Number",
+    "3. Set up Employee Identification Number",
+    "4. Obtain Alcohol License",
   ];
   const locationOptions = [
-    "1. View competitors",
-    "2. View real estate options",
-    "3. Set up third party services",
+    "1. View Competitors",
+    "2. View Real Estate Options",
+    "3. Set Up Third Party Services",
   ];
   const marketingOptions = [
-    "1. Create social media post",
-    "2. Generate website",
-    "3. Generate business logo",
+    "1. Create Social Media Post",
+    "2. Generate Website",
+    "3. Generate Business Logo",
   ];
   const additionalOptions = [
-    "1. Personalize language setting",
-    "2. Verify account details",
+    "1. Personalize Language Settings",
+    "2. Verify Account Details",
   ];
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    returnValue();
   };
 
   return (
@@ -76,9 +94,8 @@ const styles = StyleSheet.create({
     maxWidth: 500,
     display: "flex",
     flex: 1,
-    alignSelf: "center"
+    alignSelf: "center",
   },
 });
 
 export default ToDo;
-

@@ -4,9 +4,49 @@ import React, { useState } from "react";
 import PurpleButton from "../../components/PurpleButton";
 import Dropdown from "../../components/DropdownChecklist";
 import PageTitle from "../../components/PageTitle";
+import InputField from "../../components/InputField";
+import { getDatabase, ref, update } from "firebase/database";
 
 export function Form({ navigation, route }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+  const inputs = route.params.inputs;
+  const [questionIndexUpdate, setQuestionIndexUpdate] = useState(0);
+
+  //input starts here
+  const [inputValues, setInputValues] = useState(() => {
+    return inputs.filter((i) => i.type === "text").map((j) => (j.answer = " ")); // Initialize each answer with an empty string
+  });
+  console.log("xyz", inputs[0].answer);
+  inputs.map((i) => {
+    console.log("the answer ", i.answer);
+  });
+
+  const handleInputBoxChange = (questionIndex, newValue) => {
+    setInputValues((prevInputValues) => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[questionIndex].answer = e.target.value;
+      console.log(newInputValues);
+      setQuestionIndexUpdate(questionIndex + 1);
+      return newInputValues;
+    });
+  };
+
+  console.log("update question ", questionIndexUpdate);
+
+  //checkbox starts here
+  const [checkedStates, setCheckedStates] = useState(() => {
+    return inputs
+      .filter((type) => type.type === "checkbox")
+      .map((question) => question.answers.map((i) => (i.isChecked = false)));
+  });
+  console.log("checked states are", checkedStates);
+
+  const handleCheckboxChange = (answerIndex) => {
+    setCheckedStates((prevCheckedStates) => {
+      const newCheckedStates = [...prevCheckedStates];
+      newCheckedStates[0][answerIndex] = !newCheckedStates[0][answerIndex];
+      return newCheckedStates;
+    });
+  };
 
   const typesOptions = [
     "Sole Proprietorship",
@@ -19,18 +59,46 @@ export function Form({ navigation, route }) {
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
-  const inputs = route.params.inputs;
-  // Initialize an array of state variables for checkboxes
-  const [checkedStates, setCheckedStates] = useState(inputs.map(() => false));
-  // Function to update the state for a specific checkbox
-  const handleCheckboxChange = (questionIndex, answerIndex) => {
-    setQuestionAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[questionIndex][answerIndex].isChecked =
-        !newAnswers[questionIndex][answerIndex].isChecked;
-      return newAnswers;
-    });
+
+  const database = getDatabase();
+
+  const updateData = (questionIndex) => {
+    if (questionIndex === 1) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        1: true,
+      });
+    } else if (questionIndex === 2) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        2: true,
+      });
+    } else if (questionIndex === 4) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        4: true,
+      });
+    } else if (questionIndex === 3) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        3: true,
+      });
+    } else if (questionIndex === 5) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        5: true,
+      });
+    } else if (questionIndex === 6) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        6: true,
+      });
+    }
   };
+
+  const pdf = () => {
+    navigation.navigate("PDFPage");
+  };
+
+  const combinedFunction = () => {
+    pdf();
+    updateData(questionIndexUpdate);
+  };
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -45,50 +113,43 @@ export function Form({ navigation, route }) {
         options={typesOptions}
         onSelect={handleOptionSelect}
       />
-
-      {/* {inputs.map((input, index) => (
-        <View key={input.name}>
-          <Text style={styles.text}>{input.name}</Text>
-
-          {input.type == "checkbox" ? (
-            <View style={styles.checkboxContainer}>
-              {input.answers.map((a, id) => (
-                {(index = index + 1)}
-                
-                <View key={id}>
-                  <Text style={{ fontSize: 15 }}>{a}</Text>
-                  <Checkbox
-                    style={styles.checkbox}
-                    value={checkedStates[id + index]}
-                    onValueChange={() => handleCheckboxChange(id + index)}
-                    color={checkedStates[id + index] ? "#4630EB" : undefined}
-                  /> */}
       <View>
-        {inputs.map((answers, questionIndex) => (
+        {inputs.map((questions, questionIndex) => (
           <View key={questionIndex}>
-            <Text>Question {inputs.question}</Text>
-            {inputs.type == "checkbox" ? (
+            <Text style={{ fontWeight: "bold", fontSize: 20, margin: 5 }}>
+              {questions.question}
+            </Text>
+            {questions.type === "checkbox" ? (
               <View style={styles.checkboxContainer}>
-                {inputs.answers.map((answer, answerIndex) => (
-                  <>
-                    <Text>{answers.label}</Text>
+                {questions.answers.map((answer, answerIndex) => (
+                  <View key={answerIndex}>
+                    <Text>{answer.label}</Text>
                     <Checkbox
-                      value={answers.isChecked}
-                      onValueChange={() =>
-                        handleCheckboxChange(questionIndex, answerIndex)
-                      }
+                      style={styles.checkbox}
+                      value={checkedStates[0][answerIndex]}
+                      onValueChange={() => handleCheckboxChange(answerIndex)}
+                      color="#4630EB"
                     />
-                  </>
+                  </View>
                 ))}
+              </View>
+            ) : null}
+            {questions.type === "text" ? (
+              <View style={styles.inputContainer}>
+                <InputField
+                  placeholder="Answer here..."
+                  value={inputValues}
+                  onChangeText={() => {
+                    handleInputBoxChange(questionIndex,);
+                  }}
+                />
               </View>
             ) : null}
           </View>
         ))}
       </View>
       <PurpleButton
-        onPress={() => {
-          navigation.navigate("PDFPage");
-        }}
+        onPress={combinedFunction}
         text="Generate PDF"
       ></PurpleButton>
     </ScrollView>

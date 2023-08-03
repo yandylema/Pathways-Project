@@ -166,7 +166,7 @@ app.use("/social", async (req, res) => {
     }
 });
 
-// Business license 
+// Document info end point 
 app.use("/documentinfo", async (req, res) => { 
   let documentName = req.query.documentName;
   let product = req.query.product;
