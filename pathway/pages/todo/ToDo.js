@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
-
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
 const purple = require("../../assets/Ellipse5.png");
 const red = require("../../assets/Ellipse6.png");
 const green = require("../../assets/Ellipse7.png");
@@ -10,7 +11,22 @@ const yellow = require("../../assets/Ellipse8.png");
 
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const db = getDatabase();
+  const auth = getAuth();
+  // const userId = auth.currentUser.uid;
+  let value = false;
+  const returnValue = () => {
+    return onValue(
+      ref(db, "businesses/1/completed_forms/1"),
+      (snapshot) => {
+        value = snapshot.val();
+      },
+      {
+        onlyOnce: true,
+      }
+    );
+  };
+  console.log(value);
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
@@ -33,12 +49,12 @@ const ToDo = () => {
   ];
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    returnValue();
   };
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
       <PageTitle>To-Do List</PageTitle>
-      <View style={styles.container}>
         <Dropdown
           icon={purple}
           label="Legal Documents"
@@ -65,9 +81,7 @@ const ToDo = () => {
           options={additionalOptions}
           onSelect={handleOptionSelect}
         />
-        
-      </View>
-    </View>
+      </ScrollView>
   );
 };
 
@@ -79,11 +93,9 @@ const styles = StyleSheet.create({
     backgroundColor: "E9E4E4",
     maxWidth: 500,
     display: "flex",
-    alignSelf: "center",
     flex: 1,
-    alignSelf: "center"
+    alignSelf: "center",
   },
 });
 
 export default ToDo;
-

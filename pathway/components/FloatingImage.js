@@ -38,6 +38,7 @@ const FloatingImage = () => {
       style={[
         styles.floatingImage,
         { transform: [{ translateY: floatInterpolate }] },
+        {width: 200, resizeMode: "contain"}
       ]}
     />
   );

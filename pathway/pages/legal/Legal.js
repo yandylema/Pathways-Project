@@ -12,24 +12,6 @@ const forms = [
         name: "Business License",
         inputs: [
           {
-            question: "Starting date",
-            type: "text",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
-          },
-          {
-            question: "Physical Business address",
-            type: "text",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
-          },
-          {
             question: "Nature of Business",
             type: "checkbox",
             answers: [
@@ -52,15 +34,15 @@ const forms = [
       {
         name: "Alcohol License",
         inputs: [
-          { question: "Business name", type: "text", answers: [] },
           {
-            question: "Will you serve alcohol",
-            type: "checkbox",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
+            question: "Business name",
+            type: "text",
+            answer: "",
+          },
+          {
+            question: "Category",
+            type: "text",
+            answer: "",
           },
         ],
       },
@@ -72,7 +54,7 @@ const forms = [
       {
         name: "Food Service Permit",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you employ people",
             type: "checkbox",
@@ -85,9 +67,13 @@ const forms = [
         ],
       },
       {
-        name: "Sign Permit",
+        name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          {
+            question: "Business name",
+            type: "text",
+            answer: "",
+          },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -105,9 +91,9 @@ const forms = [
     name: "Other",
     options: [
       {
-        name: "Employer Identification Number",
+        name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -120,9 +106,9 @@ const forms = [
         ],
       },
       {
-        name: "Certificate of Occupancy",
+        name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -140,7 +126,7 @@ const forms = [
 
 export default function Legal({ navigation }) {
   return (
-    <ScrollView style={{width: "95%", maxWidth: 500, alignSelf: "center"}}>
+    <ScrollView style={{maxWidth: 500, width: "100%", alignSelf: "center"}}>
       <PageTitle>Legal Documents</PageTitle>
 
       <WhiteButton
@@ -154,11 +140,6 @@ export default function Legal({ navigation }) {
               key={idx}
               onPress={() => {
                 navigation.navigate("Form", { inputs: option.inputs });
-              }}
-              iPress={() => {
-                navigation.navigate("DocumentInfo", {
-                  documentName: option.name,
-                });
               }}
               text={option.name}
             />

@@ -53,11 +53,9 @@ async function getImages(businessName) {
 }
 
 app.use("/logo", async (req, res) => { 
-    // let color = req.query.color; //red
-    // let theme = req.query.theme; //vintage
-    let businessType = req.query.businessType;
-    let businessProduct = req.query.businessProduct;
-    const promptValue = `Generate a simple logo for a business of type ${businessType} which sells ${businessProduct}`;
+    let color = req.query.color; //red
+    let theme = req.query.theme; //vintage
+    const promptValue = `Generate a logo for a Vietnamese restaurant with red color and a traditional theme, without any text`;
     const options = {
       method: "POST",
       headers: {
@@ -90,6 +88,7 @@ app.use("/website", async (req, res) => {
     let name = req.query.name; // business name
     let product = req.query.product;
     let location = req.query.location;
+    let details = req.query.details;
     const options = {
       method: "POST",
       headers: {
@@ -105,7 +104,7 @@ app.use("/website", async (req, res) => {
             },
             {
               "role": "user",
-              "content": `Generate a website for a business called ${name}. This business sells ${product}. It is located in ${location}.`
+              "content": `Generate a website for a business called PhoExpress. This business sells Pho. It is located in Seattle. Some extra details you should include in the website are that it is comfortable. Use the image url https://th.bing.com/th/id/R.aa3ccda9ea46e6a3d6cd8393416149f5?rik=s5ULBFrMwPfnQQ&riu=http%3a%2f%2fmedia.blogto.com%2flistings%2f2949-20161116-590-Pho.jpg%3fh%3d1365%26cmd%3dresize_then_crop%26quality%3d70%26w%3d2048&ehk=4qIDBWx2nKhYOwk2pNzTWCna6CcH5h0eeg2JboUBXME%3d&risl=&pid=ImgRaw&r=0 and include this image.`
             }
           ] 
       }),
@@ -143,8 +142,8 @@ app.use("/social", async (req, res) => {
           },
           {
             "role": "user",
-            "content": `Generate a Facebook-like post for a business named "${businessName}" that promotes the product "${product}".`
-          } // use this image URL: https://www.measuringcupsoptional.com/wp-content/uploads/2016/12/Beef-Pho.jpg and include this image
+            "content": `Generate a Facebook-like post for a business named PhoExpress that promotes the product Pho, use this image URL: https://www.measuringcupsoptional.com/wp-content/uploads/2016/12/Beef-Pho.jpg and include this image.`
+          }
         ] 
     }),
   };
@@ -185,7 +184,7 @@ app.use("/documentinfo", async (req, res) => {
           },
           {
             "role": "user",
-            "content": `Generate an explanation of what a "${documentName}" is and why it is important that my new business that will be called "${businessName}" that will sell "${product}" in "${location}" should have a "${documentName}".`
+            "content": `Generate an explanation of what a "${documentName}" is and why it is important that my new business that will be called PhoExpress that will sell Pho in Seattle should have a "${documentName}".`
           }
         ] 
     }),
@@ -263,68 +262,6 @@ async function getAddressFromCoordinates(location) {
   console.log(address)
   return `${address.locality.toLowerCase()}-${address.adminDistrict.toLowerCase()}-${address.postalCode}`;
 }
-
-
-app.use("/businessplan", async (req, res) => {
-  let businessType = req.query.businessType; //47.602038,-122.333964
-  let businessName = req.query.businessName; //47.602038,-122.333964
-  let businessLocation = req.query.businessLocation; //47.602038,-122.333964
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.OPENAI_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "model": "gpt-3.5-turbo",
-      "messages": [
-          {
-            "role": "system",
-            "content": `You are a business consultant for a ${businessType} business called ${businessName} based in ${businessLocation}. Your client will give you a text input with headers: your job is to replace the question marks with simple paragraphs.`
-          },
-          {
-            "role": "user",
-            "content": `1 Business description
-            ?
-            2 Target market
-            ?
-            3 Location
-            ?
-            4 Competitive advantage
-            ?
-            5 Financial projections
-            ?
-            6 Profitability
-            ?`
-          }
-        ] 
-    }),
-  };
-
-  try {
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        options
-      );
-      const data = await response.json();
-      console.log(data)
-      let ret = formatBP(data.choices[0].message.content);
-      res.send(ret);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Error generating business plan content.');
-    }
-});
-
-function formatBP(bp) {
-  let splitted = bp.split("\n");
-  let obj = {}
-  for (let i = 0; i < splitted.length; i += 2){
-      obj[splitted[i]] = splitted[i+1];
-  }
-  return obj;
-}
-
 
 console.log("server starting, port 8080")
 http.createServer(app).listen(8080);

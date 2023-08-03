@@ -17,6 +17,7 @@ const location = require("../assets/location.png");
 const locationpurple = require("../assets/locationpurple.png");
 import SettingsRouter from "./SettingsRouter";
 import Details from "../pages/auth/Details";
+import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
@@ -25,6 +26,7 @@ const Stack = createNativeStackNavigator();
 
 export default function MainRouter() {
   return (
+    <>
     <NavigationContainer>
     <Tab.Navigator screenOptions={{
       tabBarStyle: {height: 60, paddingTop:6},
@@ -117,5 +119,6 @@ export default function MainRouter() {
     
       
     </NavigationContainer>
+    </>
   );
 }
