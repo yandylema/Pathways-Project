@@ -2,10 +2,11 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ActivityIn
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
 import GradientCard from "../../components/GradientCard";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import CONFIG from "../../config/config";
 import PageTitle from "../../components/PageTitle";
 import { getDatabase, ref, get } from "firebase/database";
+import AppContext from "../../utils/AppContext";
 
 
 
@@ -30,10 +31,12 @@ export default function Generate({ navigation }) {
 
   const [isLoadingLogos, setIsLoadingLogos] = useState(false);
 
+  const myContext = useContext(AppContext);
+
   // Fetches logo data from the server
   const fetchLogos = async () => {
     const database = getDatabase();
-    const businessesRef = ref(database, "businesses/5");
+    const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
     if (snapshot.exists()) {
       // snapshot.val() gives you the entire data under 'businesses' node
@@ -61,7 +64,7 @@ export default function Generate({ navigation }) {
   // Generates website content from the server
   const generateWebsite = async () => {
     const database = getDatabase();
-    const businessesRef = ref(database, "businesses/5");
+    const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
     if (snapshot.exists()) {
       const businessData = snapshot.val();

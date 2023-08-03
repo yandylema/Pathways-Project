@@ -1,19 +1,22 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import CONFIG from "../../config/config";
 import { getDatabase, ref, get } from "firebase/database";
 import { useAuthentication } from "../../utils/useAuthentication";
+import AppContext from "../../utils/AppContext";
 
   
 
 export default function BusinessPlan() {
   const [businessPlan, setBusinessPlan] = useState(null);
+  const myContext = useContext(AppContext);
+  console.log(myContext.id)
   useEffect(() => {
     (async () => {
       try {
         const database = getDatabase();
-        const businessesRef = ref(database, "businesses/5");
+        const businessesRef = ref(database, "businesses/" + myContext.id);
         get(businessesRef).then(async (snapshot) => {
           if (snapshot.exists()) {
             const businessData = snapshot.val();

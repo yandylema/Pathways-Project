@@ -317,7 +317,7 @@ app.use("/businessplan", async (req, res) => {
 });
 
 function formatBP(bp) {
-  let splitted = bp.split(/[\n1234567890:]/);
+  let splitted = bp.split("\n");
   let obj = {}
   for (let i = 0; i < splitted.length; i += 2){
       obj[splitted[i]] = splitted[i+1];

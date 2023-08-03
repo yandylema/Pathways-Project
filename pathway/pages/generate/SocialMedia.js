@@ -2,10 +2,10 @@ import { Text, Button, View, Image, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import PurpleButton from "../../components/PurpleButton";
 import WhiteButton from "../../components/WhiteButton";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import CONFIG from "../../config/config";
 import { getDatabase, ref, get } from "firebase/database";
-
+import AppContext from "../../utils/AppContext";
 
 // Image asset
 // const upload = require("../../assets/pho1.jpg");
@@ -20,12 +20,13 @@ export default function SocialMedia({ navigation }) {
   
   // State to check if the post is currently being generated
   const [loading, setLoading] = useState(false);
+  const myContext = useContext(AppContext);
 
   // Function to fetch a generated social media post based on certain parameters
   const fetchSocialMediaPost = async () => {
     setLoading(true); // Indicate the start of the loading process
     const database = getDatabase();
-    const businessesRef = ref(database, "businesses/5");
+    const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
     if (snapshot.exists()) {
       const businessData = snapshot.val();

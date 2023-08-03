@@ -1,7 +1,7 @@
 import { Text, Button, View, StyleSheet, ImageBackground, ActivityIndicator } from "react-native";
 import { LocationNav } from "../../components/LocationNav";
 import mapscreenshot from "../../assets/mapscreenshot.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ServicesPopup } from "../../components/ServicesPopup";
 import { BusinessPopup } from "../../components/BusinessPopup";
 import { RealEstatePopup } from "../../components/RealEstatePopup";
@@ -10,6 +10,10 @@ import { RealEstatePin } from "../../components/RealEstatePin";
 import CONFIG from "../../config/config";
 import MapLogic from "./MapLogic";
 import * as Location from 'expo-location';
+import { getDatabase, ref, get } from "firebase/database";
+import AppContext from "../../utils/AppContext";
+
+
 
 function LoadingPopup() {
   return(
@@ -30,6 +34,8 @@ export default function LocationPage({ navigation }) {
   });
   const [businessMarkers, setBusinessMarkers] = useState([]);
   const [realEstateMarkers, setRealEstateMarkers] = useState([]);
+  const myContext = useContext(AppContext);
+
 
 
   useEffect(() => {
@@ -54,9 +60,16 @@ export default function LocationPage({ navigation }) {
   }
 
   async function getBusinessMarkers(lat, long) {
-    const response = await fetch(`${CONFIG.SERVER_URL}/businesses?type=coffee&location=${lat},${long}`);
-    const responseJson = await response.json();
-    setBusinessMarkers(responseJson);
+    const database = getDatabase();
+    const businessesRef = ref(database, "businesses/" + myContext.id);
+    get(businessesRef).then(async (snapshot) => {
+    if (snapshot.exists()) {
+      const businessData = snapshot.val();
+      console.log(businessData)
+      const response = await fetch(`${CONFIG.SERVER_URL}/businesses?type=${businessData.businessProduct}&location=${lat},${long}`);
+      const responseJson = await response.json();
+      setBusinessMarkers(responseJson);
+    }})
   }
 
   async function getRealEstateMarkers(lat, long) {

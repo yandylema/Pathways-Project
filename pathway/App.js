@@ -9,11 +9,18 @@ import * as Font from "expo-font";
 import { useEffect, useState } from "react";
 import { useAuthentication } from './utils/useAuthentication';
 import MainRouter from "./routers/MainRouter";
-
+import AppContext from './utils/AppContext';
 
 export default function App() {
   const { user } = useAuthentication();
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [id, setId] = useState(user ? user.uid : null);
+
+  const idInfo = {
+    id: id,
+    setId: setId
+  }
+
   useEffect(() => {
     async function loadFonts() {
       await Font.loadAsync({
@@ -26,6 +33,7 @@ export default function App() {
 
   return (
     <>
+    <AppContext.Provider value={idInfo}>
     <StatusBar></StatusBar>
       {fontsLoaded ? (
         <>
@@ -33,6 +41,8 @@ export default function App() {
           {user === null && user !== undefined ? <AuthRouter></AuthRouter> : null}
           </>
       ) : null}
+      </AppContext.Provider>
     </>
+    
   );
 }
