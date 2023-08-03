@@ -139,6 +139,7 @@ export default function Legal({ navigation }) {
             <ButtonWithI
               key={idx}
               onPress={() => {
+                console.log("dkfndjfndjfnfjdn")
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
               text={option.name}
