@@ -1,12 +1,42 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
-import WhiteButton from "../../components/WhiteButton";
+import { useEffect, useState } from "react";
+import CONFIG from "../../config/config";
+import { getDatabase, ref, get } from "firebase/database";
+import { useAuthentication } from "../../utils/useAuthentication";
+
+  
 
 export default function BusinessPlan() {
+  const [businessPlan, setBusinessPlan] = useState(null);
+  useEffect(() => {
+    (async () => {
+      try {
+        const database = getDatabase();
+        const businessesRef = ref(database, "businesses/5");
+        get(businessesRef).then(async (snapshot) => {
+          if (snapshot.exists()) {
+            const businessData = snapshot.val();
+            console.log(businessData);
+            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData.businessType}&businessLocation=${businessData.businessLocation}&businessProduct=${businessData.businessProduct}`);
+            const data = await response.text();
+            setBusinessPlan(data);
+          }
+        })
+        
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    })();
+  })
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Other sections of the business plan */}
-      <PageTitle>PhoExpress Plan</PageTitle>
+      <PageTitle>Business Plan</PageTitle>
+      {businessPlan}
+
+
+{/*       
       <View style={styles.section}>
         
         <View style={styles.subSection}>
@@ -157,7 +187,7 @@ export default function BusinessPlan() {
           </Text>
         </View>
 
-      </View>
+      </View> */}
       {/* Continue with other sections of the business plan */}
     </ScrollView>
   );

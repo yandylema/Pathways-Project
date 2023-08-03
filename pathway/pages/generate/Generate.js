@@ -5,6 +5,8 @@ import GradientCard from "../../components/GradientCard";
 import { useEffect, useState } from 'react';
 import CONFIG from "../../config/config";
 import PageTitle from "../../components/PageTitle";
+import { getDatabase, ref, get } from "firebase/database";
+
 
 
 // Image assets for social media logos
@@ -30,16 +32,25 @@ export default function Generate({ navigation }) {
 
   // Fetches logo data from the server
   const fetchLogos = async () => {
-    try {
-      setIsLoadingLogos(true);
-      const result = await fetch(`${CONFIG.SERVER_URL}/logo?color=red&theme=vintage`);
-      const jsoned = await result.json();
-      setLogos(jsoned);
-      setIsLoadingLogos(false);
-    } catch (error) {
-      console.error("Error fetching logos:", error);
-      setIsLoadingLogos(false);
-    }
+    const database = getDatabase();
+    const businessesRef = ref(database, "businesses/5");
+    get(businessesRef).then(async (snapshot) => {
+    if (snapshot.exists()) {
+      // snapshot.val() gives you the entire data under 'businesses' node
+      const businessData = snapshot.val();
+      console.log(businessData);
+      try {
+        setIsLoadingLogos(true);
+        const result = await fetch(`${CONFIG.SERVER_URL}/logo?businessType=${businessData.businessType}&businessProduct=${businessData.businessProduct}`);
+        const jsoned = await result.json();
+        setLogos(jsoned);
+        setIsLoadingLogos(false);
+      } catch (error) {
+        console.error("Error fetching logos:", error);
+        setIsLoadingLogos(false);
+      }
+    }})
+
   }
 
   // UseEffect hook to fetch logos once when the component is mounted
@@ -49,17 +60,24 @@ export default function Generate({ navigation }) {
 
   // Generates website content from the server
   const generateWebsite = async () => {
-    try {
-      setIsGenerating(true);
-      const response = await await fetch(`${CONFIG.SERVER_URL}/website?name=PhoExpress&product=Chicken&location=Seattle&details=comfortable`);
-      const data = await response.text();
-      setWebsiteContent(data);
-      setIsGenerating(false);
-      setWebsiteGenerated(true);
-    } catch (error) {
-      console.error("Error generating website:", error);
-      setIsGenerating(false);
-    }
+    const database = getDatabase();
+    const businessesRef = ref(database, "businesses/5");
+    get(businessesRef).then(async (snapshot) => {
+    if (snapshot.exists()) {
+      const businessData = snapshot.val();
+      console.log(businessData);
+      try {
+        setIsGenerating(true);
+        const response = await fetch(`${CONFIG.SERVER_URL}/website?name=${businessData.businessName}&product=${businessData.businessProduct}&location=${businessData.businessLocation}`);
+        const data = await response.text();
+        setWebsiteContent(data);
+        setIsGenerating(false);
+        setWebsiteGenerated(true);
+      } catch (error) {
+        console.error("Error generating website:", error);
+        setIsGenerating(false);
+      }
+    }})
   }
 
   // Opens a new window/tab with the generated website content

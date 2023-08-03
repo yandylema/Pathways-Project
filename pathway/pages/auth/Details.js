@@ -7,6 +7,7 @@ import PageTitle from "../../components/PageTitle";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set, get } from "firebase/database";
 import { useState } from "react";
+import { useAuthentication } from "../../utils/useAuthentication";
 
 const auth = getAuth();
 
@@ -32,17 +33,18 @@ export default function Details({ navigation, route }) {
         businessProduct: businessProduct,
         businessLocation: businessLocation,
         businessType: businessType,
-        businessPlan: {
-          HR: "",
-          operations: "",
-        },
         completed_forms: {
-          1: false,
-          2: false,
-          3: false,
-          4: false,
-          5: false,
-          6: false,
+          licenses: {
+            1: false,
+            2: false,
+          },
+          permits: {
+            1: false,
+            2: false,
+          }, other: {
+            1: false,
+            2: false,
+          }
         },
         settings: {
           language: "",
@@ -69,6 +71,8 @@ export default function Details({ navigation, route }) {
         paddingBottom: 10,
         paddingTop: 30,
         alignItems: "center",
+        maxWidth: 500,
+        alignSelf: "center"
       }}
     >
       <AppTitle></AppTitle>
