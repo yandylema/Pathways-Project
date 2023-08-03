@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     display: "flex",
   },
+  crossOut: {
+    textDecoration: "line-through",
+  },
   button: {
     backgroundColor: "white",
     width: "100%",
