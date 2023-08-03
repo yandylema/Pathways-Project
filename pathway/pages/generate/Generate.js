@@ -115,7 +115,7 @@ export default function Generate({ navigation }) {
       {/* Gradient Card for displaying Logo Ideas */}
       <GradientCard text="Logo Ideas" passedStyle={{height: 600}}>
       <View>
-        {isLoadingLogos ? <ActivityIndicator size="large" color="white" /> : null}
+        {isLoadingLogos ? <View style={{height: 410, width: "100%", alignItems: "center", justifyContent: "center"}}><ActivityIndicator size="large" color="white" /></View> : null}
         {/* Displaying two rows of logos */}
         {logos? <View style={{alignSelf: "center"}}><View style={styles.row}>
         <Image source={{uri: logos[0]}} style={styles.image} />

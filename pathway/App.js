@@ -29,7 +29,8 @@ export default function App() {
     <StatusBar></StatusBar>
       {fontsLoaded ? (
         <>
-          {user ? <MainRouter></MainRouter> : <AuthRouter></AuthRouter>}
+          {user !== null && user !== undefined ? <MainRouter></MainRouter> : null}
+          {user === null && user !== undefined ? <AuthRouter></AuthRouter> : null}
           </>
       ) : null}
     </>
