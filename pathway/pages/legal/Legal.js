@@ -142,6 +142,9 @@ export default function Legal({ navigation }) {
                 console.log("dkfndjfndjfnfjdn")
                 navigation.navigate("Form", { inputs: option.inputs });
               }}
+              iPress={() => {
+                navigation.navigate("DocumentInfo", { documentName: option.name });
+              }}
               text={option.name}
             />
           ))}

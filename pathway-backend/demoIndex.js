@@ -624,64 +624,10 @@ app.use("/realestate", async (req, res) => {
 
 
 app.use("/businessplan", async (req, res) => {
-  let businessType = req.query.businessType; //47.602038,-122.333964
-  let businessName = req.query.businessName; //47.602038,-122.333964
-  let businessLocation = req.query.businessLocation; //47.602038,-122.333964
-  const options = {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.OPENAI_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      "model": "gpt-3.5-turbo",
-      "messages": [
-          {
-            "role": "system",
-            "content": `You are a business consultant for a restaurant business called PhoExpress based in Seattle. Your client will give you a text input with headers: your job is to replace the question marks with simple paragraphs.`
-          },
-          {
-            "role": "user",
-            "content": `1 Business description
-            ?
-            2 Target market
-            ?
-            3 Location
-            ?
-            4 Competitive advantage
-            ?
-            5 Financial projections
-            ?
-            6 Profitability
-            ?`
-          }
-        ] 
-    }),
-  };
-
-  try {
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        options
-      );
-      const data = await response.json();
-      console.log(data)
-      let ret = formatBP(data.choices[0].message.content);
-      res.send(ret);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Error generating business plan content.');
-    }
+  res.send(`
+  1 Business description PhoExpress is a restaurant business located in Seattle, Washington. We specialize in serving traditional Vietnamese cuisine, with a focus on the popular dish, pho. Our mission is to provide customers with a delicious and authentic dining experience that captures the essence of Vietnamese flavors and culture. 2 Target market Our target market consists of individuals who appreciate Asian cuisine, specifically Vietnamese food. We aim to attract both locals and tourists who are seeking a unique and flavorful dining experience. Additionally, we strive to cater to a diverse range of customers, including families, professionals, and students. 3 Location PhoExpress is strategically located in the heart of Seattle, ensuring convenient access for customers. Our restaurant is situated in a bustling area with high foot traffic, attracting both residents and visitors alike. The location also provides excellent visibility, allowing us to attract new customers and maximize our brand exposure. 4 Competitive advantage One of our main competitive advantages is our commitment to using high-quality ingredients and authentic recipes. We take pride in sourcing fresh ingredients to create flavorful and aromatic dishes. Additionally, our team of skilled chefs is dedicated to ensuring consistency in taste and presentation. We also differentiate ourselves by providing a cozy and welcoming ambiance, enhancing the overall dining experience for our customers. 5 Financial projections Based on market research and initial feedback, we have projected strong financial performance for PhoExpress. We anticipate steady growth in customer demand, resulting in increased revenue. Our financial projections also take into account factors such as operating expenses, labor costs, and marketing efforts. We remain optimistic about the profitability of our business and are confident in our ability to achieve our financial goals. 6 Profitability PhoExpress aims to achieve long-term profitability by focusing on several key factors. These include effective cost management, efficient operations, and maintaining customer satisfaction. We will closely monitor our financial performance, regularly review our strategies, and adapt to market trends to ensure sustained profitability. By continuously improving our offerings and providing outstanding customer service, we aim to establish PhoExpress as a successful and profitable restaurant in the competitive Seattle food scene.`);
 });
 
-function formatBP(bp) {
-  // let splitted = bp.split("\n");
-  // let obj = {}
-  // for (let i = 0; i < splitted.length; i += 2){
-  //     obj[splitted[i]] = splitted[i+1];
-  // }
-  return bp;
-}
 
 console.log("server starting, port 8080")
 http.createServer(app).listen(8080);

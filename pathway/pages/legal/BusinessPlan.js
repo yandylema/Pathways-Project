@@ -18,13 +18,11 @@ export default function BusinessPlan() {
         const database = getDatabase();
         const businessesRef = ref(database, "businesses/" + myContext.id);
         get(businessesRef).then(async (snapshot) => {
-          if (snapshot.exists()) {
             const businessData = snapshot.val();
             console.log(businessData);
-            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData.businessType}&businessLocation=${businessData.businessLocation}&businessProduct=${businessData.businessProduct}`);
+            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData?.businessType}&businessLocation=${businessData?.businessLocation}&businessProduct=${businessData?.businessProduct}`);
             const data = await response.text();
             setBusinessPlan(data);
-          }
         })
         
       } catch (error) {

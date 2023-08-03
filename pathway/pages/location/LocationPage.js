@@ -63,13 +63,12 @@ export default function LocationPage({ navigation }) {
     const database = getDatabase();
     const businessesRef = ref(database, "businesses/" + myContext.id);
     get(businessesRef).then(async (snapshot) => {
-    if (snapshot.exists()) {
       const businessData = snapshot.val();
       console.log(businessData)
-      const response = await fetch(`${CONFIG.SERVER_URL}/businesses?type=${businessData.businessProduct}&location=${lat},${long}`);
+      const response = await fetch(`${CONFIG.SERVER_URL}/businesses?type=${businessData?.businessProduct}&location=${lat},${long}`);
       const responseJson = await response.json();
       setBusinessMarkers(responseJson);
-    }})
+    })
   }
 
   async function getRealEstateMarkers(lat, long) {
