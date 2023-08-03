@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
-
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
 const purple = require("../../assets/Ellipse5.png");
 const red = require("../../assets/Ellipse6.png");
 const green = require("../../assets/Ellipse7.png");
@@ -10,12 +11,26 @@ const yellow = require("../../assets/Ellipse8.png");
 
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const db = getDatabase();
+  const auth = getAuth();
+  // const userId = auth.currentUser.uid;
+  let value = false;
+  const returnValue = () => {
+    return onValue(
+      ref(db, "businesses/1/completed_forms/1"),
+      (snapshot) => {
+        value = snapshot.val();
+      },
+      {
+        onlyOnce: true,
+      }
+    );
+  };
+  console.log(value);
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
-    "3. blahblahblah",
-    "4. blahblahblah",
+    "3. Upload Employee ID Number",
   ];
   const locationOptions = [
     "1. View competitors",
@@ -33,6 +48,7 @@ const ToDo = () => {
   ];
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    returnValue();
   };
 
   return (
@@ -72,12 +88,15 @@ const ToDo = () => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     width: "95%",
     borderRadius: 3,
     backgroundColor: "E9E4E4",
+    maxWidth: 500,
     display: "flex",
     alignSelf: "center",
     flex: 1,
+    alignSelf: "center",
   },
 });
 

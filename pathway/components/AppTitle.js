@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
 export function AppTitle(props) {
     console.log(props)
     return (
-        <View style={{ alignItems: "center"}}>
+        <View style={{ 
+            alignItems: "center"
+            }}>
             <Image source={props.color == "white" ? pathwaywhite : pathway} style={styles.AppTitle}/>
         </View>
     );

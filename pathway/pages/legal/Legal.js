@@ -37,19 +37,12 @@ const forms = [
           {
             question: "Business name",
             type: "text",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-            ],
+            answer: "",
           },
           {
-            question: "Will you serve alcohol",
-            type: "checkbox",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
+            question: "Category",
+            type: "text",
+            answer: "",
           },
         ],
       },
@@ -61,7 +54,7 @@ const forms = [
       {
         name: "Food Service Permit",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you employ people",
             type: "checkbox",
@@ -76,7 +69,11 @@ const forms = [
       {
         name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          {
+            question: "Business name",
+            type: "text",
+            answer: "",
+          },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -96,7 +93,7 @@ const forms = [
       {
         name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you serve alcohol",
             type: "checkbox",
@@ -111,7 +108,7 @@ const forms = [
       {
         name: "Other",
         inputs: [
-          { question: "Business name", type: "text" },
+          { question: "Business name", type: "text", answer: "" },
           {
             question: "Will you serve alcohol",
             type: "checkbox",

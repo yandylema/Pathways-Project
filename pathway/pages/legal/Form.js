@@ -5,23 +5,47 @@ import PurpleButton from "../../components/PurpleButton";
 import Dropdown from "../../components/DropdownChecklist";
 import PageTitle from "../../components/PageTitle";
 import InputField from "../../components/InputField";
-import { getDatabase, ref, set, get, update } from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 
 export function Form({ navigation, route }) {
-  const [selectedOption, setSelectedOption] = useState(null);
   const inputs = route.params.inputs;
-  const isCheckedFunction = () => {
-    // inputs !== "undefined"
-    //   ? inputs.map((i) => {
-    //       i.type === "checkbox"
-    //         ? i.answers.map((j) => {
-    //             console.log("loop 2", j);
-    //             j.isChecked = false;
-    //           })
-    //         : console.log("(2)This is undefined, ", i);
-    //     })
-    //   : console.log("(1) This is undefined, ", inputs);
-    //console.log("this is not working");
+  const [questionIndexUpdate, setQuestionIndexUpdate] = useState(0);
+
+  //input starts here
+  const [inputValues, setInputValues] = useState(() => {
+    return inputs.filter((i) => i.type === "text").map((j) => (j.answer = " ")); // Initialize each answer with an empty string
+  });
+  console.log("xyz", inputs[0].answer);
+  inputs.map((i) => {
+    console.log("the answer ", i.answer);
+  });
+
+  const handleInputBoxChange = (questionIndex, newValue) => {
+    setInputValues((prevInputValues) => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[questionIndex].answer = e.target.value;
+      console.log(newInputValues);
+      setQuestionIndexUpdate(questionIndex + 1);
+      return newInputValues;
+    });
+  };
+
+  console.log("update question ", questionIndexUpdate);
+
+  //checkbox starts here
+  const [checkedStates, setCheckedStates] = useState(() => {
+    return inputs
+      .filter((type) => type.type === "checkbox")
+      .map((question) => question.answers.map((i) => (i.isChecked = false)));
+  });
+  console.log("checked states are", checkedStates);
+
+  const handleCheckboxChange = (answerIndex) => {
+    setCheckedStates((prevCheckedStates) => {
+      const newCheckedStates = [...prevCheckedStates];
+      newCheckedStates[0][answerIndex] = !newCheckedStates[0][answerIndex];
+      return newCheckedStates;
+    });
   };
 
   const typesOptions = [
@@ -35,34 +59,46 @@ export function Form({ navigation, route }) {
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
-  //console.log(inputs[0].answers[0].isChecked);
-  const [checkedStates, setCheckedStates] = useState(() => isCheckedFunction());
-  // Function to update the state for a specific checkbox
-  const handleCheckboxChange = (questionIndex, answerIndex) => {
-    setCheckedStates((prevCheckedStates) => {
-      const newCheckedStates = [...prevCheckedStates];
-      newCheckedStates[questionIndex][answerIndex] =
-        !newCheckedStates[questionIndex][answerIndex];
-      return newCheckedStates;
-    });
-  };
+
   const database = getDatabase();
-  //error: firebase does not have update() function
-  const updateData = () => {
-    update(ref(database, "businesses/1/completed_forms/"),
-      {
-        "1": true,
-      }
-    );
+
+  const updateData = (questionIndex) => {
+    if (questionIndex === 1) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        1: true,
+      });
+    } else if (questionIndex === 2) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        2: true,
+      });
+    } else if (questionIndex === 4) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        4: true,
+      });
+    } else if (questionIndex === 3) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        3: true,
+      });
+    } else if (questionIndex === 5) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        5: true,
+      });
+    } else if (questionIndex === 6) {
+      update(ref(database, "businesses/1/completed_forms/"), {
+        6: true,
+      });
+    }
   };
 
   const pdf = () => {
     navigation.navigate("PDFPage");
   };
+
   const combinedFunction = () => {
     pdf();
-    updateData();
+    updateData(questionIndexUpdate);
   };
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -83,23 +119,32 @@ export function Form({ navigation, route }) {
             <Text style={{ fontWeight: "bold", fontSize: 20, margin: 5 }}>
               {questions.question}
             </Text>
-            {questions.type == "checkbox" ? (
+            {questions.type === "checkbox" ? (
               <View style={styles.checkboxContainer}>
                 {questions.answers.map((answer, answerIndex) => (
-                  <>
+                  <View key={answerIndex}>
                     <Text>{answer.label}</Text>
                     <Checkbox
                       style={styles.checkbox}
-                      color={true ? "#4630EB" : undefined}
+                      value={checkedStates[0][answerIndex]}
+                      onValueChange={() => handleCheckboxChange(answerIndex)}
+                      color="#4630EB"
                     />
-                  </>
+                  </View>
                 ))}
               </View>
-            ) : (
+            ) : null}
+            {questions.type === "text" ? (
               <View style={styles.inputContainer}>
-                <InputField placeholder="Answer here..." />
+                <InputField
+                  placeholder="Answer here..."
+                  value={inputValues}
+                  onChangeText={() => {
+                    handleInputBoxChange(questionIndex,);
+                  }}
+                />
               </View>
-            )}
+            ) : null}
           </View>
         ))}
       </View>

@@ -3,6 +3,7 @@ import PageTitle from "../../components/PageTitle";
 import SettingsButton from "../../components/SettingsButton";
 import WhiteButton from "../../components/WhiteButton";
 import { getAuth, signOut } from 'firebase/auth';
+import { getDatabase, ref, update } from "firebase/database";
 
 const auth = getAuth();
 

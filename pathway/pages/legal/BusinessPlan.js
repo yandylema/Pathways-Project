@@ -1,9 +1,5 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
-import WhiteButton from "../../components/WhiteButton";
-import { getDatabase, ref, set, get } from "firebase/database";
-const database = getDatabase();
-const businessesRef = ref(database, "businesses");
 export default function BusinessPlan() {
   get(businessesRef)
     .then((snapshot) => {
@@ -184,7 +180,6 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 16,
-    // fontWeight: "bold",
   },
   content: {
     fontSize: 16,
