@@ -101,7 +101,7 @@ export default function MainRouter() {
                 style={{ width: size+5, height: size+5 }}
                 source={focused ? aipurple : ai}
               />
-              <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>Generate</Text>
+              <Text style={{color: focused ? "purple" : "black", fontWeight:300, marginBottom: 5}}>Marketing</Text>
             </View>
           ),
         }}
