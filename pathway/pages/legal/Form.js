@@ -20,7 +20,7 @@ export function Form({ navigation, route }) {
     console.log("the answer ", i.answer);
   });
 
-  const handleInputBoxChange = (questionIndex, newValue) => {
+  const handleInputBoxChange = (questionIndex, e) => {
     setInputValues((prevInputValues) => {
       const newInputValues = [...prevInputValues];
       newInputValues[questionIndex].answer = e.target.value;
@@ -107,16 +107,17 @@ export function Form({ navigation, route }) {
       }}
     >
       <PageTitle>Business License Tax Form</PageTitle>
-
-      <Dropdown
-        label="Business Type"
-        options={typesOptions}
-        onSelect={handleOptionSelect}
-      />
+      <View style={{ width: "90%" }}>
+        <Dropdown
+          label="Business Type"
+          options={typesOptions}
+          onSelect={handleOptionSelect}
+        />
+      </View>
       <View>
         {inputs.map((questions, questionIndex) => (
-          <View key={questionIndex}>
-            <Text style={{ fontWeight: "bold", fontSize: 20, margin: 5 }}>
+          <View key={questionIndex} style={{ margin: 5 }}>
+            <Text style={{ fontWeight: "bold", fontSize: 20, marginLeft: 20 }}>
               {questions.question}
             </Text>
             {questions.type === "checkbox" ? (
@@ -136,13 +137,7 @@ export function Form({ navigation, route }) {
             ) : null}
             {questions.type === "text" ? (
               <View style={styles.inputContainer}>
-                <InputField
-                  placeholder="Answer here..."
-                  value={inputValues}
-                  onChangeText={() => {
-                    handleInputBoxChange(questionIndex,);
-                  }}
-                />
+                <InputField placeholder="Answer here..." />
               </View>
             ) : null}
           </View>
@@ -163,7 +158,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
   },
+  inputContainer: {
+    margin: 5,
+  },
   checkboxContainer: {
+    justifyContent: "space-around",
+    margin: 5,
     flexDirection: "row", // Arrange checkboxes horizontally
     alignItems: "center", // Align checkboxes to the center vertically
   },

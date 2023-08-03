@@ -11,22 +11,19 @@ const yellow = require("../../assets/Ellipse8.png");
 
 const ToDo = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [value, setValue] = useState(false);
   const db = getDatabase();
+  const link = ref(db, "businesses/2/completed_forms/1");
   const auth = getAuth();
   // const userId = auth.currentUser.uid;
-  let value = false;
   const returnValue = () => {
-    return onValue(
-      ref(db, "businesses/1/completed_forms/1"),
-      (snapshot) => {
-        value = snapshot.val();
-      },
-      {
-        onlyOnce: true,
-      }
-    );
+    onValue(link, (snapshot) => {
+      const data = snapshot.val();
+      setValue(data);
+      console.log(data);
+    });
   };
-  console.log(value);
+  console.log("value of form 1 ", value);
   const legalDocumentsOptions = [
     "1. Submit Business License Tax form",
     "2. Obtain Food Service Permit",
@@ -51,6 +48,10 @@ const ToDo = () => {
     setSelectedOption(option);
     returnValue();
   };
+  const flag1 = [true,false,false]
+  const flag2 = [false, false, false];
+  const flag3 = [true, false];
+
 
   return (
     <ScrollView style={styles.container}>
