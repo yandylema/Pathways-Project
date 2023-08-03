@@ -45,7 +45,7 @@ const forms = [
             question:
               "Names of Sole Proprietor, Parters, Corporate Officers, and Resident Agents",
             type: "text",
-            answer: " ",
+            answer: "",
           },
           {
             question: "Tax reporting status",
@@ -53,8 +53,7 @@ const forms = [
             answers: [
               {
                 id: 1,
-                label:
-                  "I understand the tax filing requirements associated with this business tax license ",
+                label: "I understand the tax filing requirements",
                 isChecked: false,
               },
             ],
@@ -89,8 +88,8 @@ const forms = [
             question: "Will you employ people",
             type: "checkbox",
             answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
+              { id: 1, label: "Yes", isChecked: false },
+              { id: 2, label: "No", isChecked: false },
               // Add more answers for Question 1
             ],
           },
@@ -105,13 +104,9 @@ const forms = [
             answer: "",
           },
           {
-            question: "Will you serve alcohol",
-            type: "checkbox",
-            answers: [
-              { id: 1, label: "Answer 1", isChecked: false },
-              { id: 2, label: "Answer 2", isChecked: false },
-              // Add more answers for Question 1
-            ],
+            question: "What is the category of your product? ",
+            type: "text",
+            answers: " ",
           },
         ],
       },

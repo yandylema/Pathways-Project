@@ -60,7 +60,6 @@ const ToDo = () => {
           icon={purple}
           label="Legal Documents"
           options={legalDocumentsOptions}
-          flag={flag1}
           onSelect={handleOptionSelect}
         />
 
@@ -68,7 +67,6 @@ const ToDo = () => {
           icon={red}
           label="Location"
           options={locationOptions}
-          flag={flag2}
           onSelect={handleOptionSelect}
         />
 
@@ -76,13 +74,11 @@ const ToDo = () => {
           icon={green}
           label="Marketing"
           options={marketingOptions}
-          flag={flag2}
           onSelect={handleOptionSelect}
         />
         <Dropdown
           icon={yellow}
           label="Other"
-          flag={flag3}
           options={additionalOptions}
           onSelect={handleOptionSelect}
         />

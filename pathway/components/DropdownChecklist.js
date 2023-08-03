@@ -9,11 +9,9 @@ import {
   Dimensions,
 } from "react-native";
 
-const Dropdown = ({ label, icon, options, onSelect, optionStyle, flag }) => {
+const Dropdown = ({ label, icon, options, onSelect, optionStyle }) => {
   const [visible, setVisible] = useState(false);
   const optionsRef = useRef(null);
-  const arr = [...flag];
-  console.log(arr);
 
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -53,13 +51,7 @@ const Dropdown = ({ label, icon, options, onSelect, optionStyle, flag }) => {
                 style={styles.option}
                 onPress={() => handleOptionPress(item)}
               >
-                {arr.filter((i) =>
-                  i === false ? (
-                    <Text style={optionStyle}>{item}</Text>
-                  ) : (
-                    <Text style={styles.crossOut}>{item}</Text>
-                  )
-                )}
+                <Text style={optionStyle}>{item}</Text>
               </TouchableOpacity>
             )}
             keyExtractor={(item) => item}
