@@ -17,6 +17,9 @@ export default function Settings() {
         paddingBottom: 10,
         paddingTop: 30,
         alignItems: "center",
+        maxWidth: 500,
+        alignSelf: "center",
+        width: "100%"
       }}
     >
       <PageTitle>Settings</PageTitle>

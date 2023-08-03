@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Image, Pressable } from "react-native";
 
 export default function InfoButton(props) {
@@ -11,7 +10,6 @@ export default function InfoButton(props) {
             source={require("../assets/infoButton.png")}
           />
         </Pressable>
-        <StatusBar style="auto" />
       
     </View>
   );

@@ -1,26 +1,45 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 import PageTitle from "../../components/PageTitle";
+import { useEffect, useState, useContext } from "react";
+import CONFIG from "../../config/config";
+import { getDatabase, ref, get } from "firebase/database";
+import { useAuthentication } from "../../utils/useAuthentication";
+import AppContext from "../../utils/AppContext";
+
+  
+
 export default function BusinessPlan() {
-  get(businessesRef)
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        // snapshot.val() gives you the entire data under 'businesses' node
-        const businessesData = snapshot.val();
-        console.log(
-          "hazel business data la la la it is working",
-          snapshot.getValue()
-        );
-      } else {
-        console.log("No businesses data found.");
+  const [businessPlan, setBusinessPlan] = useState(null);
+  const myContext = useContext(AppContext);
+  console.log(myContext.id)
+  useEffect(() => {
+    (async () => {
+      try {
+        const database = getDatabase();
+        const businessesRef = ref(database, "businesses/" + myContext.id);
+        get(businessesRef).then(async (snapshot) => {
+          if (snapshot.exists()) {
+            const businessData = snapshot.val();
+            console.log(businessData);
+            const response = await fetch(`${CONFIG.SERVER_URL}/businessplan?businessType=${businessData.businessType}&businessLocation=${businessData.businessLocation}&businessProduct=${businessData.businessProduct}`);
+            const data = await response.text();
+            setBusinessPlan(data);
+          }
+        })
+        
+      } catch (error) {
+        console.error("Error:", error);
       }
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+    })();
+  })
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Other sections of the business plan */}
-      <PageTitle>PhoExpress Plan</PageTitle>
+      <PageTitle>Business Plan</PageTitle>
+      {businessPlan}
+
+
+{/*       
       <View style={styles.section}>
         <View style={styles.subSection}>
           <Text style={styles.content}>
@@ -156,7 +175,8 @@ export default function BusinessPlan() {
           <Text style={styles.subTitle}>Year 3-5:</Text>
           <Text style={styles.content}>Expansion & franchising.</Text>
         </View>
-      </View>
+
+      </View> */}
       {/* Continue with other sections of the business plan */}
     </ScrollView>
   );

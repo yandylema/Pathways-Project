@@ -6,7 +6,9 @@ import PurpleButton from "../../components/PurpleButton";
 import PageTitle from "../../components/PageTitle";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set, get } from "firebase/database";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useAuthentication } from "../../utils/useAuthentication";
+import AppContext from "../../utils/AppContext";
 
 const auth = getAuth();
 
@@ -17,48 +19,53 @@ export default function Details({ navigation, route }) {
   const [productName, setBusinessProduct] = useState("");
   const [locationName, setLocation] = useState("");
   const [businessType, setBusinessType] = useState("");
+  const myContext = useContext(AppContext);
 
   const writeData = (
     businessName,
     businessProduct,
     businessLocation,
-    businessType
+    businessType,
+    id
   ) => {
     const db = getDatabase();
-    const businessesRef = ref(db, "businesses/");
-    get(businessesRef).then((snapshot) => {
-      set(ref(db, "businesses/" + snapshot.size), {
-        businessName: businessName,
-        businessProduct: businessProduct,
-        businessLocation: businessLocation,
-        businessType: businessType,
-        businessPlan: {
-          HR: "",
-          operations: "",
-        },
-        completed_forms: {
+    set(ref(db, "businesses/" + id), {
+      businessName: businessName,
+      businessProduct: businessProduct,
+      businessLocation: businessLocation,
+      businessType: businessType,
+      completed_forms: {
+        licenses: {
           1: false,
           2: false,
-          3: false,
-          4: false,
-          5: false,
-          6: false,
         },
-        settings: {
-          language: "",
-          notifications: false,
-        },
-        websiteURL: "",
-      });
+        permits: {
+          1: false,
+          2: false,
+        }, other: {
+          1: false,
+          2: false,
+        }
+      },
+      settings: {
+        language: "",
+        notifications: false,
+      },
+      websiteURL: "",
     });
   };
   const createUser = async () => {
     await createUserWithEmailAndPassword(auth, email, password);
+    return await auth.currentUser.getIdToken();
   };
-  const combinedFunction = () => {
+  const combinedFunction = async () => {
     // Pass all the required arguments to writeData function
-    writeData(businessName, productName, locationName, businessType);
-    createUser();
+    let id = await createUser();
+    id = id.replace(/\W/g, '').slice(-30)
+    myContext.setId(id);
+    writeData(businessName, productName, locationName, businessType, id);
+    
+    
   };
   console.log(businessName);
 
@@ -69,6 +76,8 @@ export default function Details({ navigation, route }) {
         paddingBottom: 10,
         paddingTop: 30,
         alignItems: "center",
+        maxWidth: 500,
+        alignSelf: "center"
       }}
     >
       <AppTitle></AppTitle>

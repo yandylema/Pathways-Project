@@ -27,9 +27,10 @@ export default function Splash({ navigation }) {
         alignItems: "center",
       }}
     >
+      <View style={{maxWidth: 500, width: "100%", alignItems: "center", height: "100%", justifyContent: "space-between"}}>
       <AppTitle color="white" />
 
-      <View style={{ paddingBottom: 110 }}>
+      <View style={{paddingBottom: 30 }}>
         
         <FloatingImage />
         <Text style={styles.caption}>Create your business.</Text>
@@ -38,7 +39,8 @@ export default function Splash({ navigation }) {
 
       <View style={{ 
         width: "100%",
-         alignItems: "center" 
+         alignItems: "center",
+         paddingBottom: 40
         }}>
         <PurpleButton
           text="Sign Up"
@@ -48,6 +50,7 @@ export default function Splash({ navigation }) {
           text="Sign In"
           onPress={() => navigation.navigate("LogIn")}
         />
+      </View>
       </View>
     </LinearGradient>
   );

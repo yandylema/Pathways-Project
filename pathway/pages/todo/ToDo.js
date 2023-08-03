@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import PageTitle from "../../components/PageTitle";
 import Dropdown from "../../components/DropdownChecklist";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -53,9 +53,8 @@ const ToDo = () => {
   };
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
       <PageTitle>To-Do List</PageTitle>
-      <View style={styles.container}>
         <Dropdown
           icon={purple}
           label="Legal Documents"
@@ -82,8 +81,7 @@ const ToDo = () => {
           options={additionalOptions}
           onSelect={handleOptionSelect}
         />
-      </View>
-    </View>
+      </ScrollView>
   );
 };
 
@@ -95,7 +93,6 @@ const styles = StyleSheet.create({
     backgroundColor: "E9E4E4",
     maxWidth: 500,
     display: "flex",
-    alignSelf: "center",
     flex: 1,
     alignSelf: "center",
   },
