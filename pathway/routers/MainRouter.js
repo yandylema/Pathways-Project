@@ -29,7 +29,7 @@ export default function MainRouter() {
     <>
     <NavigationContainer>
     <Tab.Navigator screenOptions={{
-      tabBarStyle: {height: 60, paddingTop:6},
+      tabBarStyle: {height: 75, paddingTop:15},
       }}>
       <Tab.Screen
         name="ToDoRouter"
