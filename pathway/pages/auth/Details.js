@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import InputField from "../../components/InputField";
 import GrayCaption from "../../components/GrayCaption";
 import { AppTitle } from "../../components/AppTitle";
@@ -70,14 +70,14 @@ export default function Details({ navigation, route }) {
   console.log(businessName);
 
   return (
-    <View
-      style={{
+    <ScrollView
+      contentContainerStyle={{
         flex: 1,
         paddingBottom: 10,
         paddingTop: 30,
-        alignItems: "center",
         maxWidth: 500,
-        alignSelf: "center"
+        alignSelf: "center",
+        width: "100%"
       }}
     >
       <AppTitle></AppTitle>
@@ -115,6 +115,6 @@ export default function Details({ navigation, route }) {
       ></InputField>
 
       <PurpleButton text="Confirm" onPress={combinedFunction}></PurpleButton>
-    </View>
+    </ScrollView>
   );
 }
