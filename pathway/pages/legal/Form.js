@@ -100,21 +100,22 @@ export function Form({ navigation, route }) {
   };
 
   return (
-    <ScrollView
+    <View
       contentContainerStyle={{
         flex: 1,
         alignItems: "center",
       }}
     >
+      
+      <ScrollView>
       <PageTitle>Business License Tax Form</PageTitle>
-      <View style={{ width: "90%" }}>
+      <View style={{ width: "90%", alignSelf: "center" }}>
         <Dropdown
           label="Business Type"
           options={typesOptions}
           onSelect={handleOptionSelect}
         />
       </View>
-      <View>
         {inputs.map((questions, questionIndex) => (
           <View key={questionIndex} style={{ margin: 5 }}>
             <Text style={{ fontWeight: "bold", fontSize: 20, marginLeft: 20 }}>
@@ -142,12 +143,13 @@ export function Form({ navigation, route }) {
             ) : null}
           </View>
         ))}
-      </View>
-      <PurpleButton
+        <PurpleButton
         onPress={combinedFunction}
         text="Generate PDF"
       ></PurpleButton>
-    </ScrollView>
+      </ScrollView>
+      
+    </View>
   );
 }
 

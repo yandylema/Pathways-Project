@@ -46,7 +46,7 @@ export function RealEstatePopup(props) {
         </Text>
         <View>
           <Image
-            source={props.realestate.images[0]}
+            source={{uri : props.realestate.images[0]}}
             style={{
               height: 177,
               width: 352,
@@ -63,7 +63,7 @@ export function RealEstatePopup(props) {
             flexDirection: "row",
           }}
         >
-          <View style={{ marginLeft: 14, marginRight: 210 }}>
+          <View style={{ marginLeft: 14, marginRight: 143 }}>
             <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
               {" "}
               Type
@@ -84,7 +84,7 @@ export function RealEstatePopup(props) {
             flexDirection: "row",
           }}
         >
-          <View style={{ marginLeft: 14, marginRight: 168 }}>
+          <View style={{ marginLeft: 14, marginRight: 125 }}>
             <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
               {" "}
               Availability

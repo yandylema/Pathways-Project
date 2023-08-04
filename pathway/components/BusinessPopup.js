@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, Linking, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Image, Linking, TouchableOpacity, ScrollView } from "react-native";
 
 const rating = require("../assets/rating.png");
 const phoHorizontal = require("../assets/phoHorizontal.png");
@@ -12,7 +12,8 @@ const worldSmall = require("../assets/worldSmall.png");
 export function BusinessPopup(props) {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <View style={styles.card}>
+      <TouchableOpacity style={styles.card} activeOpacity={1}>
+        
         <Text
           style={{
             fontWeight: "bold",
@@ -23,11 +24,15 @@ export function BusinessPopup(props) {
         >
           {props.business.name}
         </Text>
-        <Text style={{ paddingLeft: 15 }}>
-          2.1
+        <View style={{flexDirection: "row"}}>
+          <Text style={{ paddingLeft: 15 }}>
+            3.7
+          </Text>
           <Image source={rating} style={{ width: 70, height: 20 }} />
-          (87)
-        </Text>
+          <Text >
+            (87)
+          </Text>
+        </View>
         <Text style={{  paddingLeft: 15 }}>
           {props.business.type}
         </Text>
@@ -58,19 +63,21 @@ export function BusinessPopup(props) {
             />
           </View>
         </View>
-        <Text
-          style={{
+        <View style={{
             flexDirection: "row",
             paddingTop: 7,
             paddingLeft: 15,
-          }}
-        >
-          <Image
+          }}>
+            <Image
             source={worldSmall}
             style={{ width: 20, height: 20, marginRight: 10 }}
           />
+          
+        <Text>
           {props.business.address}
         </Text>
+        </View>
+        
         <Text
           style={{
             flexDirection: "row",
@@ -99,7 +106,7 @@ export function BusinessPopup(props) {
         >
           Reviews
         </Text>
-      </View>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 }
@@ -110,7 +117,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     justifyContent: "flex-end",
-    zIndex: 999,
+    zIndex: 998,
     position: "absolute", 
     alignSelf: "stretch", height: "100%"
   },
@@ -118,5 +125,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
+    zIndex: 999,
   },
 });
