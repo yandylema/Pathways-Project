@@ -24,7 +24,11 @@ export default function SignUp({ navigation }) {
         // justifyContent: "space-around",
         paddingBottom: 10,
         paddingTop: 30,
-        alignItems: "center"
+        // alignItems: "center",
+        maxWidth: 500,
+        width: "100%",
+        alignSelf: "center"
+
     }}>
       <AppTitle />
       <View style={{paddingTop: 100}}>
